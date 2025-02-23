@@ -1,4 +1,4 @@
-# Projeto 12 - ABRACESP
+# Projeto 12 -
 
 ## 🏫 FECAP - Fundação de Comércio Álvares Penteado
 
@@ -18,30 +18,21 @@
 
 ```
 
-README.MD: Arquivo que serve como guia e explicação geral sobre o projeto ABRACESP.
+README.MD: Arquivo que serve como guia e explicação geral sobre o projeto.
 
 Além disso, há outras pastas com os devidos arquivos em cada período de entrega.
 
 ⛲src (com backend e frontend): Pasta que contém os códigos do projeto.
 [src](./src)
 
-🎲 bd: Banco de dados relacional usado no projeto.
+🎲 bd: Banco de dados usado no projeto.
 [bd](./documentos/bd)
-
-📄documentos: Devidos documentos do projeto, arquivos relacionados ao Banco de Dados e relações com Cálculo II.
-[documentos](./documentos)
 
 📸img: Reunião de imagens utilizadas no projeto.
 [img](./img)
 
 ## 🎨 Figma
 Link para o protótipo do [Figma](https://www.figma.com/)!
-
-## 🔍 Versão final
-
-
-## 💻 Configuração para Instalação
-
 
 ## 📋 Licença
 
