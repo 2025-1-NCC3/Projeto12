@@ -12,7 +12,7 @@
 
 ---
 
-## 👨‍🏫 Professores Orientadores: Katia Milani Lara Bossi, Marco Aurelio, Victor Rosetti e Vinicius Heltai.
+## 👨‍🏫 Professores Orientadores: Katia Milani Lara Bossi, Marco Aurelio, Victor Rosetti e Vinicius Heltai
 
 ---
 
@@ -46,7 +46,7 @@ Além disso, há outras pastas com os devidos arquivos em cada período de entre
 [src](./src)
 
 🎲 bd: Banco de dados usado no projeto.
-[bd](./documentos/bd)
+[bd](./bd)
 
 📸img: Reunião de imagens utilizadas no projeto.
 [img](./img)
