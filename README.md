@@ -1,4 +1,4 @@
-# Projeto 12 - Uber Report
+# Projeto 12 - Uber Report ⚠️
 ---
 ## 🏫 FECAP - Fundação de Comércio Álvares Penteado
 
@@ -18,10 +18,6 @@
 
 ## 📄Descrição
 
-<p align="center">
-  <img src="./img/uberLogo.png" alt="Logo Uber Report" width="500">
-</p>
-
 Visando uma implementação no aplicativo da Uber, o projeto tem como objetivo garantir maior segurança aos usuários e motoristas do app. Dessa forma, será possível reportar alertas em tempo real, indicando áreas de riscos e, assim, evitando potenciais incidentes ao pedir uma corrida na Uber.
 
 ---
@@ -39,18 +35,25 @@ Visando uma implementação no aplicativo da Uber, o projeto tem como objetivo g
 ## 🛠 Estrutura de pastas
 
 ```
-
+├── documentos/
+│   ├── bd/
+├── img/
+├── src/
+└── readme.md
 ```
 
 README.MD: Arquivo que serve como guia e explicação geral sobre o projeto.
 
 Além disso, há outras pastas com os devidos arquivos em cada período de entrega.
 
-⛲src (com backend e frontend): Pasta que contém os códigos do projeto.
+⛲src: Pasta que contém os códigos do projeto.
 [src](./src)
 
 🎲 bd: Banco de dados usado no projeto.
 [bd](./documentos/bd)
+
+📄documentos: Devidos documentos do projeto e arquivos relacionados ao Banco de Dados.
+[documentos](./documentos)
 
 📸img: Reunião de imagens utilizadas no projeto.
 [img](./img)
