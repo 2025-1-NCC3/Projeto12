@@ -18,6 +18,10 @@
 
 ## 📄Descrição
 
+<p align="center">
+  <img src="./img/uberLogo.png" alt="Logo Uber Report" width="500">
+</p>
+
 Visando uma implementação no aplicativo da Uber, o projeto tem como objetivo garantir maior segurança aos usuários e motoristas do app. Dessa forma, será possível reportar alertas em tempo real, indicando áreas de riscos e, assim, evitando potenciais incidentes ao pedir uma corrida na Uber.
 
 ---
@@ -46,7 +50,7 @@ Além disso, há outras pastas com os devidos arquivos em cada período de entre
 [src](./src)
 
 🎲 bd: Banco de dados usado no projeto.
-[bd](./bd)
+[bd](./documentos/bd)
 
 📸img: Reunião de imagens utilizadas no projeto.
 [img](./img)
