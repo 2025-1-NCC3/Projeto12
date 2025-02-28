@@ -67,6 +67,8 @@ Link para o protótipo do [Figma](https://www.figma.com/)!
 
 ## 📋 Licença
 
+Uber Report © 2025 by André Gregório dos Santos, Guilherme Reis Fogolin de Godoy, Pedro Henrique Nascimento Lemos, Yan Cezareto Ramos is licensed under CC BY-NC-ND 4.0 
+
 ---
 
 ## 🎓 Referências
