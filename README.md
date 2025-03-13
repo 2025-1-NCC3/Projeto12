@@ -36,6 +36,8 @@ Visando uma implementação no aplicativo da Uber, o projeto tem como objetivo g
 
 ```
 ├── documentos/
+│   ├── Análise Descritiva de Dados/
+│   ├── Programação Orientada a Objetos e Estrutura de Dados/
 │   ├── bd/
 ├── img/
 ├── src/
@@ -52,7 +54,7 @@ Além disso, há outras pastas com os devidos arquivos em cada período de entre
 🎲 bd: Banco de dados usado no projeto.
 [bd](./documentos/bd)
 
-📄documentos: Devidos documentos do projeto e arquivos relacionados ao Banco de Dados.
+📄documentos: Devidos documentos do projeto e arquivos relacionados ao Banco de Dados, POO e Análise Descritiva de Dados.
 [documentos](./documentos)
 
 📸img: Reunião de imagens utilizadas no projeto.
