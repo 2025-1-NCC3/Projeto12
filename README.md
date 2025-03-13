@@ -41,6 +41,8 @@ Visando uma implementação no aplicativo da Uber, o projeto tem como objetivo g
 │   ├── bd/
 ├── img/
 ├── src/
+│   ├── backend/
+│   ├── frontend/
 └── readme.md
 ```
 
@@ -48,17 +50,13 @@ README.MD: Arquivo que serve como guia e explicação geral sobre o projeto.
 
 Além disso, há outras pastas com os devidos arquivos em cada período de entrega.
 
-⛲src: Pasta que contém os códigos do projeto.
-[src](./src)
+⛲[src](./src): Pasta que contém arquivos do frontend e backend do Uber Report.
 
-🎲 bd: Banco de dados usado no projeto.
-[bd](./documentos/bd)
+🎲 [bd](./documentos/bd): Banco de dados usado no projeto.
 
-📄documentos: Devidos documentos do projeto e arquivos relacionados ao Banco de Dados, POO e Análise Descritiva de Dados.
-[documentos](./documentos)
+📄[documentos](./documentos): Devidos documentos do projeto e arquivos relacionados ao Banco de Dados, POO e Análise Descritiva de Dados.
 
-📸img: Reunião de imagens utilizadas no projeto.
-[img](./img)
+📸[img](./img): Reunião de imagens utilizadas no projeto.
 
 ---
 
