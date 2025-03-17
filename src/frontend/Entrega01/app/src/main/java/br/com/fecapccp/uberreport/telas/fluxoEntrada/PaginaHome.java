@@ -75,6 +75,8 @@ public class PaginaHome extends AppCompatActivity implements OnMapReadyCallback 
         layoutAlertaReport = findViewById(R.id.layoutAlertaReport);
         botaoClimaAlerta = findViewById(R.id.botao_clima);
 
+
+
         Button botaoPesquisaDestino = findViewById(R.id.botaoPesquisaDestino);
         botaoPesquisaDestino.setOnClickListener(v -> expandirPesquisaContainer());
 
@@ -107,6 +109,53 @@ public class PaginaHome extends AppCompatActivity implements OnMapReadyCallback 
         PlacesClient placesClient = Places.createClient(this);
 
         configurarAutoComplete();
+
+        // Logica de seleção de alertas, (TODO: Mudar para outra classe)
+        ImageButton botaoAlagamento = findViewById(R.id.botao_alagamento);
+        ImageButton botaoDeslizamento = findViewById(R.id.botao_deslizamento);
+        ImageButton botaoTemporal = findViewById(R.id.botao_temporal);
+        Button botaoContinuar = findViewById(R.id.botao_continuar);
+        Button botaoCancelar = findViewById(R.id.botao_cancelar);
+
+        ImageButton[] botoes = {botaoAlagamento, botaoDeslizamento, botaoTemporal};
+
+        View.OnClickListener botaoClickListener = v -> {
+            for (ImageButton botao : botoes) {
+                if (botao == v) {
+                    botao.setBackgroundResource(R.drawable.botao_selecionado);
+                    botaoContinuar.setEnabled(true);
+                } else {
+                    botao.setBackgroundResource(R.drawable.circular_button);
+                }
+            }
+        };
+
+        botaoAlagamento.setOnClickListener(botaoClickListener);
+        botaoDeslizamento.setOnClickListener(botaoClickListener);
+        botaoTemporal.setOnClickListener(botaoClickListener);
+
+        // Botão para voltar ao estado inicial
+        backButton.setOnClickListener(v -> {
+            diminuirContainer();
+            for (ImageButton botao : botoes) {
+                botao.setBackgroundResource(R.drawable.circular_button);
+            }
+            botaoContinuar.setEnabled(false);
+        });
+
+        // Botão cancelar para voltar ao estado inicial
+        botaoCancelar.setOnClickListener(v -> {
+            for (ImageButton botao : botoes) {
+                botao.setBackgroundResource(R.drawable.circular_button);
+            }
+            botaoContinuar.setEnabled(false);
+        });
+
+        // Botão continuar (adicione a lógica necessária aqui)
+        botaoContinuar.setOnClickListener(v -> {
+            // Lógica para continuar
+        });
+
     }
 
     private void configurarAutoComplete() {
@@ -124,7 +173,7 @@ public class PaginaHome extends AppCompatActivity implements OnMapReadyCallback 
 
     private void expandeAlertas() {
         int startHeight = pesquisaCorridaContainer.getHeight();
-        int endHeight = getResources().getDisplayMetrics().heightPixels / 4;
+        int endHeight = getResources().getDisplayMetrics().heightPixels / 3;
 
         ValueAnimator animator = ValueAnimator.ofInt(startHeight, endHeight);
         animator.addUpdateListener(animation -> {
