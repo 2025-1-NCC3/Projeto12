@@ -6,15 +6,15 @@
             <solid android:color="@android:color/transparent" />
             <stroke
                 android:width="2dp"
-                android:color="@color/red" />
+                android:color="@color/vermelho_fraco" />
         </shape>
     </item>
     <!-- Check icon -->
     <item
         android:drawable="@drawable/checkbotao"
         android:gravity="top|end"
-        android:width="24dp"
-        android:height="24dp"
-        android:top="-8dp"
-        android:right="-8dp" />
+        android:width="16dp"
+        android:height="16dp"
+        android:top="1dp"
+        android:right="1dp" />
 </layer-list>
