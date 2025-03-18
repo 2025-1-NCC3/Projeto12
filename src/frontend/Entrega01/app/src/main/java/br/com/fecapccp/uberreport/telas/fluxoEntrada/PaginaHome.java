@@ -1,6 +1,7 @@
 // File: app/src/main/java/br/com/fecapccp/uberreport/telas/fluxoEntrada/PaginaHome.java
 package br.com.fecapccp.uberreport.telas.fluxoEntrada;
 
+import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -22,9 +23,13 @@ import com.google.android.libraries.places.widget.AutocompleteActivity;
 import com.google.android.libraries.places.widget.model.AutocompleteActivityMode;
 
 import br.com.fecapccp.uberreport.R;
+import br.com.fecapccp.uberreport.alertas.AcidentesAlertaController;
+import br.com.fecapccp.uberreport.alertas.CrimesAlertaController;
 import br.com.fecapccp.uberreport.logicas.AnimacaoBotao;
 import br.com.fecapccp.uberreport.alertas.ControladorAlerta;
 import br.com.fecapccp.uberreport.alertas.ClimaAlertaController;
+import br.com.fecapccp.uberreport.logicas.alertas.EnvioAlerta;
+import br.com.fecapccp.uberreport.logicas.alertas.EnvioAlertaImpl;
 
 import android.animation.ValueAnimator;
 import android.util.Log;
@@ -48,13 +53,21 @@ public class PaginaHome extends AppCompatActivity implements OnMapReadyCallback 
     private TextView corridaText;
     private ImageButton alertButton;
     private ImageButton botaoClimaAlerta;
+    private ImageButton botaoAcidenteAlerta;
+    private ImageButton botaoCrimeAlerta;
     private ImageButton backButton;
     private View inputDestino;
     private View botaoConfirmar;
     private View handleBotao;
     private TextView reportTexto;
     private RelativeLayout layoutAlertaReport;
-    private LinearLayout containerAlertasClima;
+    private Button botaoContinuar;
+    private String tipoAlertaSelecionado;
+    private EnvioAlerta envioAlerta;
+    private LinearLayout containerAlertasBotoes;
+    private LinearLayout layoutAlertasClima;
+    private LinearLayout layoutAlertasAcidentes;
+    private LinearLayout layoutAlertasCrimes;
 
 
     @Override
@@ -69,12 +82,19 @@ public class PaginaHome extends AppCompatActivity implements OnMapReadyCallback 
         botaoConfirmar = findViewById(R.id.botao_confirmar);
         handleBotao = findViewById(R.id.imageView2);
         containerAlertas = findViewById(R.id.container_alertas);
-        containerAlertasClima = findViewById(R.id.container_alertas_clima);
+        containerAlertasBotoes = findViewById(R.id.container_alertas_botoes);
         corridaText = findViewById(R.id.textView);
         reportTexto = findViewById(R.id.report_texto);
         layoutAlertaReport = findViewById(R.id.layoutAlertaReport);
         botaoClimaAlerta = findViewById(R.id.botao_clima);
+        botaoAcidenteAlerta = findViewById(R.id.botao_acidentes);
+        botaoCrimeAlerta = findViewById(R.id.botao_crimes);
+        botaoContinuar = findViewById(R.id.botao_continuar);
+        envioAlerta = new EnvioAlertaImpl();
 
+        layoutAlertasClima = findViewById(R.id.layout_alertas_clima);
+        layoutAlertasAcidentes = findViewById(R.id.layout_alertas_acidentes);
+        layoutAlertasCrimes = findViewById(R.id.layout_alertas_crimes);
 
 
         Button botaoPesquisaDestino = findViewById(R.id.botaoPesquisaDestino);
@@ -90,10 +110,40 @@ public class PaginaHome extends AppCompatActivity implements OnMapReadyCallback 
             expandeAlertas();
         });
 
+        // Botão alertas CLIMA
         botaoClimaAlerta.setOnClickListener(v -> {
             ControladorAlerta climaAlertaController = new ClimaAlertaController(
-                    containerAlertas, containerAlertasClima);
+                    containerAlertas,
+                    containerAlertasBotoes,
+                    layoutAlertasClima,
+                    layoutAlertasAcidentes,
+                    layoutAlertasCrimes
+            );
             climaAlertaController.controlarAlertas();
+        });
+
+        // Botão alertas ACIDENTES
+        botaoAcidenteAlerta.setOnClickListener(v -> {
+            ControladorAlerta acidentesAlertaController = new AcidentesAlertaController(
+                    containerAlertas,
+                    containerAlertasBotoes,
+                    layoutAlertasClima,
+                    layoutAlertasAcidentes,
+                    layoutAlertasCrimes
+            );
+            acidentesAlertaController.controlarAlertas();
+        });
+
+        // Botão alertas CRIMES
+        botaoCrimeAlerta.setOnClickListener(v -> {
+            ControladorAlerta crimesAlertaController = new CrimesAlertaController(
+                    containerAlertas,
+                    containerAlertasBotoes,
+                    layoutAlertasClima,
+                    layoutAlertasAcidentes,
+                    layoutAlertasCrimes
+            );
+            crimesAlertaController.controlarAlertas();
         });
 
         // Inicializa o fragmento do mapa
@@ -114,16 +164,31 @@ public class PaginaHome extends AppCompatActivity implements OnMapReadyCallback 
         ImageButton botaoAlagamento = findViewById(R.id.botao_alagamento);
         ImageButton botaoDeslizamento = findViewById(R.id.botao_deslizamento);
         ImageButton botaoTemporal = findViewById(R.id.botao_temporal);
+        ImageButton botaoAcidenteCarro = findViewById(R.id.botao_acidente_carro);
+        ImageButton botaoAcidentePedestre = findViewById(R.id.botao_acidente_pedestre);
+        ImageButton botaoCrimeAssaltos = findViewById(R.id.botao_assaltos);
+        ImageButton botaoCrimeTiroteio = findViewById(R.id.botao_tiroteio);
+        ImageButton botaoCrimeArrastao = findViewById(R.id.botao_arrastao);
         Button botaoContinuar = findViewById(R.id.botao_continuar);
         Button botaoCancelar = findViewById(R.id.botao_cancelar);
 
-        ImageButton[] botoes = {botaoAlagamento, botaoDeslizamento, botaoTemporal};
+        ImageButton[] botoes = {
+                botaoAlagamento,
+                botaoDeslizamento,
+                botaoTemporal,
+                botaoAcidenteCarro,
+                botaoAcidentePedestre,
+                botaoCrimeAssaltos,
+                botaoCrimeTiroteio,
+                botaoCrimeArrastao
+        };
 
         View.OnClickListener botaoClickListener = v -> {
             for (ImageButton botao : botoes) {
                 if (botao == v) {
                     botao.setBackgroundResource(R.drawable.botao_selecionado);
                     botaoContinuar.setEnabled(true);
+                    tipoAlertaSelecionado = (String) botao.getContentDescription();
                 } else {
                     botao.setBackgroundResource(R.drawable.circular_button);
                 }
@@ -133,6 +198,11 @@ public class PaginaHome extends AppCompatActivity implements OnMapReadyCallback 
         botaoAlagamento.setOnClickListener(botaoClickListener);
         botaoDeslizamento.setOnClickListener(botaoClickListener);
         botaoTemporal.setOnClickListener(botaoClickListener);
+        botaoAcidenteCarro.setOnClickListener(botaoClickListener);
+        botaoAcidentePedestre.setOnClickListener(botaoClickListener);
+        botaoCrimeAssaltos.setOnClickListener(botaoClickListener);
+        botaoCrimeTiroteio.setOnClickListener(botaoClickListener);
+        botaoCrimeArrastao.setOnClickListener(botaoClickListener);
 
         // Botão para voltar ao estado inicial
         backButton.setOnClickListener(v -> {
@@ -151,9 +221,10 @@ public class PaginaHome extends AppCompatActivity implements OnMapReadyCallback 
             botaoContinuar.setEnabled(false);
         });
 
-        // Botão continuar (adicione a lógica necessária aqui)
         botaoContinuar.setOnClickListener(v -> {
-            // Lógica para continuar
+            String dataHoraAtual = ((EnvioAlertaImpl) envioAlerta).getDataHoraAtual();
+            envioAlerta.enviarAlerta(tipoAlertaSelecionado, dataHoraAtual);
+            exibirPopUp();
         });
 
     }
@@ -229,6 +300,16 @@ public class PaginaHome extends AppCompatActivity implements OnMapReadyCallback 
         }, 300); // Tempo para garantir que a animação terminou antes de exibir os componentes
     }
 
+    private void exibirPopUp() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setMessage("Enviado com sucesso")
+                .setPositiveButton("OK", (dialog, id) -> {
+                    // Voltar ao estado inicial
+                    diminuirContainer();
+                });
+        builder.create().show();
+    }
+
     private void diminuirContainer() {
         int startHeight = pesquisaCorridaContainer.getHeight();
         int endHeight = getResources().getDimensionPixelSize(R.dimen.original_height);
@@ -260,7 +341,7 @@ public class PaginaHome extends AppCompatActivity implements OnMapReadyCallback 
         handleBotao.setVisibility(View.GONE);
         containerAlertas.setVisibility(View.GONE);
         reportTexto.setVisibility(View.GONE);
-        containerAlertasClima.setVisibility(View.GONE);
+        containerAlertasBotoes.setVisibility(View.GONE);
     }
 
     private void atualizarMapa(LatLng latLng) {

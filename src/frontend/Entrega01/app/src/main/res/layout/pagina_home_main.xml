@@ -73,7 +73,7 @@
                 android:layout_height="wrap_content"
                 android:backgroundTint="@color/gray"
                 android:fontFamily="@font/roboto_thin"
-                android:text="Digite o endereço de destino..."
+                android:text="@string/textoEnderecoDestino"
                 android:padding="12dp"
                 android:textSize="20sp" />
 
@@ -197,9 +197,9 @@
                 </LinearLayout>
             </LinearLayout>
 
-            <!-- Alertas de clima adverso -->
+            <!-- Alertas -->
             <LinearLayout
-                android:id="@+id/container_alertas_clima"
+                android:id="@+id/container_alertas_botoes"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
@@ -207,13 +207,15 @@
                 android:visibility="gone"
                 android:layout_marginTop="16dp">
 
-                <!-- LinearLayout para os botões de alerta -->
+                <!-- LinearLayout para os botões de alerta CLIMA ADVERSO -->
                 <LinearLayout
+                    android:id="@+id/layout_alertas_clima"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
                     android:gravity="center">
 
+                    <!-- INICIO Botões de alerta de clima adverso -->
                     <LinearLayout
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
@@ -288,7 +290,159 @@
                             android:textColor="@color/white"
                             android:textSize="14sp" />
                     </LinearLayout>
+                    <!-- FIM Botões de alerta de clima adverso -->
+
                 </LinearLayout>
+
+                <!-- LinearLayout para os botões de alerta CLIMA ACIDENTES -->
+                <LinearLayout
+                    android:id="@+id/layout_alertas_acidentes"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center">
+
+                    <!-- INICIO Botões de alerta de acidentes -->
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_weight="1"
+                        android:gravity="center">
+
+                        <ImageButton
+                            android:id="@+id/botao_acidente_carro"
+                            android:layout_width="64dp"
+                            android:layout_height="64dp"
+                            android:padding="16dp"
+                            android:background="@drawable/circular_button"
+                            android:contentDescription="Acidente de carros"
+                            android:src="@drawable/weather" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Acidente de carros"
+                            android:textAlignment="center"
+                            android:textColor="@color/white"
+                            android:textSize="14sp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_weight="1"
+                        android:gravity="center">
+
+                        <ImageButton
+                            android:id="@+id/botao_acidente_pedestre"
+                            android:layout_width="64dp"
+                            android:layout_height="64dp"
+                            android:padding="16dp"
+                            android:background="@drawable/circular_button"
+                            android:contentDescription="Acidente com pedestres"
+                            android:src="@drawable/weather" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Acidente com pedestres"
+                            android:textAlignment="center"
+                            android:textColor="@color/white"
+                            android:textSize="14sp" />
+                    </LinearLayout>
+                    <!-- FIM Botões de alerta de acidentes -->
+
+                </LinearLayout>
+
+                <!-- LinearLayout para os botões de alerta CLIMA CRIMES -->
+                <LinearLayout
+                    android:id="@+id/layout_alertas_crimes"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center">
+
+                    <!-- INICIO Botões de alerta de crimes -->
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_weight="1"
+                        android:gravity="center">
+
+                        <ImageButton
+                            android:id="@+id/botao_assaltos"
+                            android:layout_width="64dp"
+                            android:layout_height="64dp"
+                            android:padding="16dp"
+                            android:background="@drawable/circular_button"
+                            android:contentDescription="Assaltos"
+                            android:src="@drawable/weather" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Assalto"
+                            android:textAlignment="center"
+                            android:textColor="@color/white"
+                            android:textSize="14sp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_weight="1"
+                        android:gravity="center">
+
+                        <ImageButton
+                            android:id="@+id/botao_tiroteio"
+                            android:layout_width="64dp"
+                            android:layout_height="64dp"
+                            android:padding="16dp"
+                            android:background="@drawable/circular_button"
+                            android:contentDescription="Tiroteio"
+                            android:src="@drawable/weather"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Tiroteiro"
+                            android:textAlignment="center"
+                            android:textColor="@color/white"
+                            android:textSize="14sp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_weight="1"
+                        android:gravity="center">
+
+                        <ImageButton
+                            android:id="@+id/botao_arrastao"
+                            android:layout_width="64dp"
+                            android:layout_height="64dp"
+                            android:padding="16dp"
+                            android:background="@drawable/circular_button"
+                            android:contentDescription="Arrastao"
+                            android:src="@drawable/weather"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Arrastão"
+                            android:textAlignment="center"
+                            android:textColor="@color/white"
+                            android:textSize="14sp" />
+                    </LinearLayout>
+                    <!-- FIM Botões de alerta de crimes -->
+
+                </LinearLayout>
+
 
                 <!-- LinearLayout para os botões de continuar e cancelar -->
                 <LinearLayout
@@ -323,6 +477,7 @@
                         android:textSize="16sp" /> <!-- Ajusta o tamanho do texto para tornar o botão maior -->
                 </LinearLayout>
             </LinearLayout>
+
 
             <EditText
                 android:id="@+id/input_destino"
