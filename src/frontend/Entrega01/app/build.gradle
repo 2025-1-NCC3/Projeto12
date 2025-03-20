@@ -13,8 +13,9 @@ android {
         targetSdk 35
         versionCode 1
         versionName "1.0"
-
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        buildConfigField("String", "BASE_URL", "\"https://lwjy86-3000.csb.app\"")
+
     }
 
     buildTypes {
@@ -39,6 +40,9 @@ dependencies {
     implementation libs.google.maps.services
     implementation libs.places
 
+    implementation libs.retrofit
+    implementation libs.converter.gson // Para converter JSON automaticamente
+    implementation libs.play.services.location.v2101
     implementation libs.appcompat
     implementation libs.material
     implementation libs.activity

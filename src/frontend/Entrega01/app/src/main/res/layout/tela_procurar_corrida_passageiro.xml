@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".telas.fluxoEntrada.PaginaHome">
+    tools:context=".TelaProcurarCorridaPassageiro">
 
     <!-- Fragmento do Google Maps -->
 
@@ -229,7 +229,7 @@
                             android:layout_height="64dp"
                             android:padding="16dp"
                             android:background="@drawable/circular_button"
-                            android:contentDescription="Botão Alagamento"
+                            android:contentDescription="ClimaAdverso"
                             android:src="@drawable/weather" />
 
                         <TextView
@@ -254,7 +254,7 @@
                             android:layout_height="64dp"
                             android:padding="16dp"
                             android:background="@drawable/circular_button"
-                            android:contentDescription="Botão Deslizamento"
+                            android:contentDescription="ClimaAdverso"
                             android:src="@drawable/weather" />
 
                         <TextView
@@ -279,7 +279,7 @@
                             android:layout_height="64dp"
                             android:padding="16dp"
                             android:background="@drawable/circular_button"
-                            android:contentDescription="Botão Temporal"
+                            android:contentDescription="ClimaAdverso"
                             android:src="@drawable/weather" />
 
                         <TextView
@@ -316,7 +316,7 @@
                             android:layout_height="64dp"
                             android:padding="16dp"
                             android:background="@drawable/circular_button"
-                            android:contentDescription="Acidente de carros"
+                            android:contentDescription="Acidentes"
                             android:src="@drawable/weather" />
 
                         <TextView
@@ -341,7 +341,7 @@
                             android:layout_height="64dp"
                             android:padding="16dp"
                             android:background="@drawable/circular_button"
-                            android:contentDescription="Acidente com pedestres"
+                            android:contentDescription="Acidentes"
                             android:src="@drawable/weather" />
 
                         <TextView
@@ -378,7 +378,7 @@
                             android:layout_height="64dp"
                             android:padding="16dp"
                             android:background="@drawable/circular_button"
-                            android:contentDescription="Assaltos"
+                            android:contentDescription="Crime"
                             android:src="@drawable/weather" />
 
                         <TextView
@@ -403,7 +403,7 @@
                             android:layout_height="64dp"
                             android:padding="16dp"
                             android:background="@drawable/circular_button"
-                            android:contentDescription="Tiroteio"
+                            android:contentDescription="Crime"
                             android:src="@drawable/weather"/>
 
                         <TextView
@@ -428,7 +428,7 @@
                             android:layout_height="64dp"
                             android:padding="16dp"
                             android:background="@drawable/circular_button"
-                            android:contentDescription="Arrastao"
+                            android:contentDescription="Crime"
                             android:src="@drawable/weather"/>
 
                         <TextView

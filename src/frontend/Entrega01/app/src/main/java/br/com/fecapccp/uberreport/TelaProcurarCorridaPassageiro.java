@@ -1,14 +1,20 @@
 // File: app/src/main/java/br/com/fecapccp/uberreport/telas/fluxoEntrada/PaginaHome.java
-package br.com.fecapccp.uberreport.telas.fluxoEntrada;
+package br.com.fecapccp.uberreport;
 
+import android.Manifest;
 import android.app.AlertDialog;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 
 import com.google.android.gms.common.api.Status;
+import com.google.android.gms.location.FusedLocationProviderClient;
+import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -22,14 +28,13 @@ import com.google.android.libraries.places.widget.Autocomplete;
 import com.google.android.libraries.places.widget.AutocompleteActivity;
 import com.google.android.libraries.places.widget.model.AutocompleteActivityMode;
 
-import br.com.fecapccp.uberreport.R;
 import br.com.fecapccp.uberreport.alertas.AcidentesAlertaController;
 import br.com.fecapccp.uberreport.alertas.CrimesAlertaController;
 import br.com.fecapccp.uberreport.logicas.AnimacaoBotao;
 import br.com.fecapccp.uberreport.alertas.ControladorAlerta;
 import br.com.fecapccp.uberreport.alertas.ClimaAlertaController;
-import br.com.fecapccp.uberreport.logicas.alertas.EnvioAlerta;
 import br.com.fecapccp.uberreport.logicas.alertas.EnvioAlertaImpl;
+import br.com.fecapccp.uberreport.logicas.alertas.model.Alerta;
 
 import android.animation.ValueAnimator;
 import android.util.Log;
@@ -45,7 +50,7 @@ import android.widget.TextView;
 import java.util.Arrays;
 import java.util.List;
 
-public class PaginaHome extends AppCompatActivity implements OnMapReadyCallback {
+public class TelaProcurarCorridaPassageiro extends AppCompatActivity implements OnMapReadyCallback {
 
     private GoogleMap gMap;
     private LinearLayout pesquisaCorridaContainer;
@@ -63,17 +68,29 @@ public class PaginaHome extends AppCompatActivity implements OnMapReadyCallback 
     private RelativeLayout layoutAlertaReport;
     private Button botaoContinuar;
     private String tipoAlertaSelecionado;
-    private EnvioAlerta envioAlerta;
+    private String nomeAlertaSelecionado;
     private LinearLayout containerAlertasBotoes;
     private LinearLayout layoutAlertasClima;
     private LinearLayout layoutAlertasAcidentes;
     private LinearLayout layoutAlertasCrimes;
 
+    private FusedLocationProviderClient fusedLocationClient;
+    private double userLatitude;
+    private double userLongitude;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.pagina_home_main);
+        setContentView(R.layout.tela_procurar_corrida_passageiro);
+
+        fusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
+
+        if (ContextCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(this, new String[]{android.Manifest.permission.ACCESS_FINE_LOCATION}, 1);
+        } else {
+            getUserLocation();
+        }
 
         pesquisaCorridaContainer = findViewById(R.id.search_container);
         alertButton = findViewById(R.id.alert_button);
@@ -90,7 +107,7 @@ public class PaginaHome extends AppCompatActivity implements OnMapReadyCallback 
         botaoAcidenteAlerta = findViewById(R.id.botao_acidentes);
         botaoCrimeAlerta = findViewById(R.id.botao_crimes);
         botaoContinuar = findViewById(R.id.botao_continuar);
-        envioAlerta = new EnvioAlertaImpl();
+        EnvioAlertaImpl envioAlerta = new EnvioAlertaImpl(this);
 
         layoutAlertasClima = findViewById(R.id.layout_alertas_clima);
         layoutAlertasAcidentes = findViewById(R.id.layout_alertas_acidentes);
@@ -189,6 +206,7 @@ public class PaginaHome extends AppCompatActivity implements OnMapReadyCallback 
                     botao.setBackgroundResource(R.drawable.botao_selecionado);
                     botaoContinuar.setEnabled(true);
                     tipoAlertaSelecionado = (String) botao.getContentDescription();
+                    nomeAlertaSelecionado = getResources().getResourceEntryName(botao.getId());
                 } else {
                     botao.setBackgroundResource(R.drawable.circular_button);
                 }
@@ -222,11 +240,50 @@ public class PaginaHome extends AppCompatActivity implements OnMapReadyCallback 
         });
 
         botaoContinuar.setOnClickListener(v -> {
-            String dataHoraAtual = ((EnvioAlertaImpl) envioAlerta).getDataHoraAtual();
-            envioAlerta.enviarAlerta(tipoAlertaSelecionado, dataHoraAtual);
+            String dataHoraAtual = envioAlerta.getDataHoraAtual();
+
+            Alerta alerta = new Alerta(
+                    nomeAlertaSelecionado,
+                    tipoAlertaSelecionado,
+                    dataHoraAtual,
+                    userLatitude,
+                    userLongitude,
+                    1
+            );
+            envioAlerta.enviarAlerta(alerta);
             exibirPopUp();
         });
 
+    }
+
+    private void getUserLocation() {
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
+                != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(
+                        this, Manifest.permission.ACCESS_COARSE_LOCATION)
+                != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(
+                    this,
+                    new String[]{Manifest.permission.ACCESS_FINE_LOCATION,
+                            Manifest.permission.ACCESS_COARSE_LOCATION}, 1);
+            return;
+        }
+        fusedLocationClient.getLastLocation()
+                .addOnSuccessListener(this, location -> {
+                    if (location != null) {
+                        userLatitude = location.getLatitude();
+                        userLongitude = location.getLongitude();
+                    }
+                });
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if (requestCode == 1) {
+            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                getUserLocation();
+            }
+        }
     }
 
     private void configurarAutoComplete() {
@@ -236,7 +293,7 @@ public class PaginaHome extends AppCompatActivity implements OnMapReadyCallback 
             // Criar o intent para abrir a caixa de busca
             List<Place.Field> campos = Arrays.asList(Place.Field.ID, Place.Field.NAME, Place.Field.LAT_LNG);
             Intent intent = new Autocomplete.IntentBuilder(AutocompleteActivityMode.OVERLAY, campos)
-                    .build(PaginaHome.this);
+                    .build(TelaProcurarCorridaPassageiro.this);
 
             startActivityForResult(intent, 100); // Código de requisição 100
         });
