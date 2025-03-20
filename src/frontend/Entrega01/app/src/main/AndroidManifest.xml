@@ -42,7 +42,7 @@
 <!--            </intent-filter>-->
 <!--        </activity>-->
         <activity
-            android:name=".telas.fluxoEntrada.PaginaInicial"
+            android:name=".TelaInicial"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -51,7 +51,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".telas.fluxoEntrada.PaginaHome"
+            android:name=".TelaProcurarCorridaPassageiro"
             android:exported="true">
         </activity>
 

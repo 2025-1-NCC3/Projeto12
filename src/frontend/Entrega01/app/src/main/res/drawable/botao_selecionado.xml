@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Background circle -->
+    <item>
+        <shape android:shape="oval">
+            <solid android:color="@android:color/transparent" />
+            <stroke
+                android:width="2dp"
+                android:color="@color/vermelho_fraco" />
+        </shape>
+    </item>
+    <!-- Check icon -->
+    <item
+        android:drawable="@drawable/checkbotao"
+        android:gravity="top|end"
+        android:width="16dp"
+        android:height="16dp"
+        android:top="1dp"
+        android:right="1dp" />
+</layer-list>
