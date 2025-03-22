@@ -8,11 +8,11 @@
 
 ---
 
-## 👨‍💻 Integrantes: André dos Santos, Guilherme Fogolin, Pedro Lemos e Yan Cezareto
+## 👨‍💻 Integrantes: [André dos Santos](https://www.linkedin.com/in/andr%C3%A9-dos-santos-greg%C3%B3rio-025a402ba/), [Guilherme Fogolin](https://www.linkedin.com/in/guilhermefogolin/), [Pedro Lemos](https://www.linkedin.com/in/pedrohnlemos/) e [Yan Cezareto](https://www.linkedin.com/in/yan-cezareto-792ba22b8/)
 
 ---
 
-## 👨‍🏫 Professores Orientadores: Katia Milani Lara Bossi, Marco Aurelio, Victor Rosetti e Vinicius Heltai
+## 👨‍🏫 Professores Orientadores: [Katia Milani Lara Bossi](https://www.linkedin.com/in/katia-bossi/), [Marco Aurelio](https://github.com/fecaphub/Portfolio/blob/main), [Victor Rosetti](https://www.linkedin.com/in/victorbarq/) e [Vinicius Heltai](https://www.linkedin.com/in/vheltai/)
 
 ---
 
