@@ -78,7 +78,6 @@ public class TelaProcurarCorridaPassageiro extends AppCompatActivity implements 
     private double userLatitude;
     private double userLongitude;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
