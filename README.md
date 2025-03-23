@@ -39,7 +39,7 @@ Visando uma implementação no aplicativo da Uber, o projeto tem como objetivo g
 │   ├── Entrega01
 │   │  └── Análise Descritiva de Dados/
 │   │  └── Programação Orientada a Objetos e Estrutura de Dados/
-│   ├── bd/
+│   ├── Banco de Dados/
 ├── img/
 ├── src/
 │   ├── Entrega01
@@ -52,9 +52,9 @@ README.MD: Arquivo que serve como guia e explicação geral sobre o projeto.
 
 Além disso, há outras pastas com os devidos arquivos em cada período de entrega.
 
-⛲[src](./src): Pasta que contém arquivos do frontend e backend do Uber Report, divididos por entrega conforme [cronograma da FECAP](https://docs.google.com/spreadsheets/d/1XAU0Du1hr3-Ovd_fm97lalqogyW0x3dZgiF1NAt3IaI/edit?gid=1182897581#gid=1182897581).
+⛲[src](./src): Pasta que contém arquivos do frontend e backend do Uber Report, divididos por entregas conforme [cronograma da FECAP](https://docs.google.com/spreadsheets/d/1XAU0Du1hr3-Ovd_fm97lalqogyW0x3dZgiF1NAt3IaI/edit?gid=1182897581#gid=1182897581).
 
-🎲 [bd](./documentos/bd): Banco de dados usado no projeto.
+🎲 [Banco de Dados](./documentos/Banco%20de%20Dados): Banco de dados usado no projeto.
 
 📄[documentos](./documentos): Devidos documentos do projeto e arquivos relacionados ao Banco de Dados, POO e Análise Descritiva de Dados.
 
