@@ -1,0 +1,14 @@
+var sqlite3 = require("sqlite3").verbose();
+var CAMINHO_DB = "uberDB.db";
+
+// Abrindo o banco de dados
+var db = new sqlite3.Database(CAMINHO_DB);
+
+// Excluindo a tabela
+db.run("DROP TABLE IF EXISTS alertas", (err) => {
+  if (err) {
+    console.error("Erro ao excluir tabela:", err.message);
+  } else {
+    console.log("Tabela 'alertas' excluída com sucesso.");
+  }
+});
