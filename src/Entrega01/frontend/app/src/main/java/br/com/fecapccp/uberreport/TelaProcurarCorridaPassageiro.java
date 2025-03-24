@@ -171,7 +171,7 @@ public class TelaProcurarCorridaPassageiro extends AppCompatActivity implements 
         if (!Places.isInitialized()) {
             Places.initialize(getApplicationContext(), "${MAPS_API_KEY}");
         }
-        // Criar um cliente do Places API
+        // Criar um cliente do places API
         PlacesClient placesClient = Places.createClient(this);
 
         configurarAutoComplete();
