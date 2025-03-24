@@ -66,6 +66,7 @@ out/
 *.ipr
 *.iws
 .shelf
+.DS_Store
 
 .settings/
 .classpath

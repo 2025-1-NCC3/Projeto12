@@ -185,7 +185,7 @@
                         android:padding="16dp"
                         android:background="@drawable/circular_button"
                         android:contentDescription="Botão Crimes"
-                        android:src="@drawable/danger" />
+                        android:src="@drawable/crimes" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -230,7 +230,7 @@
                             android:padding="16dp"
                             android:background="@drawable/circular_button"
                             android:contentDescription="ClimaAdverso"
-                            android:src="@drawable/weather" />
+                            android:src="@drawable/alagamento" />
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -255,7 +255,7 @@
                             android:padding="16dp"
                             android:background="@drawable/circular_button"
                             android:contentDescription="ClimaAdverso"
-                            android:src="@drawable/weather" />
+                            android:src="@drawable/deslizamento" />
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -280,7 +280,7 @@
                             android:padding="16dp"
                             android:background="@drawable/circular_button"
                             android:contentDescription="ClimaAdverso"
-                            android:src="@drawable/weather" />
+                            android:src="@drawable/temporal" />
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -317,7 +317,7 @@
                             android:padding="16dp"
                             android:background="@drawable/circular_button"
                             android:contentDescription="Acidentes"
-                            android:src="@drawable/weather" />
+                            android:src="@drawable/acidente" />
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -342,7 +342,7 @@
                             android:padding="16dp"
                             android:background="@drawable/circular_button"
                             android:contentDescription="Acidentes"
-                            android:src="@drawable/weather" />
+                            android:src="@drawable/acidentepedestre" />
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -379,7 +379,7 @@
                             android:padding="16dp"
                             android:background="@drawable/circular_button"
                             android:contentDescription="Crime"
-                            android:src="@drawable/weather" />
+                            android:src="@drawable/assaltos" />
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -404,7 +404,7 @@
                             android:padding="16dp"
                             android:background="@drawable/circular_button"
                             android:contentDescription="Crime"
-                            android:src="@drawable/weather"/>
+                            android:src="@drawable/tirotei"/>
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -429,7 +429,7 @@
                             android:padding="16dp"
                             android:background="@drawable/circular_button"
                             android:contentDescription="Crime"
-                            android:src="@drawable/weather"/>
+                            android:src="@drawable/arrastao"/>
 
                         <TextView
                             android:layout_width="wrap_content"
