@@ -75,7 +75,16 @@ Uber Report © 2025 by André Gregório dos Santos, Guilherme Reis Fogolin de Go
 
 ## 🎓 Referências
 
----
-```
+01. [Uber US Safety Report 2017 - 2018](https://www.uber-assets.com/image/upload/v1575580686/Documents/Safety/UberUSSafetyReport_201718_FullReport.pdf)
 
-```
+02. [Developer Android](https://developer.android.com/develop?hl=pt-br)
+
+03. [Java Documentation](https://docs.oracle.com/en/java/)
+
+04. [Google Maps Platform Documentation](https://developers.google.com/maps/documentation?hl=pt-br)
+
+05. [CodeSandbox Overview](https://developers.google.com/maps/documentation?hl=pt-br)
+
+06. [Estatísticas de Trânsito - Detran SP](https://www.detran.sp.gov.br/wps/portal/portaldetran/detran/estatisticastransito/)
+
+---
