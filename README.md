@@ -63,7 +63,10 @@ Além disso, há outras pastas com os devidos arquivos em cada período de entre
 ---
 
 ## 🎨 Figma
-Link para o protótipo do [Figma](https://www.figma.com/proto/gzVLnfMOuGmtoptiRN9vwm/Projeto3Semestre-Mobile?node-id=20-676&p=f&t=qdB3RaowYYSDwNsz-1&scaling=scale-down&content-scaling=fixed&page-id=0%3A1&starting-point-node-id=26%3A188&show-proto-sidebar=1)!
+
+📲 Link para o [protótipo](https://www.figma.com/proto/gzVLnfMOuGmtoptiRN9vwm/Projeto3Semestre-Mobile?node-id=20-676&p=f&t=qdB3RaowYYSDwNsz-1&scaling=scale-down&content-scaling=fixed&page-id=0%3A1&starting-point-node-id=26%3A188&show-proto-sidebar=1).
+
+🌐 Link para o [projeto completo](https://www.figma.com/design/gzVLnfMOuGmtoptiRN9vwm/Projeto3Semestre-Mobile?node-id=0-1&p=f&t=KQBJIWzWs6puk3QV-0).
 
 ---
 
