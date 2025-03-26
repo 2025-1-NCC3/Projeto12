@@ -112,7 +112,6 @@ public class TelaProcurarCorridaPassageiro extends AppCompatActivity implements 
         layoutAlertasAcidentes = findViewById(R.id.layout_alertas_acidentes);
         layoutAlertasCrimes = findViewById(R.id.layout_alertas_crimes);
 
-
         Button botaoPesquisaDestino = findViewById(R.id.botaoPesquisaDestino);
         botaoPesquisaDestino.setOnClickListener(v -> expandirPesquisaContainer());
 
