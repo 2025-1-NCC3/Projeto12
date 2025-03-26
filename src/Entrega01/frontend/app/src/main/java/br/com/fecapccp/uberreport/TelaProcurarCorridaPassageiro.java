@@ -126,7 +126,7 @@ public class TelaProcurarCorridaPassageiro extends AppCompatActivity implements 
             expandeAlertas();
         });
 
-        // Botão alertas CLIMA
+        // Botão alertas para CLIMA
         botaoClimaAlerta.setOnClickListener(v -> {
             ControladorAlerta climaAlertaController = new ClimaAlertaController(
                     containerAlertas,
