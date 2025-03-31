@@ -237,6 +237,7 @@ public class TelaProcurarCorridaPassageiro extends AppCompatActivity implements 
                 botao.setBackgroundResource(R.drawable.circular_button);
             }
             botaoContinuar.setEnabled(false);
+            diminuirContainer();
         });
 
         botaoContinuar.setOnClickListener(v -> {
