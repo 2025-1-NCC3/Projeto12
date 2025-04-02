@@ -3,4 +3,5 @@
     <string name="btn_text_planejarcorrida">Planejar sua corrida</string>
     <string name="title_activity_maps">MapsActivity</string>
     <string name="textoEnderecoDestino">Digite o endereço de destino...</string>
+    <string name="campo_nome">Digite seu nome</string>
 </resources>

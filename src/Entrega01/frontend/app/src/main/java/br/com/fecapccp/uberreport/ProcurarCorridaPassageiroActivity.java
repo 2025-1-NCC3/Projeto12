@@ -1,4 +1,3 @@
-// File: app/src/main/java/br/com/fecapccp/uberreport/telas/fluxoEntrada/PaginaHome.java
 package br.com.fecapccp.uberreport;
 
 import android.Manifest;
@@ -50,7 +49,7 @@ import android.widget.TextView;
 import java.util.Arrays;
 import java.util.List;
 
-public class TelaProcurarCorridaPassageiro extends AppCompatActivity implements OnMapReadyCallback {
+public class ProcurarCorridaPassageiroActivity extends AppCompatActivity implements OnMapReadyCallback {
 
     private GoogleMap gMap;
     private LinearLayout pesquisaCorridaContainer;
@@ -81,16 +80,26 @@ public class TelaProcurarCorridaPassageiro extends AppCompatActivity implements 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.tela_procurar_corrida_passageiro);
+        setContentView(R.layout.activity_procurar_corrida_passageiro);
 
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
 
-        if (ContextCompat.checkSelfPermission(this, android.Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            ActivityCompat.requestPermissions(this, new String[]{android.Manifest.permission.ACCESS_FINE_LOCATION}, 1);
+        conferePermissaoLocalizacaoUsuario();
+        inicializaUiComponentes();
+        configuraBotoesAlertas();
+        inicializaMaps();
+        inicializaPlacesApiMaps();
+    }
+
+    private void conferePermissaoLocalizacaoUsuario() {
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 1);
         } else {
             getUserLocation();
         }
+    }
 
+    private void inicializaUiComponentes() {
         pesquisaCorridaContainer = findViewById(R.id.search_container);
         alertButton = findViewById(R.id.alert_button);
         backButton = findViewById(R.id.back_button);
@@ -106,26 +115,22 @@ public class TelaProcurarCorridaPassageiro extends AppCompatActivity implements 
         botaoAcidenteAlerta = findViewById(R.id.botao_acidentes);
         botaoCrimeAlerta = findViewById(R.id.botao_crimes);
         botaoContinuar = findViewById(R.id.botao_continuar);
-        EnvioAlertaImpl envioAlerta = new EnvioAlertaImpl(this);
-
         layoutAlertasClima = findViewById(R.id.layout_alertas_clima);
         layoutAlertasAcidentes = findViewById(R.id.layout_alertas_acidentes);
         layoutAlertasCrimes = findViewById(R.id.layout_alertas_crimes);
+    }
 
+    private void configuraBotoesAlertas() {
         Button botaoPesquisaDestino = findViewById(R.id.botaoPesquisaDestino);
         botaoPesquisaDestino.setOnClickListener(v -> expandirPesquisaContainer());
 
-        // Botão para voltar ao estado inicial
         backButton.setOnClickListener(v -> diminuirContainer());
 
-        // Botão para expandir os alertas
         alertButton.setOnClickListener(v -> {
             AnimacaoBotao.animarBotao(v);
-
             expandeAlertas();
         });
 
-        // Botão alertas para CLIMA
         botaoClimaAlerta.setOnClickListener(v -> {
             ControladorAlerta climaAlertaController = new ClimaAlertaController(
                     containerAlertas,
@@ -137,7 +142,6 @@ public class TelaProcurarCorridaPassageiro extends AppCompatActivity implements 
             climaAlertaController.controlarAlertas();
         });
 
-        // Botão alertas para ACIDENTES
         botaoAcidenteAlerta.setOnClickListener(v -> {
             ControladorAlerta acidentesAlertaController = new AcidentesAlertaController(
                     containerAlertas,
@@ -149,7 +153,6 @@ public class TelaProcurarCorridaPassageiro extends AppCompatActivity implements 
             acidentesAlertaController.controlarAlertas();
         });
 
-        // Botão alertas para CRIMES
         botaoCrimeAlerta.setOnClickListener(v -> {
             ControladorAlerta crimesAlertaController = new CrimesAlertaController(
                     containerAlertas,
@@ -161,41 +164,19 @@ public class TelaProcurarCorridaPassageiro extends AppCompatActivity implements 
             crimesAlertaController.controlarAlertas();
         });
 
-        // Inicializa o fragmento do mapa
-        SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
-                .findFragmentById(R.id.id_map);
-        mapFragment.getMapAsync(this);
+        configureAlertButtons();
+    }
 
-        // Inicializar Places API
-        if (!Places.isInitialized()) {
-            Places.initialize(getApplicationContext(), "${MAPS_API_KEY}");
-        }
-        // Criar um cliente do places API
-        PlacesClient placesClient = Places.createClient(this);
-
-        configurarAutoComplete();
-
-        // Logica de seleção de alertas, (TODO: Mudar para outra classe)
-        ImageButton botaoAlagamento = findViewById(R.id.botao_alagamento);
-        ImageButton botaoDeslizamento = findViewById(R.id.botao_deslizamento);
-        ImageButton botaoTemporal = findViewById(R.id.botao_temporal);
-        ImageButton botaoAcidenteCarro = findViewById(R.id.botao_acidente_carro);
-        ImageButton botaoAcidentePedestre = findViewById(R.id.botao_acidente_pedestre);
-        ImageButton botaoCrimeAssaltos = findViewById(R.id.botao_assaltos);
-        ImageButton botaoCrimeTiroteio = findViewById(R.id.botao_tiroteio);
-        ImageButton botaoCrimeArrastao = findViewById(R.id.botao_arrastao);
-        Button botaoContinuar = findViewById(R.id.botao_continuar);
-        Button botaoCancelar = findViewById(R.id.botao_cancelar);
-
+    private void configureAlertButtons() {
         ImageButton[] botoes = {
-                botaoAlagamento,
-                botaoDeslizamento,
-                botaoTemporal,
-                botaoAcidenteCarro,
-                botaoAcidentePedestre,
-                botaoCrimeAssaltos,
-                botaoCrimeTiroteio,
-                botaoCrimeArrastao
+                findViewById(R.id.botao_alagamento),
+                findViewById(R.id.botao_deslizamento),
+                findViewById(R.id.botao_temporal),
+                findViewById(R.id.botao_acidente_carro),
+                findViewById(R.id.botao_acidente_pedestre),
+                findViewById(R.id.botao_assaltos),
+                findViewById(R.id.botao_tiroteio),
+                findViewById(R.id.botao_arrastao)
         };
 
         View.OnClickListener botaoClickListener = v -> {
@@ -211,34 +192,21 @@ public class TelaProcurarCorridaPassageiro extends AppCompatActivity implements 
             }
         };
 
-        botaoAlagamento.setOnClickListener(botaoClickListener);
-        botaoDeslizamento.setOnClickListener(botaoClickListener);
-        botaoTemporal.setOnClickListener(botaoClickListener);
-        botaoAcidenteCarro.setOnClickListener(botaoClickListener);
-        botaoAcidentePedestre.setOnClickListener(botaoClickListener);
-        botaoCrimeAssaltos.setOnClickListener(botaoClickListener);
-        botaoCrimeTiroteio.setOnClickListener(botaoClickListener);
-        botaoCrimeArrastao.setOnClickListener(botaoClickListener);
+        for (ImageButton botao : botoes) {
+            botao.setOnClickListener(botaoClickListener);
+        }
 
-        // Botão para voltar ao estado inicial
-        backButton.setOnClickListener(v -> {
-            diminuirContainer();
-            for (ImageButton botao : botoes) {
-                botao.setBackgroundResource(R.drawable.circular_button);
-            }
-            botaoContinuar.setEnabled(false);
-        });
-
-        // Botão cancelar para voltar ao estado inicial
+        Button botaoCancelar = findViewById(R.id.botao_cancelar);
         botaoCancelar.setOnClickListener(v -> {
             for (ImageButton botao : botoes) {
                 botao.setBackgroundResource(R.drawable.circular_button);
             }
             botaoContinuar.setEnabled(false);
+            diminuirContainer();
         });
 
         botaoContinuar.setOnClickListener(v -> {
-            String dataHoraAtual = envioAlerta.getDataHoraAtual();
+            String dataHoraAtual = new EnvioAlertaImpl(this).getDataHoraAtual();
 
             Alerta alerta = new Alerta(
                     nomeAlertaSelecionado,
@@ -248,16 +216,29 @@ public class TelaProcurarCorridaPassageiro extends AppCompatActivity implements 
                     userLongitude,
                     1
             );
-            envioAlerta.enviarAlerta(alerta);
+            new EnvioAlertaImpl(this).enviarAlerta(alerta);
             exibirPopUp();
         });
+    }
 
+    private void inicializaMaps() {
+        SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
+                .findFragmentById(R.id.id_map);
+        mapFragment.getMapAsync(this);
+    }
+
+    private void inicializaPlacesApiMaps() {
+        if (!Places.isInitialized()) {
+            Places.initialize(getApplicationContext(), "${MAPS_API_KEY}");
+        }
+        PlacesClient placesClient = Places.createClient(this);
+        configurarAutoComplete();
     }
 
     private void getUserLocation() {
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
                 != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(
-                        this, Manifest.permission.ACCESS_COARSE_LOCATION)
+                this, Manifest.permission.ACCESS_COARSE_LOCATION)
                 != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(
                     this,
@@ -285,15 +266,14 @@ public class TelaProcurarCorridaPassageiro extends AppCompatActivity implements 
     }
 
     private void configurarAutoComplete() {
-        EditText edtDestino = findViewById(R.id.input_destino); // ID do campo de destino
+        EditText edtDestino = findViewById(R.id.input_destino);
 
         edtDestino.setOnClickListener(v -> {
-            // Criar o intent para abrir a caixa de busca
             List<Place.Field> campos = Arrays.asList(Place.Field.ID, Place.Field.NAME, Place.Field.LAT_LNG);
             Intent intent = new Autocomplete.IntentBuilder(AutocompleteActivityMode.OVERLAY, campos)
-                    .build(TelaProcurarCorridaPassageiro.this);
+                    .build(ProcurarCorridaPassageiroActivity.this);
 
-            startActivityForResult(intent, 100); // Código de requisição 100
+            startActivityForResult(intent, 100);
         });
     }
 
@@ -311,16 +291,13 @@ public class TelaProcurarCorridaPassageiro extends AppCompatActivity implements 
         animator.setDuration(300);
         animator.start();
 
-        // Adiciona elementos para o container
         backButton.setVisibility(View.VISIBLE);
         containerAlertas.setVisibility(View.VISIBLE);
         reportTexto.setVisibility(View.VISIBLE);
 
-        // Esconde o botaoPesquisaDestino
         Button botaoPesquisaDestino = findViewById(R.id.botaoPesquisaDestino);
         botaoPesquisaDestino.setVisibility(View.GONE);
 
-        // Esconde os elementos adicionais
         corridaText.setVisibility(View.GONE);
         inputDestino.setVisibility(View.GONE);
         botaoConfirmar.setVisibility(View.GONE);
@@ -345,23 +322,19 @@ public class TelaProcurarCorridaPassageiro extends AppCompatActivity implements 
         alertButton.animate().translationY(-endHeight / 2).setDuration(300).start();
         backButton.setVisibility(View.VISIBLE);
 
-        // Esconde o botaoPesquisaDestino
         Button botaoPesquisaDestino = findViewById(R.id.botaoPesquisaDestino);
         botaoPesquisaDestino.setVisibility(View.GONE);
 
         pesquisaCorridaContainer.postDelayed(() -> {
             inputDestino.setVisibility(View.VISIBLE);
             botaoConfirmar.setVisibility(View.VISIBLE);
-        }, 300); // Tempo para garantir que a animação terminou antes de exibir os componentes
+        }, 300);
     }
 
     private void exibirPopUp() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setMessage("Enviado com sucesso")
-                .setPositiveButton("OK", (dialog, id) -> {
-                    // Voltar ao estado inicial
-                    diminuirContainer();
-                });
+                .setPositiveButton("OK", (dialog, id) -> diminuirContainer());
         builder.create().show();
     }
 
@@ -382,15 +355,12 @@ public class TelaProcurarCorridaPassageiro extends AppCompatActivity implements 
         alertButton.animate().translationY(0).setDuration(300).start();
         backButton.setVisibility(View.GONE);
 
-        // Torna o botaoPesquisaDestino visível novamente
         Button botaoPesquisaDestino = findViewById(R.id.botaoPesquisaDestino);
         botaoPesquisaDestino.setVisibility(View.VISIBLE);
 
-        // Exibe os componentes originais
         corridaText.setVisibility(View.VISIBLE);
         alertButton.setVisibility(View.VISIBLE);
 
-        // Esconde os elementos adicionais
         inputDestino.setVisibility(View.GONE);
         botaoConfirmar.setVisibility(View.GONE);
         handleBotao.setVisibility(View.GONE);
@@ -413,9 +383,8 @@ public class TelaProcurarCorridaPassageiro extends AppCompatActivity implements 
             if (resultCode == RESULT_OK) {
                 Place place = Autocomplete.getPlaceFromIntent(data);
                 EditText edtDestino = findViewById(R.id.input_destino);
-                edtDestino.setText(place.getName()); // Exibir o endereço no campo
+                edtDestino.setText(place.getName());
 
-                // Atualizar o mapa para a nova posição
                 atualizarMapa(place.getLatLng());
             } else if (resultCode == AutocompleteActivity.RESULT_ERROR) {
                 Status status = Autocomplete.getStatusFromIntent(data);
@@ -428,10 +397,8 @@ public class TelaProcurarCorridaPassageiro extends AppCompatActivity implements 
     public void onMapReady(@NonNull GoogleMap googleMap) {
         gMap = googleMap;
 
-        // Define a localização do mapa
         LatLng liberdade = new LatLng(-23.563133, -46.635048);
 
-        // Adiciona um marcador no mapa e move a camera para a localização
         gMap.addMarker(new MarkerOptions().position(liberdade).title("Liberdade, São Paulo"));
         gMap.moveCamera(CameraUpdateFactory.newLatLngZoom(liberdade, 15));
     }
