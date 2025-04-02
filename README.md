@@ -8,11 +8,11 @@
 
 ---
 
-## 👨‍💻 Integrantes: André dos Santos, Guilherme Fogolin, Pedro Lemos e Yan Cezareto
+## 👨‍💻 Integrantes: [André dos Santos](https://www.linkedin.com/in/andr%C3%A9-dos-santos-greg%C3%B3rio-025a402ba/), [Guilherme Fogolin](https://www.linkedin.com/in/guilhermefogolin/), [Pedro Lemos](https://www.linkedin.com/in/pedrohnlemos/) e [Yan Cezareto](https://www.linkedin.com/in/yan-cezareto-792ba22b8/)
 
 ---
 
-## 👨‍🏫 Professores Orientadores: Katia Milani Lara Bossi, Marco Aurelio, Victor Rosetti e Vinicius Heltai
+## 👨‍🏫 Professores Orientadores: [Katia Milani Lara Bossi](https://www.linkedin.com/in/katia-bossi/), [Marco Aurelio](https://github.com/fecaphub/Portfolio/blob/main), [Victor Rosetti](https://www.linkedin.com/in/victorbarq/) e [Vinicius Heltai](https://www.linkedin.com/in/vheltai/)
 
 ---
 
@@ -36,13 +36,15 @@ Visando uma implementação no aplicativo da Uber, o projeto tem como objetivo g
 
 ```
 ├── documentos/
-│   ├── Análise Descritiva de Dados/
-│   ├── Programação Orientada a Objetos e Estrutura de Dados/
-│   ├── bd/
+│   ├── Entrega01
+│   │  └── Análise Descritiva de Dados/
+│   │  └── Programação Orientada a Objetos e Estrutura de Dados/
+│   ├── Banco de Dados/
 ├── img/
 ├── src/
-│   ├── backend/
-│   ├── frontend/
+│   ├── Entrega01
+│   │  └── frontend/
+│   │  └── backend/
 └── readme.md
 ```
 
@@ -50,9 +52,9 @@ README.MD: Arquivo que serve como guia e explicação geral sobre o projeto.
 
 Além disso, há outras pastas com os devidos arquivos em cada período de entrega.
 
-⛲[src](./src): Pasta que contém arquivos do frontend e backend do Uber Report.
+⛲[src](./src): Pasta que contém arquivos do frontend e backend do Uber Report, divididos por entregas conforme [cronograma da FECAP](https://docs.google.com/spreadsheets/d/1XAU0Du1hr3-Ovd_fm97lalqogyW0x3dZgiF1NAt3IaI/edit?gid=1182897581#gid=1182897581).
 
-🎲 [bd](./documentos/bd): Banco de dados usado no projeto.
+🎲 [Banco de Dados](./documentos/Banco%20de%20Dados): Banco de dados usado no projeto.
 
 📄[documentos](./documentos): Devidos documentos do projeto e arquivos relacionados ao Banco de Dados, POO e Análise Descritiva de Dados.
 
@@ -61,7 +63,10 @@ Além disso, há outras pastas com os devidos arquivos em cada período de entre
 ---
 
 ## 🎨 Figma
-Link para o protótipo do [Figma](https://www.figma.com/proto/gzVLnfMOuGmtoptiRN9vwm/Projeto3Semestre-Mobile?node-id=20-676&p=f&t=qdB3RaowYYSDwNsz-1&scaling=scale-down&content-scaling=fixed&page-id=0%3A1&starting-point-node-id=26%3A188&show-proto-sidebar=1)!
+
+📲 Link para o [protótipo](https://www.figma.com/proto/gzVLnfMOuGmtoptiRN9vwm/Projeto3Semestre-Mobile?node-id=20-676&p=f&t=qdB3RaowYYSDwNsz-1&scaling=scale-down&content-scaling=fixed&page-id=0%3A1&starting-point-node-id=26%3A188&show-proto-sidebar=1).
+
+🌐 Link para o [projeto completo](https://www.figma.com/design/gzVLnfMOuGmtoptiRN9vwm/Projeto3Semestre-Mobile?node-id=0-1&p=f&t=KQBJIWzWs6puk3QV-0).
 
 ---
 
@@ -73,7 +78,16 @@ Uber Report © 2025 by André Gregório dos Santos, Guilherme Reis Fogolin de Go
 
 ## 🎓 Referências
 
----
-```
+01. [Uber US Safety Report 2017 - 2018](https://www.uber-assets.com/image/upload/v1575580686/Documents/Safety/UberUSSafetyReport_201718_FullReport.pdf)
 
-```
+02. [Developer Android](https://developer.android.com/develop?hl=pt-br)
+
+03. [Java Documentation](https://docs.oracle.com/en/java/)
+
+04. [Google Maps Platform Documentation](https://developers.google.com/maps/documentation?hl=pt-br)
+
+05. [CodeSandbox Overview](https://developers.google.com/maps/documentation?hl=pt-br)
+
+06. [Estatísticas de Trânsito - Detran SP](https://www.detran.sp.gov.br/wps/portal/portaldetran/detran/estatisticastransito/)
+
+---
