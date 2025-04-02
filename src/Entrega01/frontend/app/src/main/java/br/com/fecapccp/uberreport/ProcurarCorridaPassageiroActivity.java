@@ -49,7 +49,7 @@ import android.widget.TextView;
 import java.util.Arrays;
 import java.util.List;
 
-public class TelaProcurarCorridaPassageiro extends AppCompatActivity implements OnMapReadyCallback {
+public class ProcurarCorridaPassageiroActivity extends AppCompatActivity implements OnMapReadyCallback {
 
     private GoogleMap gMap;
     private LinearLayout pesquisaCorridaContainer;
@@ -80,7 +80,7 @@ public class TelaProcurarCorridaPassageiro extends AppCompatActivity implements 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.tela_procurar_corrida_passageiro);
+        setContentView(R.layout.activity_procurar_corrida_passageiro);
 
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
 
@@ -271,7 +271,7 @@ public class TelaProcurarCorridaPassageiro extends AppCompatActivity implements 
         edtDestino.setOnClickListener(v -> {
             List<Place.Field> campos = Arrays.asList(Place.Field.ID, Place.Field.NAME, Place.Field.LAT_LNG);
             Intent intent = new Autocomplete.IntentBuilder(AutocompleteActivityMode.OVERLAY, campos)
-                    .build(TelaProcurarCorridaPassageiro.this);
+                    .build(ProcurarCorridaPassageiroActivity.this);
 
             startActivityForResult(intent, 100);
         });

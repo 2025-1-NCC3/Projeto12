@@ -7,17 +7,17 @@ import android.widget.Button;
 import androidx.appcompat.app.AppCompatActivity;
 
 
-public class TelaInicial extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.tela_inicio_app);
+        setContentView(R.layout.activity_main);
 
         Button botaoEntrar = findViewById(R.id.botaoTelaInicial);
 
         botaoEntrar.setOnClickListener(v -> {
-            Intent intent = new Intent(TelaInicial.this, TelaProcurarCorridaPassageiro.class);
+            Intent intent = new Intent(MainActivity.this, ProcurarCorridaPassageiroActivity.class);
             startActivity(intent);
         });
     }
