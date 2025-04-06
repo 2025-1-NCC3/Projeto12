@@ -316,7 +316,7 @@ public class ProcurarCorridaPassageiroActivity extends AppCompatActivity impleme
 
     private void expandeAlertas() {
         int startHeight = pesquisaCorridaContainer.getHeight();
-        int endHeight = getResources().getDisplayMetrics().heightPixels / 3;
+        int endHeight = getResources().getDisplayMetrics().heightPixels / 2;
 
         ValueAnimator animator = ValueAnimator.ofInt(startHeight, endHeight);
         animator.addUpdateListener(animation -> {
@@ -515,7 +515,7 @@ public class ProcurarCorridaPassageiroActivity extends AppCompatActivity impleme
                         polylineOptions.addAll(PolyUtil.decode(result.routes[0].overviewPolyline.getEncodedPath()));
                         polylineOptions.color(ContextCompat.getColor(this, R.color.vermelho_fraco));
                         gMap.addPolyline(polylineOptions);
-                        gMap.moveCamera(CameraUpdateFactory.newLatLngZoom(origem, 10));
+                        gMap.moveCamera(CameraUpdateFactory.newLatLngZoom(origem, 15));
                     } else {
                         Toast.makeText(this, "Rota não encontrada. Por favor, tente novamente!", Toast.LENGTH_SHORT).show();
                     }
