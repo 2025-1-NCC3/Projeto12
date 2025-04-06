@@ -34,14 +34,14 @@ android {
 
 dependencies {
 
-    implementation libs.play.services.maps.v1820
-    implementation libs.play.services.location
-    implementation libs.google.maps.services
-    implementation libs.places
+    implementation libs.play.services.maps.v1820 // API Google Maps
+    implementation libs.play.services.location // Localização do usuário
+    implementation libs.google.maps.services // API Google Maps para Java
+    implementation libs.places // Sugestões de endereços
+    implementation 'org.slf4j:slf4j-nop:1.7.30' // Para evitar erro de log
 
-    implementation libs.retrofit
+    implementation libs.retrofit // Solicitação HTTP
     implementation libs.converter.gson // Para converter JSON automaticamente
-    implementation libs.play.services.location.v2101
     implementation libs.appcompat
     implementation libs.material
     implementation libs.activity
