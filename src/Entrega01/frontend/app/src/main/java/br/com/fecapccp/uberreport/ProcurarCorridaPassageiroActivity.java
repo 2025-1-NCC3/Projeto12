@@ -61,6 +61,7 @@ public class ProcurarCorridaPassageiroActivity extends AppCompatActivity impleme
     private ImageButton botaoCrimeAlerta;
     private ImageButton backButton;
     private View inputDestino;
+    private View inputLocalAtual;
     private View botaoConfirmar;
     private View handleBotao;
     private TextView reportTexto;
@@ -104,6 +105,7 @@ public class ProcurarCorridaPassageiroActivity extends AppCompatActivity impleme
         alertButton = findViewById(R.id.alert_button);
         backButton = findViewById(R.id.back_button);
         inputDestino = findViewById(R.id.input_destino);
+        inputLocalAtual = findViewById(R.id.input_local_atual);
         botaoConfirmar = findViewById(R.id.botao_confirmar);
         handleBotao = findViewById(R.id.imageView2);
         containerAlertas = findViewById(R.id.container_alertas);
@@ -300,6 +302,7 @@ public class ProcurarCorridaPassageiroActivity extends AppCompatActivity impleme
 
         corridaText.setVisibility(View.GONE);
         inputDestino.setVisibility(View.GONE);
+        inputLocalAtual.setVisibility(View.GONE);
         botaoConfirmar.setVisibility(View.GONE);
         handleBotao.setVisibility(View.GONE);
         alertButton.setVisibility(View.GONE);
@@ -307,7 +310,7 @@ public class ProcurarCorridaPassageiroActivity extends AppCompatActivity impleme
 
     private void expandirPesquisaContainer() {
         int startHeight = pesquisaCorridaContainer.getHeight();
-        int endHeight = getResources().getDisplayMetrics().heightPixels * 3 / 4;
+        int endHeight = getResources().getDisplayMetrics().heightPixels / 2;
 
         ValueAnimator animator = ValueAnimator.ofInt(startHeight, endHeight);
         animator.addUpdateListener(animation -> {
@@ -327,6 +330,8 @@ public class ProcurarCorridaPassageiroActivity extends AppCompatActivity impleme
 
         pesquisaCorridaContainer.postDelayed(() -> {
             inputDestino.setVisibility(View.VISIBLE);
+            inputLocalAtual.setVisibility(View.VISIBLE);
+            // handleBotao.setVisibility(View.VISIBLE);
             botaoConfirmar.setVisibility(View.VISIBLE);
         }, 300);
     }
@@ -362,6 +367,7 @@ public class ProcurarCorridaPassageiroActivity extends AppCompatActivity impleme
         alertButton.setVisibility(View.VISIBLE);
 
         inputDestino.setVisibility(View.GONE);
+        inputLocalAtual.setVisibility(View.GONE);
         botaoConfirmar.setVisibility(View.GONE);
         handleBotao.setVisibility(View.GONE);
         containerAlertas.setVisibility(View.GONE);
