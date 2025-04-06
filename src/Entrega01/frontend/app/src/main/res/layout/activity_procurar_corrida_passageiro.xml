@@ -65,7 +65,7 @@
                 android:text="Para onde vamos?"
                 android:textStyle="bold"
                 android:textAlignment="center"
-                android:textColor="@color/vermelho_fraco"
+                android:textColor="@color/red"
                 android:textSize="24sp" />
 
             <Button
