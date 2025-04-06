@@ -18,6 +18,7 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.libraries.places.api.Places;
@@ -51,6 +52,7 @@ import java.util.List;
 
 public class ProcurarCorridaPassageiroActivity extends AppCompatActivity implements OnMapReadyCallback {
 
+    // Variáveis de instância
     private GoogleMap gMap;
     private LinearLayout pesquisaCorridaContainer;
     private LinearLayout containerAlertas;
@@ -73,7 +75,6 @@ public class ProcurarCorridaPassageiroActivity extends AppCompatActivity impleme
     private LinearLayout layoutAlertasClima;
     private LinearLayout layoutAlertasAcidentes;
     private LinearLayout layoutAlertasCrimes;
-
     private FusedLocationProviderClient fusedLocationClient;
     private double userLatitude;
     private double userLongitude;
@@ -83,9 +84,10 @@ public class ProcurarCorridaPassageiroActivity extends AppCompatActivity impleme
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_procurar_corrida_passageiro);
 
+        // TODO: Inicializa o client de localização
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
 
-        conferePermissaoLocalizacaoUsuario();
+        // TODO: Inicializa os componentes da UI
         inicializaUiComponentes();
         configuraBotoesAlertas();
         inicializaMaps();
@@ -238,23 +240,24 @@ public class ProcurarCorridaPassageiroActivity extends AppCompatActivity impleme
     }
 
     private void getUserLocation() {
-        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
-                != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(
-                this, Manifest.permission.ACCESS_COARSE_LOCATION)
-                != PackageManager.PERMISSION_GRANTED) {
-            ActivityCompat.requestPermissions(
-                    this,
-                    new String[]{Manifest.permission.ACCESS_FINE_LOCATION,
-                            Manifest.permission.ACCESS_COARSE_LOCATION}, 1);
-            return;
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
+            fusedLocationClient.getLastLocation()
+                    .addOnSuccessListener(this, location -> {
+                        if (location != null) {
+                            userLatitude = location.getLatitude();
+                            userLongitude = location.getLongitude();
+                            atualizarMapaComLocalizacaoUsuario(); // Atualiza o mapa aqui
+                        } else {
+                            // Lidar com o caso em que a localização é nula
+                            Log.e("Localização", "Localização nula");
+                            atualizarMapaComLocalizacaoPadrao();
+                        }
+                    });
+        } else {
+            // Lidar com o caso em que a permissão não foi concedida
+            Log.e("Permissão", "Permissão de localização não concedida");
+            atualizarMapaComLocalizacaoPadrao();
         }
-        fusedLocationClient.getLastLocation()
-                .addOnSuccessListener(this, location -> {
-                    if (location != null) {
-                        userLatitude = location.getLatitude();
-                        userLongitude = location.getLongitude();
-                    }
-                });
     }
 
     @Override
@@ -263,6 +266,8 @@ public class ProcurarCorridaPassageiroActivity extends AppCompatActivity impleme
         if (requestCode == 1) {
             if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                 getUserLocation();
+            } else {
+                atualizarMapaComLocalizacaoPadrao();
             }
         }
     }
@@ -402,10 +407,26 @@ public class ProcurarCorridaPassageiroActivity extends AppCompatActivity impleme
     @Override
     public void onMapReady(@NonNull GoogleMap googleMap) {
         gMap = googleMap;
+        conferePermissaoLocalizacaoUsuario();
+    }
 
-        LatLng liberdade = new LatLng(-23.563133, -46.635048);
+    private void atualizarMapaComLocalizacaoUsuario() {
+        if (gMap != null) {
+            LatLng userLocation = new LatLng(userLatitude, userLongitude);
+            gMap.moveCamera(CameraUpdateFactory.newLatLngZoom(userLocation, 15));
+            MarkerOptions options = new MarkerOptions().position(userLocation).title("Sua localização");
+            options.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED));
+            gMap.addMarker(options);
+        }
+    }
 
-        gMap.addMarker(new MarkerOptions().position(liberdade).title("Liberdade, São Paulo"));
-        gMap.moveCamera(CameraUpdateFactory.newLatLngZoom(liberdade, 15));
+    private void atualizarMapaComLocalizacaoPadrao() {
+        if (gMap != null) {
+            LatLng liberdade = new LatLng(-23.563133, -46.635048);
+            gMap.moveCamera(CameraUpdateFactory.newLatLngZoom(liberdade, 15));
+            MarkerOptions options = new MarkerOptions().position(liberdade).title("Liberdade, São Paulo");
+            options.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED));
+            gMap.addMarker(options);
+        }
     }
 }

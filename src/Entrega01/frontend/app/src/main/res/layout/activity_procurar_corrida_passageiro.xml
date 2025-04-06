@@ -62,7 +62,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="16dp"
                 android:fontFamily="monospace"
-                android:text="Planeje a sua corrida!"
+                android:text="Para onde vamos?"
                 android:textStyle="bold"
                 android:textAlignment="center"
                 android:textColor="@color/vermelho_fraco"
