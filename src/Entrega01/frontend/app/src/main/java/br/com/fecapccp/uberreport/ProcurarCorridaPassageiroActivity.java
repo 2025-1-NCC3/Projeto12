@@ -512,6 +512,7 @@ public class ProcurarCorridaPassageiroActivity extends AppCompatActivity impleme
                     if (result.routes != null && result.routes.length > 0) {
                         PolylineOptions polylineOptions = new PolylineOptions();
                         polylineOptions.addAll(PolyUtil.decode(result.routes[0].overviewPolyline.getEncodedPath()));
+                        polylineOptions.color(ContextCompat.getColor(this, R.color.vermelho_fraco));
                         gMap.addPolyline(polylineOptions);
                         gMap.moveCamera(CameraUpdateFactory.newLatLngZoom(origem, 10));
                     } else {
