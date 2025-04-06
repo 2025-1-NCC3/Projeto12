@@ -61,10 +61,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="16dp"
-                android:fontFamily="@font/roboto_medium"
-                android:text="Planeje sua corrida"
+                android:fontFamily="monospace"
+                android:text="Planeje a sua corrida!"
+                android:textStyle="bold"
                 android:textAlignment="center"
-                android:textColor="@color/white"
+                android:textColor="@color/vermelho_fraco"
                 android:textSize="24sp" />
 
             <Button
@@ -72,10 +73,12 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:backgroundTint="@color/gray"
-                android:fontFamily="@font/roboto_thin"
+                android:fontFamily="monospace"
                 android:text="@string/textoEnderecoDestino"
                 android:padding="12dp"
-                android:textSize="20sp" />
+                android:textSize="18sp"
+                android:textStyle="bold"
+                />
 
             <RelativeLayout
                 android:id="@+id/layoutAlertaReport"
@@ -478,12 +481,11 @@
                 </LinearLayout>
             </LinearLayout>
 
-
             <EditText
-                android:id="@+id/input_destino"
+                android:id="@+id/input_local_atual"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/et_destino"
+                android:hint="@string/et_atual"
                 android:background="@drawable/borda_edittext"
                 android:fontFamily="monospace"
                 android:padding="12dp"
@@ -495,10 +497,10 @@
                 android:visibility="invisible" />
 
             <EditText
-                android:id="@+id/input_local_atual"
+                android:id="@+id/input_destino"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="@string/et_atual"
+                android:hint="@string/et_destino"
                 android:background="@drawable/borda_edittext"
                 android:fontFamily="monospace"
                 android:padding="12dp"
