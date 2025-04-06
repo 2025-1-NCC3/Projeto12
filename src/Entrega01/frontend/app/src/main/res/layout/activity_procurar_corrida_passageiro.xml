@@ -61,10 +61,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="16dp"
-                android:fontFamily="@font/roboto_medium"
-                android:text="Planeje sua corrida"
+                android:fontFamily="monospace"
+                android:text="Para onde vamos?"
+                android:textStyle="bold"
                 android:textAlignment="center"
-                android:textColor="@color/white"
+                android:textColor="@color/vermelho_fraco"
                 android:textSize="24sp" />
 
             <Button
@@ -72,10 +73,12 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:backgroundTint="@color/gray"
-                android:fontFamily="@font/roboto_thin"
+                android:fontFamily="monospace"
                 android:text="@string/textoEnderecoDestino"
                 android:padding="12dp"
-                android:textSize="20sp" />
+                android:textSize="18sp"
+                android:textStyle="bold"
+                />
 
             <RelativeLayout
                 android:id="@+id/layoutAlertaReport"
@@ -116,25 +119,25 @@
                 android:id="@+id/container_alertas"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
+                android:layout_marginTop="16dp"
                 android:gravity="center"
-                android:visibility="gone"
-                android:layout_marginTop="16dp">
+                android:orientation="horizontal"
+                android:visibility="gone">
 
                 <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"
                     android:layout_weight="1"
-                    android:gravity="center">
+                    android:gravity="center"
+                    android:orientation="vertical">
 
                     <ImageButton
                         android:id="@+id/botao_clima"
                         android:layout_width="64dp"
                         android:layout_height="64dp"
-                        android:padding="16dp"
                         android:background="@drawable/circular_button"
                         android:contentDescription="Botão Clima"
+                        android:padding="16dp"
                         android:src="@drawable/weather" />
 
                     <TextView
@@ -149,17 +152,17 @@
                 <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"
                     android:layout_weight="1"
-                    android:gravity="center">
+                    android:gravity="center"
+                    android:orientation="vertical">
 
                     <ImageButton
                         android:id="@+id/botao_acidentes"
                         android:layout_width="64dp"
                         android:layout_height="64dp"
-                        android:padding="16dp"
                         android:background="@drawable/circular_button"
                         android:contentDescription="Botão Acidentes"
+                        android:padding="16dp"
                         android:src="@drawable/acidente" />
 
                     <TextView
@@ -174,17 +177,17 @@
                 <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"
                     android:layout_weight="1"
-                    android:gravity="center">
+                    android:gravity="center"
+                    android:orientation="vertical">
 
                     <ImageButton
                         android:id="@+id/botao_crimes"
                         android:layout_width="64dp"
                         android:layout_height="64dp"
-                        android:padding="16dp"
                         android:background="@drawable/circular_button"
                         android:contentDescription="Botão Crimes"
+                        android:padding="16dp"
                         android:src="@drawable/crimes" />
 
                     <TextView
@@ -202,34 +205,34 @@
                 android:id="@+id/container_alertas_botoes"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
+                android:layout_marginTop="16dp"
                 android:gravity="center"
-                android:visibility="gone"
-                android:layout_marginTop="16dp">
+                android:orientation="vertical"
+                android:visibility="gone">
 
                 <!-- LinearLayout para os botões de alerta CLIMA ADVERSO -->
                 <LinearLayout
                     android:id="@+id/layout_alertas_clima"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:gravity="center">
+                    android:gravity="center"
+                    android:orientation="horizontal">
 
                     <!-- INICIO Botões de alerta de clima adverso -->
                     <LinearLayout
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:orientation="vertical"
                         android:layout_weight="1"
-                        android:gravity="center">
+                        android:gravity="center"
+                        android:orientation="vertical">
 
                         <ImageButton
                             android:id="@+id/botao_alagamento"
                             android:layout_width="64dp"
                             android:layout_height="64dp"
-                            android:padding="16dp"
                             android:background="@drawable/circular_button"
                             android:contentDescription="ClimaAdverso"
+                            android:padding="16dp"
                             android:src="@drawable/alagamento" />
 
                         <TextView
@@ -244,17 +247,17 @@
                     <LinearLayout
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:orientation="vertical"
                         android:layout_weight="1"
-                        android:gravity="center">
+                        android:gravity="center"
+                        android:orientation="vertical">
 
                         <ImageButton
                             android:id="@+id/botao_deslizamento"
                             android:layout_width="64dp"
                             android:layout_height="64dp"
-                            android:padding="16dp"
                             android:background="@drawable/circular_button"
                             android:contentDescription="ClimaAdverso"
+                            android:padding="16dp"
                             android:src="@drawable/deslizamento" />
 
                         <TextView
@@ -269,17 +272,17 @@
                     <LinearLayout
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:orientation="vertical"
                         android:layout_weight="1"
-                        android:gravity="center">
+                        android:gravity="center"
+                        android:orientation="vertical">
 
                         <ImageButton
                             android:id="@+id/botao_temporal"
                             android:layout_width="64dp"
                             android:layout_height="64dp"
-                            android:padding="16dp"
                             android:background="@drawable/circular_button"
                             android:contentDescription="ClimaAdverso"
+                            android:padding="16dp"
                             android:src="@drawable/temporal" />
 
                         <TextView
@@ -299,24 +302,24 @@
                     android:id="@+id/layout_alertas_acidentes"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:gravity="center">
+                    android:gravity="center"
+                    android:orientation="horizontal">
 
                     <!-- INICIO Botões de alerta de acidentes -->
                     <LinearLayout
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:orientation="vertical"
                         android:layout_weight="1"
-                        android:gravity="center">
+                        android:gravity="center"
+                        android:orientation="vertical">
 
                         <ImageButton
                             android:id="@+id/botao_acidente_carro"
                             android:layout_width="64dp"
                             android:layout_height="64dp"
-                            android:padding="16dp"
                             android:background="@drawable/circular_button"
                             android:contentDescription="Acidentes"
+                            android:padding="16dp"
                             android:src="@drawable/acidente" />
 
                         <TextView
@@ -331,17 +334,17 @@
                     <LinearLayout
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:orientation="vertical"
                         android:layout_weight="1"
-                        android:gravity="center">
+                        android:gravity="center"
+                        android:orientation="vertical">
 
                         <ImageButton
                             android:id="@+id/botao_acidente_pedestre"
                             android:layout_width="64dp"
                             android:layout_height="64dp"
-                            android:padding="16dp"
                             android:background="@drawable/circular_button"
                             android:contentDescription="Acidentes"
+                            android:padding="16dp"
                             android:src="@drawable/acidentepedestre" />
 
                         <TextView
@@ -361,24 +364,24 @@
                     android:id="@+id/layout_alertas_crimes"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:gravity="center">
+                    android:gravity="center"
+                    android:orientation="horizontal">
 
                     <!-- INICIO Botões de alerta de crimes -->
                     <LinearLayout
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:orientation="vertical"
                         android:layout_weight="1"
-                        android:gravity="center">
+                        android:gravity="center"
+                        android:orientation="vertical">
 
                         <ImageButton
                             android:id="@+id/botao_assaltos"
                             android:layout_width="64dp"
                             android:layout_height="64dp"
-                            android:padding="16dp"
                             android:background="@drawable/circular_button"
                             android:contentDescription="Crime"
+                            android:padding="16dp"
                             android:src="@drawable/assaltos" />
 
                         <TextView
@@ -393,18 +396,18 @@
                     <LinearLayout
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:orientation="vertical"
                         android:layout_weight="1"
-                        android:gravity="center">
+                        android:gravity="center"
+                        android:orientation="vertical">
 
                         <ImageButton
                             android:id="@+id/botao_tiroteio"
                             android:layout_width="64dp"
                             android:layout_height="64dp"
-                            android:padding="16dp"
                             android:background="@drawable/circular_button"
                             android:contentDescription="Crime"
-                            android:src="@drawable/tirotei"/>
+                            android:padding="16dp"
+                            android:src="@drawable/tirotei" />
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -418,18 +421,18 @@
                     <LinearLayout
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:orientation="vertical"
                         android:layout_weight="1"
-                        android:gravity="center">
+                        android:gravity="center"
+                        android:orientation="vertical">
 
                         <ImageButton
                             android:id="@+id/botao_arrastao"
                             android:layout_width="64dp"
                             android:layout_height="64dp"
-                            android:padding="16dp"
                             android:background="@drawable/circular_button"
                             android:contentDescription="Crime"
-                            android:src="@drawable/arrastao"/>
+                            android:padding="16dp"
+                            android:src="@drawable/arrastao" />
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -448,18 +451,18 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
+                    android:layout_marginTop="32dp"
                     android:gravity="center"
-                    android:layout_marginTop="32dp"> <!-- Ajusta o valor para posicionar mais abaixo -->
+                    android:orientation="horizontal"> <!-- Ajusta o valor para posicionar mais abaixo -->
 
                     <Button
                         android:id="@+id/botao_cancelar"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
                         android:layout_margin="6dp"
-                        android:text="Cancelar"
+                        android:layout_weight="1"
                         android:backgroundTint="@color/gray"
+                        android:text="Cancelar"
                         android:textColor="@color/vermelho_fraco"
                         android:textSize="16sp" /> <!-- Ajusta o tamanho do texto para tornar o botão maior -->
 
@@ -467,36 +470,59 @@
                         android:id="@+id/botao_continuar"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:layout_marginEnd="16dp"
                         android:layout_margin="6dp"
-                        android:text="Continuar"
-                        android:enabled="false"
+                        android:layout_marginEnd="16dp"
+                        android:layout_weight="1"
                         android:backgroundTint="@color/vermelho_fraco"
+                        android:enabled="false"
+                        android:text="Continuar"
                         android:textColor="@color/black"
                         android:textSize="16sp" /> <!-- Ajusta o tamanho do texto para tornar o botão maior -->
                 </LinearLayout>
             </LinearLayout>
 
+            <EditText
+                android:id="@+id/input_local_atual"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/et_atual"
+                android:background="@drawable/borda_edittext"
+                android:fontFamily="monospace"
+                android:padding="12dp"
+                android:textColor="@color/white"
+                android:textColorHint="@color/white"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                android:layout_marginBottom="10dp"
+                android:visibility="invisible" />
 
             <EditText
                 android:id="@+id/input_destino"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:hint="@string/et_destino"
                 android:background="@drawable/borda_edittext"
-                android:hint="Digite o endereço de destino"
+                android:fontFamily="monospace"
                 android:padding="12dp"
-                android:textColor="@color/black"
-                android:visibility="gone" />
+                android:textColor="@color/white"
+                android:textColorHint="@color/white"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                android:layout_marginBottom="10dp"
+                android:visibility="invisible" />
 
             <Button
                 android:id="@+id/botao_confirmar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:backgroundTint="@color/red"
-                android:text="Procurar corrida"
+                android:text="PROCURAR CORRIDA"
                 android:textColor="@color/white"
-                android:visibility="gone" />
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:fontFamily="monospace"
+                android:padding="12dp"
+                android:visibility="invisible" />
 
         </LinearLayout>
 

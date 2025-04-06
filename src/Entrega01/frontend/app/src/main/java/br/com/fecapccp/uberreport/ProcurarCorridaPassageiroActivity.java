@@ -4,6 +4,9 @@ import android.Manifest;
 import android.app.AlertDialog;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.location.Address;
+import android.location.Geocoder;
+import android.location.Location;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -18,14 +21,22 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.android.gms.maps.model.PolylineOptions;
 import com.google.android.libraries.places.api.Places;
 import com.google.android.libraries.places.api.model.Place;
 import com.google.android.libraries.places.api.net.PlacesClient;
 import com.google.android.libraries.places.widget.Autocomplete;
 import com.google.android.libraries.places.widget.AutocompleteActivity;
 import com.google.android.libraries.places.widget.model.AutocompleteActivityMode;
+import com.google.maps.DirectionsApi;
+import com.google.maps.DirectionsApiRequest;
+import com.google.maps.GeoApiContext;
+import com.google.maps.android.PolyUtil;
+import com.google.maps.model.DirectionsResult;
+import com.google.maps.model.TravelMode;
 
 import br.com.fecapccp.uberreport.alertas.AcidentesAlertaController;
 import br.com.fecapccp.uberreport.alertas.CrimesAlertaController;
@@ -46,11 +57,15 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Locale;
+import java.util.concurrent.TimeUnit;
 
 public class ProcurarCorridaPassageiroActivity extends AppCompatActivity implements OnMapReadyCallback {
 
+    // Variáveis de instância
     private GoogleMap gMap;
     private LinearLayout pesquisaCorridaContainer;
     private LinearLayout containerAlertas;
@@ -61,6 +76,7 @@ public class ProcurarCorridaPassageiroActivity extends AppCompatActivity impleme
     private ImageButton botaoCrimeAlerta;
     private ImageButton backButton;
     private View inputDestino;
+    private View inputLocalAtual;
     private View botaoConfirmar;
     private View handleBotao;
     private TextView reportTexto;
@@ -72,7 +88,6 @@ public class ProcurarCorridaPassageiroActivity extends AppCompatActivity impleme
     private LinearLayout layoutAlertasClima;
     private LinearLayout layoutAlertasAcidentes;
     private LinearLayout layoutAlertasCrimes;
-
     private FusedLocationProviderClient fusedLocationClient;
     private double userLatitude;
     private double userLongitude;
@@ -82,13 +97,15 @@ public class ProcurarCorridaPassageiroActivity extends AppCompatActivity impleme
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_procurar_corrida_passageiro);
 
+        // TODO: Inicializa o client de localização
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(this);
 
-        conferePermissaoLocalizacaoUsuario();
+        // TODO: Inicializa os componentes da UI
         inicializaUiComponentes();
         configuraBotoesAlertas();
         inicializaMaps();
         inicializaPlacesApiMaps();
+        configurarBotaoConfirmar();
     }
 
     private void conferePermissaoLocalizacaoUsuario() {
@@ -104,6 +121,7 @@ public class ProcurarCorridaPassageiroActivity extends AppCompatActivity impleme
         alertButton = findViewById(R.id.alert_button);
         backButton = findViewById(R.id.back_button);
         inputDestino = findViewById(R.id.input_destino);
+        inputLocalAtual = findViewById(R.id.input_local_atual);
         botaoConfirmar = findViewById(R.id.botao_confirmar);
         handleBotao = findViewById(R.id.imageView2);
         containerAlertas = findViewById(R.id.container_alertas);
@@ -229,30 +247,46 @@ public class ProcurarCorridaPassageiroActivity extends AppCompatActivity impleme
 
     private void inicializaPlacesApiMaps() {
         if (!Places.isInitialized()) {
-            Places.initialize(getApplicationContext(), "${MAPS_API_KEY}");
+            Places.initialize(getApplicationContext(), BuildConfig.MAPS_API_KEY);
         }
         PlacesClient placesClient = Places.createClient(this);
         configurarAutoComplete();
     }
 
     private void getUserLocation() {
-        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
-                != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(
-                this, Manifest.permission.ACCESS_COARSE_LOCATION)
-                != PackageManager.PERMISSION_GRANTED) {
-            ActivityCompat.requestPermissions(
-                    this,
-                    new String[]{Manifest.permission.ACCESS_FINE_LOCATION,
-                            Manifest.permission.ACCESS_COARSE_LOCATION}, 1);
-            return;
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
+            fusedLocationClient.getLastLocation()
+                    .addOnSuccessListener(this, location -> {
+                        if (location != null) {
+                            userLatitude = location.getLatitude();
+                            userLongitude = location.getLongitude();
+                            atualizarMapaComLocalizacaoUsuario(); // Atualiza o mapa aqui
+                            preencherEditTextComEndereco(location); // Altera o EditText com localização atual
+                        } else {
+                            // Lidar com localização nula
+                            Log.e("Localização", "Localização nula");
+                            atualizarMapaComLocalizacaoPadrao();
+                        }
+                    });
+        } else {
+            // Lidar com o caso em que a permissão não foi concedida
+            Log.e("Permissão", "Permissão de localização não concedida");
+            atualizarMapaComLocalizacaoPadrao();
         }
-        fusedLocationClient.getLastLocation()
-                .addOnSuccessListener(this, location -> {
-                    if (location != null) {
-                        userLatitude = location.getLatitude();
-                        userLongitude = location.getLongitude();
-                    }
-                });
+    }
+
+    private void preencherEditTextComEndereco(Location location) {
+        Geocoder geocoder = new Geocoder(this, Locale.getDefault());
+        try {
+            List<Address> addresses = geocoder.getFromLocation(location.getLatitude(), location.getLongitude(), 1);
+            if (addresses != null && !addresses.isEmpty()) {
+                Address address = addresses.get(0);
+                String enderecoCompleto = address.getAddressLine(0);
+                ((EditText) inputLocalAtual).setText(enderecoCompleto);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
@@ -261,6 +295,8 @@ public class ProcurarCorridaPassageiroActivity extends AppCompatActivity impleme
         if (requestCode == 1) {
             if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                 getUserLocation();
+            } else {
+                atualizarMapaComLocalizacaoPadrao();
             }
         }
     }
@@ -300,6 +336,7 @@ public class ProcurarCorridaPassageiroActivity extends AppCompatActivity impleme
 
         corridaText.setVisibility(View.GONE);
         inputDestino.setVisibility(View.GONE);
+        inputLocalAtual.setVisibility(View.GONE);
         botaoConfirmar.setVisibility(View.GONE);
         handleBotao.setVisibility(View.GONE);
         alertButton.setVisibility(View.GONE);
@@ -307,7 +344,7 @@ public class ProcurarCorridaPassageiroActivity extends AppCompatActivity impleme
 
     private void expandirPesquisaContainer() {
         int startHeight = pesquisaCorridaContainer.getHeight();
-        int endHeight = getResources().getDisplayMetrics().heightPixels * 3 / 4;
+        int endHeight = getResources().getDisplayMetrics().heightPixels / 2;
 
         ValueAnimator animator = ValueAnimator.ofInt(startHeight, endHeight);
         animator.addUpdateListener(animation -> {
@@ -327,6 +364,8 @@ public class ProcurarCorridaPassageiroActivity extends AppCompatActivity impleme
 
         pesquisaCorridaContainer.postDelayed(() -> {
             inputDestino.setVisibility(View.VISIBLE);
+            inputLocalAtual.setVisibility(View.VISIBLE);
+            // handleBotao.setVisibility(View.VISIBLE);
             botaoConfirmar.setVisibility(View.VISIBLE);
         }, 300);
     }
@@ -362,6 +401,7 @@ public class ProcurarCorridaPassageiroActivity extends AppCompatActivity impleme
         alertButton.setVisibility(View.VISIBLE);
 
         inputDestino.setVisibility(View.GONE);
+        inputLocalAtual.setVisibility(View.GONE);
         botaoConfirmar.setVisibility(View.GONE);
         handleBotao.setVisibility(View.GONE);
         containerAlertas.setVisibility(View.GONE);
@@ -396,10 +436,94 @@ public class ProcurarCorridaPassageiroActivity extends AppCompatActivity impleme
     @Override
     public void onMapReady(@NonNull GoogleMap googleMap) {
         gMap = googleMap;
-
-        LatLng liberdade = new LatLng(-23.563133, -46.635048);
-
-        gMap.addMarker(new MarkerOptions().position(liberdade).title("Liberdade, São Paulo"));
-        gMap.moveCamera(CameraUpdateFactory.newLatLngZoom(liberdade, 15));
+        conferePermissaoLocalizacaoUsuario();
     }
+
+    private void atualizarMapaComLocalizacaoUsuario() {
+        if (gMap != null) {
+            LatLng userLocation = new LatLng(userLatitude, userLongitude);
+            gMap.moveCamera(CameraUpdateFactory.newLatLngZoom(userLocation, 15));
+            MarkerOptions options = new MarkerOptions().position(userLocation).title("Sua localização");
+            options.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED));
+            gMap.addMarker(options);
+        }
+    }
+
+    private void atualizarMapaComLocalizacaoPadrao() {
+        if (gMap != null) {
+            LatLng liberdade = new LatLng(-23.563133, -46.635048);
+            gMap.moveCamera(CameraUpdateFactory.newLatLngZoom(liberdade, 15));
+            MarkerOptions options = new MarkerOptions().position(liberdade).title("Liberdade, São Paulo");
+            options.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED));
+            gMap.addMarker(options);
+        }
+    }
+
+    private void configurarBotaoConfirmar() {
+        Button botaoConfirmarRota = findViewById(R.id.botao_confirmar);
+        botaoConfirmarRota.setOnClickListener(v -> tracarRota());
+    }
+
+    private void tracarRota() {
+        String origem = ((EditText) inputLocalAtual).getText().toString();
+        String destino = ((EditText) inputDestino).getText().toString();
+
+        if (origem.isEmpty() || destino.isEmpty()) {
+            // TODO: CRIAR LÓGICA PARA ENDEREÇOS VAZIO
+            return;
+        }
+
+        Geocoder geocoder = new Geocoder(this, Locale.getDefault());
+        try {
+            List<Address> addressesOrigem = geocoder.getFromLocationName(origem, 1);
+            List<Address> addressesDestino = geocoder.getFromLocationName(destino, 1);
+
+            if (addressesOrigem != null && !addressesOrigem.isEmpty() && addressesDestino != null && !addressesDestino.isEmpty()) {
+                LatLng latLngOrigem = new LatLng(addressesOrigem.get(0).getLatitude(), addressesOrigem.get(0).getLongitude());
+                LatLng latLngDestino = new LatLng(addressesDestino.get(0).getLatitude(), addressesDestino.get(0).getLongitude());
+
+                exibirRota(latLngOrigem, latLngDestino);
+            } else {
+                // TODO: CRIAR LÓGICA PARA ENDEREÇOS INVÁLIDOS
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void exibirRota(LatLng origem, LatLng destino) {
+        GeoApiContext context = new GeoApiContext.Builder()
+                .apiKey(BuildConfig.MAPS_API_KEY)
+                .connectTimeout(5, TimeUnit.SECONDS)
+                .readTimeout(5, TimeUnit.SECONDS)
+                .writeTimeout(5, TimeUnit.SECONDS)
+                .build();
+
+        DirectionsApiRequest request = DirectionsApi.newRequest(context)
+                .origin(new com.google.maps.model.LatLng(origem.latitude, origem.longitude))
+                .destination(new com.google.maps.model.LatLng(destino.latitude, destino.longitude))
+                .mode(TravelMode.DRIVING);
+
+        new Thread(() -> {
+            try {
+                DirectionsResult result = request.await();
+
+                runOnUiThread(() -> {
+                    if (result.routes != null && result.routes.length > 0) {
+                        PolylineOptions polylineOptions = new PolylineOptions();
+                        polylineOptions.addAll(PolyUtil.decode(result.routes[0].overviewPolyline.getEncodedPath()));
+                        polylineOptions.color(ContextCompat.getColor(this, R.color.vermelho_fraco));
+                        gMap.addPolyline(polylineOptions);
+                        gMap.moveCamera(CameraUpdateFactory.newLatLngZoom(origem, 10));
+                    } else {
+                        // TODO: CRIAR LÓGICA PARA LIDAR COM ROTA NÃO ENCONTRADAS
+                    }
+                });
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }).start();
+    }
+
+
 }

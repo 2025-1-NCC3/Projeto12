@@ -1,7 +1,13 @@
 <resources>
+    <!-- Main -->
+
     <string name="app_name">Uber Report</string>
-    <string name="btn_text_planejarcorrida">Planejar sua corrida</string>
+    <string name="btn_text_planejarcorrida">Planejar sua corrida!</string>
     <string name="title_activity_maps">MapsActivity</string>
-    <string name="textoEnderecoDestino">Digite o endereço de destino...</string>
     <string name="campo_nome">Digite seu nome</string>
+
+    <!-- Procurar destino -->
+    <string name="et_atual"> Digite sua localização atual... </string>
+    <string name="et_destino"> Digite seu endereço de destino... </string>
+    <string name="textoEnderecoDestino">Digite o endereço de destino...</string>
 </resources>
