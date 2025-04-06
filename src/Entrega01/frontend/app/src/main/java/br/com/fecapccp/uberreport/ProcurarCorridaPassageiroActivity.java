@@ -4,6 +4,9 @@ import android.Manifest;
 import android.app.AlertDialog;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.location.Address;
+import android.location.Geocoder;
+import android.location.Location;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -47,8 +50,10 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Locale;
 
 public class ProcurarCorridaPassageiroActivity extends AppCompatActivity implements OnMapReadyCallback {
 
@@ -247,8 +252,9 @@ public class ProcurarCorridaPassageiroActivity extends AppCompatActivity impleme
                             userLatitude = location.getLatitude();
                             userLongitude = location.getLongitude();
                             atualizarMapaComLocalizacaoUsuario(); // Atualiza o mapa aqui
+                            preencherEditTextComEndereco(location); // Altera o EditText com localização atual
                         } else {
-                            // Lidar com o caso em que a localização é nula
+                            // Lidar com localização nula
                             Log.e("Localização", "Localização nula");
                             atualizarMapaComLocalizacaoPadrao();
                         }
@@ -257,6 +263,20 @@ public class ProcurarCorridaPassageiroActivity extends AppCompatActivity impleme
             // Lidar com o caso em que a permissão não foi concedida
             Log.e("Permissão", "Permissão de localização não concedida");
             atualizarMapaComLocalizacaoPadrao();
+        }
+    }
+
+    private void preencherEditTextComEndereco(Location location) {
+        Geocoder geocoder = new Geocoder(this, Locale.getDefault());
+        try {
+            List<Address> addresses = geocoder.getFromLocation(location.getLatitude(), location.getLongitude(), 1);
+            if (addresses != null && !addresses.isEmpty()) {
+                Address address = addresses.get(0);
+                String enderecoCompleto = address.getAddressLine(0);
+                ((EditText) inputLocalAtual).setText(enderecoCompleto);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 
