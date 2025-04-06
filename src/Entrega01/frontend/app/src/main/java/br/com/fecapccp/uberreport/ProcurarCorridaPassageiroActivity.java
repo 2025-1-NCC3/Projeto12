@@ -247,7 +247,7 @@ public class ProcurarCorridaPassageiroActivity extends AppCompatActivity impleme
 
     private void inicializaPlacesApiMaps() {
         if (!Places.isInitialized()) {
-            Places.initialize(getApplicationContext(), "${MAPS_API_KEY}");
+            Places.initialize(getApplicationContext(), BuildConfig.MAPS_API_KEY);
         }
         PlacesClient placesClient = Places.createClient(this);
         configurarAutoComplete();
@@ -493,7 +493,7 @@ public class ProcurarCorridaPassageiroActivity extends AppCompatActivity impleme
 
     private void exibirRota(LatLng origem, LatLng destino) {
         GeoApiContext context = new GeoApiContext.Builder()
-                .apiKey("${MAPS_API_KEY}")
+                .apiKey(BuildConfig.MAPS_API_KEY)
                 .connectTimeout(5, TimeUnit.SECONDS)
                 .readTimeout(5, TimeUnit.SECONDS)
                 .writeTimeout(5, TimeUnit.SECONDS)
