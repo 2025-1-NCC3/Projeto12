@@ -24,12 +24,19 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.android.gms.maps.model.PolylineOptions;
 import com.google.android.libraries.places.api.Places;
 import com.google.android.libraries.places.api.model.Place;
 import com.google.android.libraries.places.api.net.PlacesClient;
 import com.google.android.libraries.places.widget.Autocomplete;
 import com.google.android.libraries.places.widget.AutocompleteActivity;
 import com.google.android.libraries.places.widget.model.AutocompleteActivityMode;
+import com.google.maps.DirectionsApi;
+import com.google.maps.DirectionsApiRequest;
+import com.google.maps.GeoApiContext;
+import com.google.maps.android.PolyUtil;
+import com.google.maps.model.DirectionsResult;
+import com.google.maps.model.TravelMode;
 
 import br.com.fecapccp.uberreport.alertas.AcidentesAlertaController;
 import br.com.fecapccp.uberreport.alertas.CrimesAlertaController;
@@ -54,6 +61,7 @@ import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Locale;
+import java.util.concurrent.TimeUnit;
 
 public class ProcurarCorridaPassageiroActivity extends AppCompatActivity implements OnMapReadyCallback {
 
@@ -97,6 +105,7 @@ public class ProcurarCorridaPassageiroActivity extends AppCompatActivity impleme
         configuraBotoesAlertas();
         inicializaMaps();
         inicializaPlacesApiMaps();
+        configurarBotaoConfirmar();
     }
 
     private void conferePermissaoLocalizacaoUsuario() {
@@ -449,4 +458,71 @@ public class ProcurarCorridaPassageiroActivity extends AppCompatActivity impleme
             gMap.addMarker(options);
         }
     }
+
+    private void configurarBotaoConfirmar() {
+        Button botaoConfirmarRota = findViewById(R.id.botao_confirmar);
+        botaoConfirmarRota.setOnClickListener(v -> tracarRota());
+    }
+
+    private void tracarRota() {
+        String origem = ((EditText) inputLocalAtual).getText().toString();
+        String destino = ((EditText) inputDestino).getText().toString();
+
+        if (origem.isEmpty() || destino.isEmpty()) {
+            // TODO: CRIAR LÓGICA PARA ENDEREÇOS VAZIO
+            return;
+        }
+
+        Geocoder geocoder = new Geocoder(this, Locale.getDefault());
+        try {
+            List<Address> addressesOrigem = geocoder.getFromLocationName(origem, 1);
+            List<Address> addressesDestino = geocoder.getFromLocationName(destino, 1);
+
+            if (addressesOrigem != null && !addressesOrigem.isEmpty() && addressesDestino != null && !addressesDestino.isEmpty()) {
+                LatLng latLngOrigem = new LatLng(addressesOrigem.get(0).getLatitude(), addressesOrigem.get(0).getLongitude());
+                LatLng latLngDestino = new LatLng(addressesDestino.get(0).getLatitude(), addressesDestino.get(0).getLongitude());
+
+                exibirRota(latLngOrigem, latLngDestino);
+            } else {
+                // TODO: CRIAR LÓGICA PARA ENDEREÇOS INVÁLIDOS
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void exibirRota(LatLng origem, LatLng destino) {
+        GeoApiContext context = new GeoApiContext.Builder()
+                .apiKey("${MAPS_API_KEY}")
+                .connectTimeout(5, TimeUnit.SECONDS)
+                .readTimeout(5, TimeUnit.SECONDS)
+                .writeTimeout(5, TimeUnit.SECONDS)
+                .build();
+
+        DirectionsApiRequest request = DirectionsApi.newRequest(context)
+                .origin(new com.google.maps.model.LatLng(origem.latitude, origem.longitude))
+                .destination(new com.google.maps.model.LatLng(destino.latitude, destino.longitude))
+                .mode(TravelMode.DRIVING);
+
+        new Thread(() -> {
+            try {
+                DirectionsResult result = request.await();
+
+                runOnUiThread(() -> {
+                    if (result.routes != null && result.routes.length > 0) {
+                        PolylineOptions polylineOptions = new PolylineOptions();
+                        polylineOptions.addAll(PolyUtil.decode(result.routes[0].overviewPolyline.getEncodedPath()));
+                        gMap.addPolyline(polylineOptions);
+                        gMap.moveCamera(CameraUpdateFactory.newLatLngZoom(origem, 10));
+                    } else {
+                        // TODO: CRIAR LÓGICA PARA LIDAR COM ROTA NÃO ENCONTRADAS
+                    }
+                });
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }).start();
+    }
+
+
 }

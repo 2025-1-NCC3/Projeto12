@@ -37,6 +37,7 @@ dependencies {
     implementation libs.play.services.maps.v1820 // API Google Maps
     implementation libs.play.services.location // Localização do usuário
     implementation libs.google.maps.services // API Google Maps para Java
+    implementation 'com.google.maps.android:android-maps-utils:2.2.3' // API Google Maps Utils
     implementation libs.places // Sugestões de endereços
     implementation 'org.slf4j:slf4j-nop:1.7.30' // Para evitar erro de log
 
