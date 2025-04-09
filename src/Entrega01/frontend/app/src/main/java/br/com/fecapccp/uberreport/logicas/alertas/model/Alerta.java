@@ -8,7 +8,7 @@ public class Alerta {
     private String dataHoraAlerta;
     private Double latitude;
     private Double longitude;
-private Integer fk_idUser;
+    private Integer fk_idUser;
 
 public Alerta(String nomeAlerta, String tipoAlerta, String dataHoraAlerta, Double latitude, Double longitude, Integer fk_idUser) {
         this.nomeAlerta = nomeAlerta;

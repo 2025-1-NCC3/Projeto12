@@ -1,4 +1,4 @@
-package br.com.fecapccp.uberreport.logicas;
+package br.com.fecapccp.uberreport.logicas.animacoes;
 
 import android.view.View;
 

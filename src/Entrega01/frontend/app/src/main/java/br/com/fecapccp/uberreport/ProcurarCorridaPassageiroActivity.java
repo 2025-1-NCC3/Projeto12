@@ -4,6 +4,8 @@ import android.Manifest;
 import android.app.AlertDialog;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
 import android.location.Address;
 import android.location.Geocoder;
 import android.location.Location;
@@ -22,7 +24,9 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
+import com.google.android.gms.maps.model.CircleOptions;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.maps.model.PolylineOptions;
 import com.google.android.libraries.places.api.Places;
@@ -40,11 +44,16 @@ import com.google.maps.model.TravelMode;
 
 import br.com.fecapccp.uberreport.alertas.AcidentesAlertaController;
 import br.com.fecapccp.uberreport.alertas.CrimesAlertaController;
-import br.com.fecapccp.uberreport.logicas.AnimacaoBotao;
+import br.com.fecapccp.uberreport.logicas.alertas.ObterAlertaImpl;
+import br.com.fecapccp.uberreport.logicas.alertas.marcador.AlertasManager;
+import br.com.fecapccp.uberreport.logicas.animacoes.AnimacaoBotao;
 import br.com.fecapccp.uberreport.alertas.ControladorAlerta;
 import br.com.fecapccp.uberreport.alertas.ClimaAlertaController;
 import br.com.fecapccp.uberreport.logicas.alertas.EnvioAlertaImpl;
 import br.com.fecapccp.uberreport.logicas.alertas.model.Alerta;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 import android.animation.ValueAnimator;
 import android.util.Log;
@@ -53,6 +62,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -60,8 +70,10 @@ import android.widget.Toast;
 
 import java.io.IOException;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
 public class ProcurarCorridaPassageiroActivity extends AppCompatActivity implements OnMapReadyCallback {
@@ -438,6 +450,29 @@ public class ProcurarCorridaPassageiroActivity extends AppCompatActivity impleme
     public void onMapReady(@NonNull GoogleMap googleMap) {
         gMap = googleMap;
         conferePermissaoLocalizacaoUsuario();
+
+        AlertasManager alertasManager = new AlertasManager(gMap, this, marker -> {
+            Alerta alerta = (Alerta) marker.getTag();
+            if (alerta != null) {
+                exibirDetalhesAlerta(alerta);
+            }
+        });
+
+        gMap.setOnCameraIdleListener(() -> {
+            LatLng cameraPosition = gMap.getCameraPosition().target;
+            alertasManager.fetchAndDisplayAlertas(cameraPosition.latitude, cameraPosition.longitude, 3000);
+        });
+    }
+
+    private void exibirDetalhesAlerta(Alerta alerta) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle(alerta.getNomeAlerta())
+                .setMessage("Tipo do alerta: " + alerta.getTipoAlerta() + "\n" +
+                        "Data e hora: " + alerta.getDataHoraAlerta() + "\n" +
+                        "Latitude: " + alerta.getLatitude() + "\n" +
+                        "Longitude: " + alerta.getLongitude())
+                .setPositiveButton("OK", (dialog, id) -> dialog.dismiss());
+        builder.create().show();
     }
 
     private void atualizarMapaComLocalizacaoUsuario() {
