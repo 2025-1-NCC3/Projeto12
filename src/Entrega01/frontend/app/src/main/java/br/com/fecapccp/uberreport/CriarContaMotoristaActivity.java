@@ -1,4 +1,4 @@
-package br.com.fecapccp.uberreport.logicas;
+package br.com.fecapccp.uberreport;
 
 import android.os.Bundle;
 
@@ -8,9 +8,7 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
-import br.com.fecapccp.uberreport.R;
-
-public class CriarContaMotorista extends AppCompatActivity {
+public class CriarContaMotoristaActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
