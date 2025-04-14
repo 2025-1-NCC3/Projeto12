@@ -9,87 +9,87 @@
 
     <TextView
         android:id="@+id/textView"
-        android:layout_width="272dp"
-        android:layout_height="40dp"
-        android:fontFamily="@font/roboto_medium"
+        android:layout_width="406dp"
+        android:layout_height="53dp"
+        android:fontFamily="monospace"
+        android:paddingLeft="30dp"
         android:text="Como deseja acessar?"
         android:textColor="@color/black"
-        android:textSize="26dp"
+        android:textSize="30dp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.309"
+        app:layout_constraintHorizontal_bias="0.4"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.136" />
+        app:layout_constraintVertical_bias="0.134" />
 
     <Button
         android:id="@+id/btnEntrarConta"
-        android:layout_width="381dp"
-        android:layout_height="49dp"
+        android:layout_width="319dp"
+        android:layout_height="63dp"
         android:backgroundTint="@color/red"
-        android:fontFamily="@font/inter_light"
-        android:textSize="23sp"
+        android:fontFamily="monospace"
         android:text="Entrar na sua conta"
         android:textAlignment="center"
+        android:textSize="23sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.533"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.607" />
 
     <Button
         android:id="@+id/btnCriarConta"
-        android:layout_width="381dp"
-        android:layout_height="49dp"
-        android:backgroundTint="@color/white"
-        android:fontFamily="@font/inter_light"
+        android:layout_width="319dp"
+        android:layout_height="63dp"
+        android:backgroundTint="@color/red"
+        android:fontFamily="monospace"
         android:text="Criar conta"
         android:textAlignment="center"
-        android:textColor="@color/red"
+        android:textColor="@color/white"
         android:textSize="23sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.533"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.618" />
+        app:layout_constraintVertical_bias="0.717" />
 
     <ImageView
         android:id="@+id/imageView3"
-        android:layout_width="198dp"
-        android:layout_height="155dp"
+        android:layout_width="313dp"
+        android:layout_height="253dp"
         android:src="@drawable/icontelalogin"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.286" />
+        app:layout_constraintVertical_bias="0.32" />
 
     <TextView
         android:id="@+id/textView7"
-        android:layout_width="261dp"
-        android:layout_height="54dp"
+        android:layout_width="298dp"
+        android:layout_height="47dp"
         android:fontFamily="@font/inter"
         android:text="Ao prosseguir, você aceita nossos Termos de Serviço e Políticas de Privacidade. "
         android:textColor="@color/cinza_claro"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.772" />
+        app:layout_constraintVertical_bias="0.865" />
 
     <ImageView
         android:id="@+id/imageView4"
-        android:layout_width="62dp"
-        android:layout_height="61dp"
+        android:layout_width="52dp"
+        android:layout_height="52dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.976"
+        app:layout_constraintVertical_bias="0.992"
         tools:srcCompat="@tools:sample/avatars" />
 
 

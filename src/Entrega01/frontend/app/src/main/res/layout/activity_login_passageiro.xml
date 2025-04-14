@@ -6,86 +6,44 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="240dp"
-        android:layout_height="33dp"
-        android:fontFamily="@font/inter"
-        android:text="Digite seu e-mail"
-        android:textColor="@color/black"
-        android:textSize="26dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.116"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.2" />
+    <ImageView
+        android:id="@+id/imageView7"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="@+id/btnemaillogin"
+        app:layout_constraintEnd_toEndOf="@+id/btnemaillogin"
+        app:layout_constraintHorizontal_bias="0.06"
+        app:layout_constraintStart_toStartOf="@+id/btnemaillogin"
+        app:layout_constraintTop_toTopOf="@+id/btnemaillogin"
+        app:layout_constraintVertical_bias="0.562"
+        app:srcCompat="@drawable/icon_mail" />
 
-    <EditText
-        android:id="@+id/btnemaillogin"
-        android:layout_width="357dp"
-        android:layout_height="40dp"
-        android:layout_marginTop="16dp"
-        android:background="@drawable/borda_arredondada"
-        android:fontFamily="@font/inter"
-        android:hint="nome@exemplo.com"
-        android:maxLength="40"
-        android:paddingLeft="50dp"
-        android:textSize="15sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.296"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView"
-        app:layout_constraintVertical_bias="0.059" />
+    <ImageView
+        android:id="@+id/imageView6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="@+id/btnsenhalogin"
+        app:layout_constraintEnd_toEndOf="@+id/btnsenhalogin"
+        app:layout_constraintHorizontal_bias="0.063"
+        app:layout_constraintStart_toStartOf="@+id/btnsenhalogin"
+        app:layout_constraintTop_toTopOf="@+id/btnsenhalogin"
+        app:layout_constraintVertical_bias="0.375"
+        app:srcCompat="@drawable/icon_key" />
 
     <TextView
         android:id="@+id/textView2"
-        android:layout_width="240dp"
-        android:layout_height="33dp"
-        android:fontFamily="@font/inter"
-        android:text="Digite sua senha"
+        android:layout_width="315dp"
+        android:layout_height="27dp"
+        android:fontFamily="monospace"
+        android:text="Digite sua senha:"
         android:textColor="@color/black"
-        android:textSize="26dp"
+        android:textSize="16dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.152"
+        app:layout_constraintHorizontal_bias="0.291"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.386" />
-
-    <EditText
-        android:id="@+id/btnsenhalogin"
-        android:layout_width="357dp"
-        android:layout_height="40dp"
-        android:background="@drawable/borda_arredondada"
-        android:fontFamily="@font/inter"
-        android:hint="Informar senha:"
-        android:maxLength="40"
-        android:paddingLeft="50dp"
-        android:textSize="15sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.296"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.468" />
-
-    <TextView
-        android:id="@+id/textView4"
-        android:layout_width="309dp"
-        android:layout_height="87dp"
-        android:text="Entre em sua conta com seus dados"
-        android:textSize="30dp"
-        android:textAlignment="center"
-        android:textColor="#670000"
-        android:fontFamily="@font/inter"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.023" />
+        app:layout_constraintVertical_bias="0.454" />
 
     <TextView
         android:id="@+id/textView6"
@@ -94,51 +52,92 @@
         android:text="Esqueceu a senha? Clique aqui"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.337"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.558" />
+        app:layout_constraintVertical_bias="0.561" />
+
+    <EditText
+        android:id="@+id/btnemaillogin"
+        android:layout_width="357dp"
+        android:layout_height="40dp"
+        android:background="@drawable/borda_arredondada"
+        android:fontFamily="monospace"
+        android:hint="nome@exemplo.com"
+        android:maxLength="40"
+        android:paddingLeft="50dp"
+        android:textSize="15sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.518"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.364" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="315dp"
+        android:layout_height="27dp"
+        android:fontFamily="monospace"
+        android:text="Digite seu e-mail:"
+        android:textColor="@color/black"
+        android:textSize="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.291"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.319" />
+
+    <EditText
+        android:id="@+id/btnsenhalogin"
+        android:layout_width="357dp"
+        android:layout_height="40dp"
+        android:background="@drawable/borda_arredondada"
+        android:fontFamily="monospace"
+        android:hint="Informar senha:"
+        android:maxLength="40"
+        android:paddingLeft="50dp"
+        android:textSize="15sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.518"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.502" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="329dp"
+        android:layout_height="76dp"
+        android:fontFamily="monospace"
+        android:text="Entre em sua conta com seus dados"
+        android:textAlignment="center"
+        android:textColor="#670000"
+        android:textSize="30dp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.141" />
 
     <Button
         android:id="@+id/btncContinuar"
         android:layout_width="381dp"
         android:layout_height="49dp"
+        android:background="@drawable/borda_arredondada"
         android:backgroundTint="@color/black"
         android:fontFamily="@font/roboto_medium"
         android:text="Continuar"
         android:textAlignment="center"
-        android:textSize="23dp"
-        android:background="@drawable/borda_arredondada"
         android:textColor="@color/white"
+        android:textSize="23dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.666"
+        app:layout_constraintHorizontal_bias="0.533"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.961" />
-
-    <ImageView
-        android:id="@+id/imageView6"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="@+id/btnsenhalogin"
-        app:layout_constraintEnd_toEndOf="@+id/btnsenhalogin"
-        app:layout_constraintHorizontal_bias="0.053"
-        app:layout_constraintStart_toStartOf="@+id/btnsenhalogin"
-        app:layout_constraintTop_toTopOf="@+id/btnsenhalogin"
-        app:layout_constraintVertical_bias="0.562"
-        app:srcCompat="@drawable/icon_key" />
-
-    <ImageView
-        android:id="@+id/imageView7"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="@+id/btnemaillogin"
-        app:layout_constraintEnd_toEndOf="@+id/btnemaillogin"
-        app:layout_constraintHorizontal_bias="0.056"
-        app:layout_constraintStart_toStartOf="@+id/btnemaillogin"
-        app:layout_constraintTop_toTopOf="@+id/btnemaillogin"
-        app:layout_constraintVertical_bias="0.562"
-        app:srcCompat="@drawable/icon_mail" />
+        app:layout_constraintVertical_bias="0.74" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
