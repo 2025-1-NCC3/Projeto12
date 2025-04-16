@@ -16,7 +16,7 @@
         android:layout_height="116dp"
         android:layout_gravity="center_horizontal"
         android:layout_marginBottom="24dp"
-        android:text="Faça login para acessar sua conta"
+        android:text="@string/fa_a_login_para_acessar_sua_conta"
         android:textColor="@android:color/black"
         android:textSize="40sp"
         android:textStyle="bold"/>
@@ -26,7 +26,7 @@
         android:layout_width="wrap_content"
         android:layout_height="284dp"
         android:layout_marginBottom="32dp"
-        android:contentDescription="Imagem de motorista e passageiro"
+        android:contentDescription="@string/imagem_de_motorista_e_passageiro"
         android:scaleType="centerInside"
         android:src="@drawable/login_image" />
 
@@ -64,7 +64,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="Motorista"
+                    android:text="@string/motorista"
                     android:textSize="24sp"
                     android:textStyle="bold"
                     android:textColor="@android:color/black"/>
@@ -72,6 +72,7 @@
                 <ImageView
                     android:layout_width="32dp"
                     android:layout_height="32dp"
+                    android:contentDescription="@string/todo2"
                     android:src="@drawable/ic_arrow_forward" />
             </LinearLayout>
         </RelativeLayout>
@@ -103,7 +104,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="Passageiro"
+                    android:text="@string/passageiro"
                     android:textSize="24sp"
                     android:textStyle="bold"
                     android:textColor="@android:color/black"/>
@@ -111,6 +112,7 @@
                 <ImageView
                     android:layout_width="32dp"
                     android:layout_height="32dp"
+                    android:contentDescription="@string/todo"
                     android:src="@drawable/ic_arrow_forward" />
             </LinearLayout>
         </RelativeLayout>

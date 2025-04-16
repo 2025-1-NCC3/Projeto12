@@ -16,6 +16,7 @@
         android:layout_width="32dp"
         android:layout_height="32dp"
         android:layout_centerInParent="true"
+        android:contentDescription="@string/marcadorloc"
         android:src="@drawable/weather" />
 
     <!-- Alert count -->

@@ -17,7 +17,7 @@ public class MainActivity extends AppCompatActivity {
         Button botaoEntrar = findViewById(R.id.botaoTelaInicial);
 
         botaoEntrar.setOnClickListener(v -> {
-            Intent intent = new Intent(MainActivity.this, ProcurarCorridaPassageiroActivity.class);
+            Intent intent = new Intent(MainActivity.this, EscolherUsuarioActivity.class);
             startActivity(intent);
         });
     }

@@ -17,7 +17,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
-        android:id="@+id/ImagePassageiro"
+        android:id="@+id/ImageMotorista"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:contentDescription="@string/imgusuariosilva"
@@ -26,15 +26,16 @@
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.315"
+        app:layout_constraintVertical_bias="0.29"
         tools:srcCompat="@tools:sample/avatars" />
 
+
     <TextView
-        android:id="@+id/TituloNomeUsuario"
+        android:id="@+id/TituloNomeMotorista"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="monospace"
-        android:text="@string/usu_rio_da_silva"
+        android:text="@string/motorista_da_silva"
         android:textColor="@color/white"
         android:textSize="35sp"
         android:textStyle="bold"
@@ -42,88 +43,118 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.159" />
-
+        app:layout_constraintVertical_bias="0.143" />
 
     <TextView
-        android:id="@+id/PassageiroNome"
+        android:id="@+id/MotoristaNome"
         android:layout_width="350dp"
         android:layout_height="44dp"
         android:background="@drawable/borda_edittext"
         android:backgroundTint="@color/cinza_mais_claro"
         android:fontFamily="monospace"
-        android:padding="10dp"
         android:hint="@string/usu_rio_nome"
+        android:padding="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.491"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.538" />
+        app:layout_constraintVertical_bias="0.458" />
 
     <TextView
-        android:id="@+id/PassageiroTelefone"
+        android:id="@+id/MotoristaEmail"
         android:layout_width="350dp"
         android:layout_height="44dp"
         android:background="@drawable/borda_edittext"
         android:backgroundTint="@color/cinza_mais_claro"
         android:fontFamily="monospace"
-        android:padding="10dp"
-        android:hint="@string/_11_1411_telefone"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.491"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.887" />
-
-    <TextView
-        android:id="@+id/PassageiroCPF"
-        android:layout_width="350dp"
-        android:layout_height="44dp"
-        android:background="@drawable/borda_edittext"
-        android:backgroundTint="@color/cinza_mais_claro"
-        android:fontFamily="monospace"
-        android:padding="10dp"
-        android:hint="@string/_5_9_1_70_cpf"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.491"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.81" />
-
-    <TextView
-        android:id="@+id/PassageiroEmail"
-        android:layout_width="350dp"
-        android:layout_height="44dp"
-        android:background="@drawable/borda_edittext"
-        android:backgroundTint="@color/cinza_mais_claro"
-        android:fontFamily="monospace"
-        android:padding="10dp"
         android:hint="@string/usuariodasilva_gmail_com_e_mail"
+        android:padding="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.491"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.717" />
+        app:layout_constraintVertical_bias="0.617" />
 
     <TextView
-        android:id="@+id/PassageiroSobreNome"
         android:layout_width="350dp"
         android:layout_height="44dp"
         android:background="@drawable/borda_edittext"
         android:backgroundTint="@color/cinza_mais_claro"
         android:fontFamily="monospace"
+        android:hint="@string/_11_1411_telefone"
         android:padding="10dp"
-        android:hint="@string/da_silva_sobrenome"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.491"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.627" />
+        app:layout_constraintVertical_bias="0.78" />
+
+    <TextView
+        android:id="@+id/MotoristaCNH"
+        android:layout_width="350dp"
+        android:layout_height="44dp"
+        android:background="@drawable/borda_edittext"
+        android:backgroundTint="@color/cinza_mais_claro"
+        android:fontFamily="monospace"
+        android:hint="@string/cnhinformacoes"
+        android:padding="10dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.491"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.866" />
+
+    <TextView
+        android:id="@+id/MotoristaCPF"
+        android:layout_width="350dp"
+        android:layout_height="44dp"
+        android:background="@drawable/borda_edittext"
+        android:backgroundTint="@color/cinza_mais_claro"
+        android:fontFamily="monospace"
+        android:hint="@string/_5_9_1_70_cpf"
+        android:padding="10dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.491"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.698" />
+
+    <TextView
+        android:id="@+id/MotoristaSobreNome"
+        android:layout_width="350dp"
+        android:layout_height="44dp"
+        android:background="@drawable/borda_edittext"
+        android:backgroundTint="@color/cinza_mais_claro"
+        android:fontFamily="monospace"
+        android:hint="@string/da_silva_sobrenome"
+        android:padding="10dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.491"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.537" />
+
+    <TextView
+        android:id="@+id/MotoristaCNHValidade"
+        android:layout_width="350dp"
+        android:layout_height="44dp"
+        android:background="@drawable/borda_edittext"
+        android:backgroundTint="@color/cinza_mais_claro"
+        android:fontFamily="monospace"
+        android:hint="@string/_12_12_0000_validade_cnh"
+        android:padding="10dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.491"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.95" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
