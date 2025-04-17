@@ -19,7 +19,7 @@
         android:theme="@style/Theme.UberReport"
         tools:targetApi="31">
         <activity
-            android:name=".informacoes_motorista"
+            android:name=".InformacoesMotorista"
             android:exported="false" />
         <activity
             android:name=".conta_motorista"
