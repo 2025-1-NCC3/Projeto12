@@ -22,9 +22,6 @@
             android:name=".InformacoesMotorista"
             android:exported="false" />
         <activity
-            android:name=".conta_motorista"
-            android:exported="false" />
-        <activity
             android:name=".InformacoesPessoais"
             android:exported="false" />
         <activity
