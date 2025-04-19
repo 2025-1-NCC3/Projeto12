@@ -6,6 +6,8 @@ import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import br.com.fecapccp.uberreport.logicas.tokenjwt.SessaoManager;
+
 
 public class MainActivity extends AppCompatActivity {
 
@@ -14,9 +16,20 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Button botaoEntrar = findViewById(R.id.botaoTelaInicial);
+        SessaoManager sessaoManager = new SessaoManager(this);
+        String token = sessaoManager.obterToken();
 
+        if (token == null) {
+            // Redireciona para a tela de login se não houver token
+            Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+            startActivity(intent);
+            finish();
+            return;
+        }
+
+        Button botaoEntrar = findViewById(R.id.botaoTelaInicial);
         botaoEntrar.setOnClickListener(v -> {
+            // Continue para a próxima tela
             Intent intent = new Intent(MainActivity.this, LoginActivity.class);
             startActivity(intent);
         });

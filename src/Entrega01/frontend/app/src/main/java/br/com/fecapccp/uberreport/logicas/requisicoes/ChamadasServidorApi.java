@@ -3,6 +3,7 @@ package br.com.fecapccp.uberreport.logicas.requisicoes;
 import java.util.List;
 
 import br.com.fecapccp.uberreport.logicas.alertas.model.Alerta;
+import br.com.fecapccp.uberreport.logicas.tokenjwt.LoginRequest;
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
@@ -20,4 +21,10 @@ public interface ChamadasServidorApi {
 
     @POST("/criarAlerta")
     Call<String> postAlerta(@Body Alerta alerta);
+
+    @POST("/login")
+    Call<String> login(@Body LoginRequest loginRequest);
+
+    @POST("/token")
+    Call<String> renovarToken(@Body String refreshToken);
 }
