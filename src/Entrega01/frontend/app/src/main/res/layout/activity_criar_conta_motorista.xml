@@ -202,7 +202,7 @@
         android:fontFamily="monospace"
         android:inputType="text"
         android:paddingLeft="16dp"
-        android:hint="@string/valiade_cnh"
+        android:hint="@string/validade_cnh"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.93"
