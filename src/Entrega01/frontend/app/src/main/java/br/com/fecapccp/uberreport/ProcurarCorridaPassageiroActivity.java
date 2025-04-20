@@ -28,6 +28,7 @@ import com.google.android.gms.maps.model.CircleOptions;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.android.gms.maps.model.Polyline;
 import com.google.android.gms.maps.model.PolylineOptions;
 import com.google.android.libraries.places.api.Places;
 import com.google.android.libraries.places.api.model.Place;
@@ -104,6 +105,7 @@ public class ProcurarCorridaPassageiroActivity extends AppCompatActivity impleme
     private FusedLocationProviderClient fusedLocationClient;
     private double userLatitude;
     private double userLongitude;
+    private Polyline rotaAtual;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -546,10 +548,18 @@ public class ProcurarCorridaPassageiroActivity extends AppCompatActivity impleme
 
                 runOnUiThread(() -> {
                     if (result.routes != null && result.routes.length > 0) {
+                        // Removendo a rota anterior, caso existir no maps!
+                        if (rotaAtual != null) {
+                            rotaAtual.remove();
+                        }
+
+                        // Desenhando a rota nova. No momento, na cor "vermelho_fraco".
                         PolylineOptions polylineOptions = new PolylineOptions();
                         polylineOptions.addAll(PolyUtil.decode(result.routes[0].overviewPolyline.getEncodedPath()));
                         polylineOptions.color(ContextCompat.getColor(this, R.color.vermelho_fraco));
-                        gMap.addPolyline(polylineOptions);
+                        rotaAtual = gMap.addPolyline(polylineOptions);
+
+                        // Movendo a câmera para a origem.
                         gMap.moveCamera(CameraUpdateFactory.newLatLngZoom(origem, 15));
                     } else {
                         Toast.makeText(this, "Rota não encontrada. Por favor, tente novamente!", Toast.LENGTH_SHORT).show();
@@ -560,6 +570,4 @@ public class ProcurarCorridaPassageiroActivity extends AppCompatActivity impleme
             }
         }).start();
     }
-
-
 }
