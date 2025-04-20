@@ -56,7 +56,7 @@ Visando uma implementação no aplicativo da Uber, o projeto tem como objetivo g
 │   ├── 📁 Entrega02
 │   │  └── 📂 frontend/
 │   │  └── 📂 backend/
-└── readme.md
+└── 📄 readme.md
 ```
 
 README.MD: Arquivo que serve como guia e explicação geral sobre o projeto.
