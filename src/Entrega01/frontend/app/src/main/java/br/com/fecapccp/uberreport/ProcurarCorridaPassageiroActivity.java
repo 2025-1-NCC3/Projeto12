@@ -122,6 +122,7 @@ public class ProcurarCorridaPassageiroActivity extends AppCompatActivity impleme
         inicializaMaps();
         inicializaPlacesApiMaps();
         configurarBotaoConfirmar();
+        configurarBotaoCentralizar();
     }
 
     private void conferePermissaoLocalizacaoUsuario() {
@@ -575,5 +576,16 @@ public class ProcurarCorridaPassageiroActivity extends AppCompatActivity impleme
                 e.printStackTrace();
             }
         }).start();
+    }
+
+    private void configurarBotaoCentralizar() {
+        centralizar.setOnClickListener(v -> {
+            if (userLatitude != 0 && userLongitude != 0) {
+                LatLng userLocation = new LatLng(userLatitude, userLongitude);
+                gMap.animateCamera(CameraUpdateFactory.newLatLngZoom(userLocation, 15));
+            } else {
+                Toast.makeText(this, "Localização atual não disponível.", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 }
