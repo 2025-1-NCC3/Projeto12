@@ -8,15 +8,15 @@
 
     <!-- Fragmento do Google Maps -->
 
+    <!-- Botão de alerta (vermelho com exclamação) -->
+
+    <!-- Caixa de pesquisa -->
+
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/id_map"
         android:name="com.google.android.gms.maps.SupportMapFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
-
-    <!-- Botão de alerta (vermelho com exclamação) -->
-
-    <!-- Caixa de pesquisa -->
 
     <ImageButton
         android:id="@+id/alert_button"
@@ -531,5 +531,22 @@
         </LinearLayout>
 
     </LinearLayout>
+
+    <ImageButton
+        android:id="@+id/centralizar"
+        android:layout_width="60dp"
+        android:layout_height="67dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="247dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginBottom="238dp"
+        android:layout_toStartOf="@+id/alert_button"
+        android:background="@null"
+        android:contentDescription="@string/centralizar"
+        android:scaleType="centerInside"
+        android:src="@drawable/centralizar" />
 
 </RelativeLayout>

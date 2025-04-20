@@ -84,6 +84,7 @@ public class ProcurarCorridaPassageiroActivity extends AppCompatActivity impleme
     private LinearLayout pesquisaCorridaContainer;
     private LinearLayout containerAlertas;
     private TextView corridaText;
+    private ImageButton centralizar;
     private ImageButton alertButton;
     private ImageButton botaoClimaAlerta;
     private ImageButton botaoAcidenteAlerta;
@@ -134,6 +135,7 @@ public class ProcurarCorridaPassageiroActivity extends AppCompatActivity impleme
     private void inicializaUiComponentes() {
         pesquisaCorridaContainer = findViewById(R.id.search_container);
         alertButton = findViewById(R.id.alert_button);
+        centralizar = findViewById(R.id.centralizar);
         backButton = findViewById(R.id.back_button);
         inputDestino = findViewById(R.id.input_destino);
         inputLocalAtual = findViewById(R.id.input_local_atual);
@@ -355,6 +357,7 @@ public class ProcurarCorridaPassageiroActivity extends AppCompatActivity impleme
         botaoConfirmar.setVisibility(View.GONE);
         handleBotao.setVisibility(View.GONE);
         alertButton.setVisibility(View.GONE);
+        centralizar.setVisibility(View.GONE);
     }
 
     private void expandirPesquisaContainer() {
@@ -372,6 +375,7 @@ public class ProcurarCorridaPassageiroActivity extends AppCompatActivity impleme
         animator.start();
 
         alertButton.animate().translationY(-endHeight / 2).setDuration(300).start();
+        centralizar.animate().translationY((float) (-endHeight / 2.17)).setDuration(300).start();
         backButton.setVisibility(View.VISIBLE);
 
         Button botaoPesquisaDestino = findViewById(R.id.botaoPesquisaDestino);
@@ -407,6 +411,7 @@ public class ProcurarCorridaPassageiroActivity extends AppCompatActivity impleme
         animator.start();
 
         alertButton.animate().translationY(0).setDuration(300).start();
+        centralizar.animate().translationY(0).setDuration(300).start();
         backButton.setVisibility(View.GONE);
 
         Button botaoPesquisaDestino = findViewById(R.id.botaoPesquisaDestino);
@@ -414,6 +419,7 @@ public class ProcurarCorridaPassageiroActivity extends AppCompatActivity impleme
 
         corridaText.setVisibility(View.VISIBLE);
         alertButton.setVisibility(View.VISIBLE);
+        centralizar.setVisibility(View.VISIBLE);
 
         inputDestino.setVisibility(View.GONE);
         inputLocalAtual.setVisibility(View.GONE);

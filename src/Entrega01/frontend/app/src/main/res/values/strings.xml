@@ -95,4 +95,5 @@
     <string name="motorista_da_silva">Motorista da Silva</string>
     <string name="cnhinformacoes">*********** (CNH)</string>
     <string name="_12_12_0000_validade_cnh">12/12/0000 (Validade CNH)</string>
+    <string name="centralizar">Botão para centralizar o mapa</string>
 </resources>
