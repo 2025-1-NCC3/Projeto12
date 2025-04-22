@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Uber Report</string>
+    <string name="btn_text_planejarcorrida">Planejar sua corrida</string>
+    <string name="title_activity_maps">MapsActivity</string>
+</resources>
