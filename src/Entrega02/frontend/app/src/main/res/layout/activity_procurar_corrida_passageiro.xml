@@ -1,0 +1,552 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ProcurarCorridaPassageiroActivity">
+
+    <!-- Fragmento do Google Maps -->
+
+    <!-- Botão de alerta (vermelho com exclamação) -->
+
+    <!-- Caixa de pesquisa -->
+
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/id_map"
+        android:name="com.google.android.gms.maps.SupportMapFragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <ImageButton
+        android:id="@+id/alert_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginBottom="231dp"
+        android:background="@null"
+        android:contentDescription="@string/bot_o_de_alerta"
+        android:src="@drawable/alerta" />
+
+    <LinearLayout
+        android:id="@+id/search_container"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_alignParentBottom="true"
+        android:background="@drawable/rounded_corners_top"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <ImageView
+            android:id="@+id/imageView2"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:contentDescription="@string/todo3"
+            app:srcCompat="@drawable/handle" />
+
+        <LinearLayout
+            android:id="@+id/container_vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                android:fontFamily="monospace"
+                android:text="@string/para_onde_vamos"
+                android:textStyle="bold"
+                android:textAlignment="center"
+                android:textColor="@color/red"
+                android:textSize="24sp" />
+
+            <Button
+                android:id="@+id/botaoPesquisaDestino"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/gray"
+                android:fontFamily="monospace"
+                android:text="@string/textoEnderecoDestino"
+                android:padding="12dp"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                />
+
+            <RelativeLayout
+                android:id="@+id/layoutAlertaReport"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ImageButton
+                    android:id="@+id/back_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_centerVertical="true"
+                    android:layout_margin="16dp"
+                    android:background="@null"
+                    android:contentDescription="@string/bot_o_de_voltar"
+                    android:src="@drawable/arrow"
+                    android:visibility="gone" />
+
+                <TextView
+                    android:id="@+id/report_texto"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginBottom="16dp"
+                    android:layout_toEndOf="@id/back_button"
+                    android:fontFamily="@font/roboto_medium"
+                    android:text="@string/reportar_um_evento"
+                    android:textAlignment="center"
+                    android:textColor="@color/white"
+                    android:textSize="24sp"
+                    android:visibility="gone" />
+
+            </RelativeLayout>
+
+            <LinearLayout
+                android:id="@+id/container_alertas"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:baselineAligned="false"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:visibility="gone">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <ImageButton
+                        android:id="@+id/botao_clima"
+                        android:layout_width="64dp"
+                        android:layout_height="64dp"
+                        android:background="@drawable/circular_button"
+                        android:contentDescription="@string/bot_o_clima"
+                        android:padding="16dp"
+                        android:src="@drawable/weather" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/clima_adverso"
+                        android:textAlignment="center"
+                        android:textColor="@color/white"
+                        android:textSize="14sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <ImageButton
+                        android:id="@+id/botao_acidentes"
+                        android:layout_width="64dp"
+                        android:layout_height="64dp"
+                        android:background="@drawable/circular_button"
+                        android:contentDescription="@string/bot_o_acidentes"
+                        android:padding="16dp"
+                        android:src="@drawable/acidente" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/acidentes"
+                        android:textAlignment="center"
+                        android:textColor="@color/white"
+                        android:textSize="14sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <ImageButton
+                        android:id="@+id/botao_crimes"
+                        android:layout_width="64dp"
+                        android:layout_height="64dp"
+                        android:background="@drawable/circular_button"
+                        android:contentDescription="@string/bot_o_crimes"
+                        android:padding="16dp"
+                        android:src="@drawable/crimes" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/crimes"
+                        android:textAlignment="center"
+                        android:textColor="@color/white"
+                        android:textSize="14sp" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <!-- Alertas -->
+            <LinearLayout
+                android:id="@+id/container_alertas_botoes"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <!-- LinearLayout para os botões de alerta CLIMA ADVERSO -->
+                <LinearLayout
+                    android:id="@+id/layout_alertas_clima"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <!-- INICIO Botões de alerta de clima adverso -->
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <ImageButton
+                            android:id="@+id/botao_alagamento"
+                            android:layout_width="64dp"
+                            android:layout_height="64dp"
+                            android:background="@drawable/circular_button"
+                            android:contentDescription="@string/climaadverso"
+                            android:padding="16dp"
+                            android:src="@drawable/alagamento" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/alagamento"
+                            android:textAlignment="center"
+                            android:textColor="@color/white"
+                            android:textSize="14sp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <ImageButton
+                            android:id="@+id/botao_deslizamento"
+                            android:layout_width="64dp"
+                            android:layout_height="64dp"
+                            android:background="@drawable/circular_button"
+                            android:contentDescription="@string/climaadversoimgbtn"
+                            android:padding="16dp"
+                            android:src="@drawable/deslizamento" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/deslizamento"
+                            android:textAlignment="center"
+                            android:textColor="@color/white"
+                            android:textSize="14sp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <ImageButton
+                            android:id="@+id/botao_temporal"
+                            android:layout_width="64dp"
+                            android:layout_height="64dp"
+                            android:background="@drawable/circular_button"
+                            android:contentDescription="@string/climaadversoimgbtn2"
+                            android:padding="16dp"
+                            android:src="@drawable/temporal" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/temporal"
+                            android:textAlignment="center"
+                            android:textColor="@color/white"
+                            android:textSize="14sp" />
+                    </LinearLayout>
+                    <!-- FIM Botões de alerta de clima adverso -->
+
+                </LinearLayout>
+
+                <!-- LinearLayout para os botões de alerta CLIMA ACIDENTES -->
+                <LinearLayout
+                    android:id="@+id/layout_alertas_acidentes"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:baselineAligned="false"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <!-- INICIO Botões de alerta de acidentes -->
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <ImageButton
+                            android:id="@+id/botao_acidente_carro"
+                            android:layout_width="64dp"
+                            android:layout_height="64dp"
+                            android:background="@drawable/circular_button"
+                            android:contentDescription="@string/acidentesimgbtn"
+                            android:padding="16dp"
+                            android:src="@drawable/acidente" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/acidente_de_carros"
+                            android:textAlignment="center"
+                            android:textColor="@color/white"
+                            android:textSize="14sp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <ImageButton
+                            android:id="@+id/botao_acidente_pedestre"
+                            android:layout_width="64dp"
+                            android:layout_height="64dp"
+                            android:background="@drawable/circular_button"
+                            android:contentDescription="@string/acidentes2"
+                            android:padding="16dp"
+                            android:src="@drawable/acidentepedestre" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/acidente_com_pedestres"
+                            android:textAlignment="center"
+                            android:textColor="@color/white"
+                            android:textSize="14sp" />
+                    </LinearLayout>
+                    <!-- FIM Botões de alerta de acidentes -->
+
+                </LinearLayout>
+
+                <!-- LinearLayout para os botões de alerta CLIMA CRIMES -->
+                <LinearLayout
+                    android:id="@+id/layout_alertas_crimes"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:baselineAligned="false"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <!-- INICIO Botões de alerta de crimes -->
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <ImageButton
+                            android:id="@+id/botao_assaltos"
+                            android:layout_width="64dp"
+                            android:layout_height="64dp"
+                            android:background="@drawable/circular_button"
+                            android:contentDescription="@string/crime"
+                            android:padding="16dp"
+                            android:src="@drawable/assaltos" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/assalto"
+                            android:textAlignment="center"
+                            android:textColor="@color/white"
+                            android:textSize="14sp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <ImageButton
+                            android:id="@+id/botao_tiroteio"
+                            android:layout_width="64dp"
+                            android:layout_height="64dp"
+                            android:background="@drawable/circular_button"
+                            android:contentDescription="@string/crimeimgbtn"
+                            android:padding="16dp"
+                            android:src="@drawable/tirotei" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/tiroteiro"
+                            android:textAlignment="center"
+                            android:textColor="@color/white"
+                            android:textSize="14sp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <ImageButton
+                            android:id="@+id/botao_arrastao"
+                            android:layout_width="64dp"
+                            android:layout_height="64dp"
+                            android:background="@drawable/circular_button"
+                            android:contentDescription="@string/crimeimgbtn2"
+                            android:padding="16dp"
+                            android:src="@drawable/arrastao" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/arrast_o"
+                            android:textAlignment="center"
+                            android:textColor="@color/white"
+                            android:textSize="14sp" />
+                    </LinearLayout>
+                    <!-- FIM Botões de alerta de crimes -->
+
+                </LinearLayout>
+
+
+                <!-- LinearLayout para os botões de continuar e cancelar -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="32dp"
+                    android:gravity="center"
+                    android:orientation="horizontal"> <!-- Ajusta o valor para posicionar mais abaixo -->
+
+                    <Button
+                        android:id="@+id/botao_cancelar"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="6dp"
+                        android:layout_weight="1"
+                        android:backgroundTint="@color/gray"
+                        android:text="@string/cancelar"
+                        android:textColor="@color/vermelho_fraco"
+                        android:textSize="16sp" /> <!-- Ajusta o tamanho do texto para tornar o botão maior -->
+
+                    <Button
+                        android:id="@+id/botao_continuar"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="6dp"
+                        android:layout_marginEnd="16dp"
+                        android:layout_weight="1"
+                        android:backgroundTint="@color/vermelho_fraco"
+                        android:enabled="false"
+                        android:text="@string/continuarbtnprocurarcorrida"
+                        android:textColor="@color/black"
+                        android:textSize="16sp" /> <!-- Ajusta o tamanho do texto para tornar o botão maior -->
+                </LinearLayout>
+            </LinearLayout>
+
+            <EditText
+                android:id="@+id/input_local_atual"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/et_atual"
+                android:background="@drawable/borda_edittext"
+                android:fontFamily="monospace"
+                android:padding="12dp"
+                android:textColor="@color/white"
+                android:textColorHint="@color/white"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                android:layout_marginBottom="10dp"
+                android:visibility="invisible" />
+
+            <EditText
+                android:id="@+id/input_destino"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/et_destino"
+                android:background="@drawable/borda_edittext"
+                android:fontFamily="monospace"
+                android:padding="12dp"
+                android:textColor="@color/white"
+                android:textColorHint="@color/white"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                android:layout_marginBottom="10dp"
+                android:visibility="invisible" />
+
+            <Button
+                android:id="@+id/botao_confirmar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/red"
+                android:text="@string/procurar_corrida"
+                android:textColor="@color/white"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:fontFamily="monospace"
+                android:padding="12dp"
+                android:visibility="invisible" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <ImageButton
+        android:id="@+id/centralizar"
+        android:layout_width="60dp"
+        android:layout_height="67dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="247dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginBottom="238dp"
+        android:layout_toStartOf="@+id/alert_button"
+        android:background="@null"
+        android:contentDescription="@string/centralizar"
+        android:scaleType="centerInside"
+        android:src="@drawable/centralizar" />
+
+</RelativeLayout>
