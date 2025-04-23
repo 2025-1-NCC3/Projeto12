@@ -5,7 +5,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class ServidorApi {
     private static final Retrofit retrofit = new Retrofit.Builder()
-            .baseUrl("https://xmzvrk-3000.csb.app/")
+            .baseUrl("https://fpk6yl-3000.csb.app")
             .addConverterFactory(GsonConverterFactory.create())
             .build();
 

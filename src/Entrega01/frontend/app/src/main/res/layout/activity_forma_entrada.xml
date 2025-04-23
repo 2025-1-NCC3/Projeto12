@@ -7,141 +7,92 @@
     android:layout_height="match_parent"
     tools:context=".FormaEntradaActivity">
 
-    <!-- Título -->
     <TextView
         android:id="@+id/textView"
-        android:layout_width="251dp"
-        android:layout_height="101dp"
-        android:layout_marginTop="64dp"
-        android:fontFamily="@font/roboto_medium"
-        android:text="Digite seu e-mail"
+        android:layout_width="406dp"
+        android:layout_height="53dp"
+        android:fontFamily="monospace"
+        android:paddingLeft="30dp"
+        android:text="@string/como_deseja_acessar"
         android:textColor="@color/black"
-        android:textSize="26dp"
+        android:textSize="30sp"
         android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.1"
+        app:layout_constraintHorizontal_bias="0.4"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.134" />
 
-    <!-- Campo de e-mail -->
-    <EditText
-        android:id="@+id/btnemail"
-        android:layout_width="381dp"
-        android:layout_height="43dp"
-        android:layout_marginTop="4dp"
-        android:background="@drawable/borda_arredondada"
-        android:fontFamily="@font/roboto_medium"
-        android:hint="Informar e-mail:"
-        android:paddingLeft="16dp"
-        android:maxLength="40"
-        android:textSize="15sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.515"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
-
-    <!-- Botão "Continuar" -->
     <Button
-        android:id="@+id/btnContinuar"
-        android:layout_width="381dp"
-        android:layout_height="49dp"
-        android:layout_marginTop="24dp"
-        android:backgroundTint="@color/black"
-        android:fontFamily="@font/roboto_medium"
-        android:text="Continuar"
+        android:id="@+id/btnEntrarConta"
+        android:layout_width="319dp"
+        android:layout_height="63dp"
+        android:backgroundTint="@color/red"
+        android:fontFamily="monospace"
+        android:text="@string/entrar_na_sua_conta"
         android:textAlignment="center"
-        android:textSize="23dp"
+        android:textSize="23sp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnemail" />
-
-    <!-- Separador "OU" -->
-    <LinearLayout
-        android:id="@+id/separator"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:gravity="center"
-        android:layout_marginTop="16dp"
-        app:layout_constraintTop_toBottomOf="@+id/btnContinuar"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
-
-        <!-- Linha esquerda -->
-        <View
-            android:layout_width="0dp"
-            android:layout_height="1dp"
-            android:layout_weight="1"
-            android:background="#FF000000" />
-
-        <!-- Texto "OU" -->
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="OU"
-            android:textColor="#FF000000"
-            android:paddingHorizontal="8dp" />
-
-        <!-- Linha direita -->
-        <View
-            android:layout_width="0dp"
-            android:layout_height="1dp"
-            android:layout_weight="1"
-            android:background="#FF000000" />
-    </LinearLayout>
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.607" />
 
     <Button
-        android:id="@+id/btngoogle"
-        android:layout_width="381dp"
-        android:layout_height="43dp"
-        android:layout_marginTop="24dp"
-        android:backgroundTint="@color/black"
-        android:fontFamily="@font/roboto_medium"
-        android:text="Continuar com o Google"
+        android:id="@+id/btnCriarConta"
+        android:layout_width="319dp"
+        android:layout_height="63dp"
+        android:backgroundTint="@color/red"
+        android:fontFamily="monospace"
+        android:text="@string/criar_conta"
         android:textAlignment="center"
         android:textColor="@color/white"
-        android:textSize="15dp"
+        android:textSize="23sp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.533"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/separator" />
-
-    <Button
-        android:id="@+id/btnapple"
-        android:layout_width="381dp"
-        android:layout_height="43dp"
-        android:layout_marginTop="88dp"
-        android:backgroundTint="@color/black"
-        android:fontFamily="@font/roboto_medium"
-        android:text="Continuar com a Apple"
-        android:textColor="@color/white"
-        android:textAlignment="center"
-        android:textSize="15dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.466"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/separator" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.717" />
 
     <ImageView
-        android:layout_width="26dp"
-        android:layout_height="21dp"
-        android:src="@drawable/google"
-        app:layout_constraintBottom_toBottomOf="@+id/btngoogle"
-        app:layout_constraintEnd_toEndOf="@+id/btngoogle"
-        app:layout_constraintHorizontal_bias="0.225"
-        app:layout_constraintStart_toStartOf="@+id/btngoogle"
-        app:layout_constraintTop_toTopOf="@+id/btngoogle"
-        app:layout_constraintVertical_bias="0.454" />
+        android:id="@+id/imageView3"
+        android:layout_width="313dp"
+        android:layout_height="253dp"
+        android:contentDescription="@string/logoformaentrada"
+        android:src="@drawable/icontelalogin"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.32" />
+
+    <TextView
+        android:id="@+id/textView7"
+        android:layout_width="298dp"
+        android:layout_height="47dp"
+        android:fontFamily="@font/inter"
+        android:text="@string/ao_prosseguir_voc_aceita_nossos_termos_de_servi_o_e_pol_ticas_de_privacidade"
+        android:textColor="@color/cinza_claro"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.865" />
 
     <ImageView
-        android:layout_width="26dp"
-        android:layout_height="21dp"
-        android:src="@drawable/apple"
-        app:layout_constraintBottom_toBottomOf="@+id/btnapple"
-        app:layout_constraintEnd_toEndOf="@+id/btnapple"
-        app:layout_constraintHorizontal_bias="0.23"
-        app:layout_constraintStart_toStartOf="@+id/btnapple"
-        app:layout_constraintTop_toTopOf="@+id/btnapple" />
+        android:id="@+id/imageView4"
+        android:layout_width="52dp"
+        android:layout_height="52dp"
+        android:contentDescription="@string/imagempassageiro"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.992"
+        tools:srcCompat="@tools:sample/avatars" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

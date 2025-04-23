@@ -8,15 +8,15 @@
 
     <!-- Fragmento do Google Maps -->
 
+    <!-- Botão de alerta (vermelho com exclamação) -->
+
+    <!-- Caixa de pesquisa -->
+
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/id_map"
         android:name="com.google.android.gms.maps.SupportMapFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
-
-    <!-- Botão de alerta (vermelho com exclamação) -->
-
-    <!-- Caixa de pesquisa -->
 
     <ImageButton
         android:id="@+id/alert_button"
@@ -31,7 +31,7 @@
         android:layout_marginRight="16dp"
         android:layout_marginBottom="231dp"
         android:background="@null"
-        android:contentDescription="Botão de alerta"
+        android:contentDescription="@string/bot_o_de_alerta"
         android:src="@drawable/alerta" />
 
     <LinearLayout
@@ -46,8 +46,9 @@
         <ImageView
             android:id="@+id/imageView2"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
             android:layout_weight="1"
+            android:contentDescription="@string/todo3"
             app:srcCompat="@drawable/handle" />
 
         <LinearLayout
@@ -62,7 +63,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="16dp"
                 android:fontFamily="monospace"
-                android:text="Para onde vamos?"
+                android:text="@string/para_onde_vamos"
                 android:textStyle="bold"
                 android:textAlignment="center"
                 android:textColor="@color/red"
@@ -93,7 +94,7 @@
                     android:layout_centerVertical="true"
                     android:layout_margin="16dp"
                     android:background="@null"
-                    android:contentDescription="Botão de voltar"
+                    android:contentDescription="@string/bot_o_de_voltar"
                     android:src="@drawable/arrow"
                     android:visibility="gone" />
 
@@ -107,7 +108,7 @@
                     android:layout_marginBottom="16dp"
                     android:layout_toEndOf="@id/back_button"
                     android:fontFamily="@font/roboto_medium"
-                    android:text="Reportar um evento"
+                    android:text="@string/reportar_um_evento"
                     android:textAlignment="center"
                     android:textColor="@color/white"
                     android:textSize="24sp"
@@ -120,6 +121,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
+                android:baselineAligned="false"
                 android:gravity="center"
                 android:orientation="horizontal"
                 android:visibility="gone">
@@ -136,14 +138,14 @@
                         android:layout_width="64dp"
                         android:layout_height="64dp"
                         android:background="@drawable/circular_button"
-                        android:contentDescription="Botão Clima"
+                        android:contentDescription="@string/bot_o_clima"
                         android:padding="16dp"
                         android:src="@drawable/weather" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Clima adverso"
+                        android:text="@string/clima_adverso"
                         android:textAlignment="center"
                         android:textColor="@color/white"
                         android:textSize="14sp" />
@@ -161,14 +163,14 @@
                         android:layout_width="64dp"
                         android:layout_height="64dp"
                         android:background="@drawable/circular_button"
-                        android:contentDescription="Botão Acidentes"
+                        android:contentDescription="@string/bot_o_acidentes"
                         android:padding="16dp"
                         android:src="@drawable/acidente" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Acidentes"
+                        android:text="@string/acidentes"
                         android:textAlignment="center"
                         android:textColor="@color/white"
                         android:textSize="14sp" />
@@ -186,14 +188,14 @@
                         android:layout_width="64dp"
                         android:layout_height="64dp"
                         android:background="@drawable/circular_button"
-                        android:contentDescription="Botão Crimes"
+                        android:contentDescription="@string/bot_o_crimes"
                         android:padding="16dp"
                         android:src="@drawable/crimes" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Crimes"
+                        android:text="@string/crimes"
                         android:textAlignment="center"
                         android:textColor="@color/white"
                         android:textSize="14sp" />
@@ -231,14 +233,14 @@
                             android:layout_width="64dp"
                             android:layout_height="64dp"
                             android:background="@drawable/circular_button"
-                            android:contentDescription="ClimaAdverso"
+                            android:contentDescription="@string/climaadverso"
                             android:padding="16dp"
                             android:src="@drawable/alagamento" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Alagamento"
+                            android:text="@string/alagamento"
                             android:textAlignment="center"
                             android:textColor="@color/white"
                             android:textSize="14sp" />
@@ -256,14 +258,14 @@
                             android:layout_width="64dp"
                             android:layout_height="64dp"
                             android:background="@drawable/circular_button"
-                            android:contentDescription="ClimaAdverso"
+                            android:contentDescription="@string/climaadversoimgbtn"
                             android:padding="16dp"
                             android:src="@drawable/deslizamento" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Deslizamento"
+                            android:text="@string/deslizamento"
                             android:textAlignment="center"
                             android:textColor="@color/white"
                             android:textSize="14sp" />
@@ -281,14 +283,14 @@
                             android:layout_width="64dp"
                             android:layout_height="64dp"
                             android:background="@drawable/circular_button"
-                            android:contentDescription="ClimaAdverso"
+                            android:contentDescription="@string/climaadversoimgbtn2"
                             android:padding="16dp"
                             android:src="@drawable/temporal" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Temporal"
+                            android:text="@string/temporal"
                             android:textAlignment="center"
                             android:textColor="@color/white"
                             android:textSize="14sp" />
@@ -302,6 +304,7 @@
                     android:id="@+id/layout_alertas_acidentes"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:baselineAligned="false"
                     android:gravity="center"
                     android:orientation="horizontal">
 
@@ -318,14 +321,14 @@
                             android:layout_width="64dp"
                             android:layout_height="64dp"
                             android:background="@drawable/circular_button"
-                            android:contentDescription="Acidentes"
+                            android:contentDescription="@string/acidentesimgbtn"
                             android:padding="16dp"
                             android:src="@drawable/acidente" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Acidente de carros"
+                            android:text="@string/acidente_de_carros"
                             android:textAlignment="center"
                             android:textColor="@color/white"
                             android:textSize="14sp" />
@@ -343,14 +346,14 @@
                             android:layout_width="64dp"
                             android:layout_height="64dp"
                             android:background="@drawable/circular_button"
-                            android:contentDescription="Acidentes"
+                            android:contentDescription="@string/acidentes2"
                             android:padding="16dp"
                             android:src="@drawable/acidentepedestre" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Acidente com pedestres"
+                            android:text="@string/acidente_com_pedestres"
                             android:textAlignment="center"
                             android:textColor="@color/white"
                             android:textSize="14sp" />
@@ -364,6 +367,7 @@
                     android:id="@+id/layout_alertas_crimes"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:baselineAligned="false"
                     android:gravity="center"
                     android:orientation="horizontal">
 
@@ -380,14 +384,14 @@
                             android:layout_width="64dp"
                             android:layout_height="64dp"
                             android:background="@drawable/circular_button"
-                            android:contentDescription="Crime"
+                            android:contentDescription="@string/crime"
                             android:padding="16dp"
                             android:src="@drawable/assaltos" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Assalto"
+                            android:text="@string/assalto"
                             android:textAlignment="center"
                             android:textColor="@color/white"
                             android:textSize="14sp" />
@@ -405,14 +409,14 @@
                             android:layout_width="64dp"
                             android:layout_height="64dp"
                             android:background="@drawable/circular_button"
-                            android:contentDescription="Crime"
+                            android:contentDescription="@string/crimeimgbtn"
                             android:padding="16dp"
                             android:src="@drawable/tirotei" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Tiroteiro"
+                            android:text="@string/tiroteiro"
                             android:textAlignment="center"
                             android:textColor="@color/white"
                             android:textSize="14sp" />
@@ -430,14 +434,14 @@
                             android:layout_width="64dp"
                             android:layout_height="64dp"
                             android:background="@drawable/circular_button"
-                            android:contentDescription="Crime"
+                            android:contentDescription="@string/crimeimgbtn2"
                             android:padding="16dp"
                             android:src="@drawable/arrastao" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Arrastão"
+                            android:text="@string/arrast_o"
                             android:textAlignment="center"
                             android:textColor="@color/white"
                             android:textSize="14sp" />
@@ -462,7 +466,7 @@
                         android:layout_margin="6dp"
                         android:layout_weight="1"
                         android:backgroundTint="@color/gray"
-                        android:text="Cancelar"
+                        android:text="@string/cancelar"
                         android:textColor="@color/vermelho_fraco"
                         android:textSize="16sp" /> <!-- Ajusta o tamanho do texto para tornar o botão maior -->
 
@@ -475,7 +479,7 @@
                         android:layout_weight="1"
                         android:backgroundTint="@color/vermelho_fraco"
                         android:enabled="false"
-                        android:text="Continuar"
+                        android:text="@string/continuarbtnprocurarcorrida"
                         android:textColor="@color/black"
                         android:textSize="16sp" /> <!-- Ajusta o tamanho do texto para tornar o botão maior -->
                 </LinearLayout>
@@ -516,7 +520,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:backgroundTint="@color/red"
-                android:text="PROCURAR CORRIDA"
+                android:text="@string/procurar_corrida"
                 android:textColor="@color/white"
                 android:textSize="20sp"
                 android:textStyle="bold"
@@ -527,5 +531,22 @@
         </LinearLayout>
 
     </LinearLayout>
+
+    <ImageButton
+        android:id="@+id/centralizar"
+        android:layout_width="60dp"
+        android:layout_height="67dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="247dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginBottom="238dp"
+        android:layout_toStartOf="@+id/alert_button"
+        android:background="@null"
+        android:contentDescription="@string/centralizar"
+        android:scaleType="centerInside"
+        android:src="@drawable/centralizar" />
 
 </RelativeLayout>

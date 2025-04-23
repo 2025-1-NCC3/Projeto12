@@ -4,6 +4,8 @@ import android.Manifest;
 import android.app.AlertDialog;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
 import android.location.Address;
 import android.location.Geocoder;
 import android.location.Location;
@@ -22,8 +24,11 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
+import com.google.android.gms.maps.model.CircleOptions;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.android.gms.maps.model.Polyline;
 import com.google.android.gms.maps.model.PolylineOptions;
 import com.google.android.libraries.places.api.Places;
 import com.google.android.libraries.places.api.model.Place;
@@ -40,11 +45,16 @@ import com.google.maps.model.TravelMode;
 
 import br.com.fecapccp.uberreport.alertas.AcidentesAlertaController;
 import br.com.fecapccp.uberreport.alertas.CrimesAlertaController;
-import br.com.fecapccp.uberreport.logicas.AnimacaoBotao;
+import br.com.fecapccp.uberreport.logicas.alertas.ObterAlertaImpl;
+import br.com.fecapccp.uberreport.logicas.alertas.marcador.AlertasManager;
+import br.com.fecapccp.uberreport.logicas.animacoes.AnimacaoBotao;
 import br.com.fecapccp.uberreport.alertas.ControladorAlerta;
 import br.com.fecapccp.uberreport.alertas.ClimaAlertaController;
 import br.com.fecapccp.uberreport.logicas.alertas.EnvioAlertaImpl;
 import br.com.fecapccp.uberreport.logicas.alertas.model.Alerta;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 import android.animation.ValueAnimator;
 import android.util.Log;
@@ -53,6 +63,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -60,8 +71,10 @@ import android.widget.Toast;
 
 import java.io.IOException;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
 public class ProcurarCorridaPassageiroActivity extends AppCompatActivity implements OnMapReadyCallback {
@@ -71,6 +84,7 @@ public class ProcurarCorridaPassageiroActivity extends AppCompatActivity impleme
     private LinearLayout pesquisaCorridaContainer;
     private LinearLayout containerAlertas;
     private TextView corridaText;
+    private ImageButton centralizar;
     private ImageButton alertButton;
     private ImageButton botaoClimaAlerta;
     private ImageButton botaoAcidenteAlerta;
@@ -92,6 +106,7 @@ public class ProcurarCorridaPassageiroActivity extends AppCompatActivity impleme
     private FusedLocationProviderClient fusedLocationClient;
     private double userLatitude;
     private double userLongitude;
+    private Polyline rotaAtual;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -107,6 +122,7 @@ public class ProcurarCorridaPassageiroActivity extends AppCompatActivity impleme
         inicializaMaps();
         inicializaPlacesApiMaps();
         configurarBotaoConfirmar();
+        configurarBotaoCentralizar();
     }
 
     private void conferePermissaoLocalizacaoUsuario() {
@@ -120,6 +136,7 @@ public class ProcurarCorridaPassageiroActivity extends AppCompatActivity impleme
     private void inicializaUiComponentes() {
         pesquisaCorridaContainer = findViewById(R.id.search_container);
         alertButton = findViewById(R.id.alert_button);
+        centralizar = findViewById(R.id.centralizar);
         backButton = findViewById(R.id.back_button);
         inputDestino = findViewById(R.id.input_destino);
         inputLocalAtual = findViewById(R.id.input_local_atual);
@@ -341,6 +358,7 @@ public class ProcurarCorridaPassageiroActivity extends AppCompatActivity impleme
         botaoConfirmar.setVisibility(View.GONE);
         handleBotao.setVisibility(View.GONE);
         alertButton.setVisibility(View.GONE);
+        centralizar.setVisibility(View.GONE);
     }
 
     private void expandirPesquisaContainer() {
@@ -358,6 +376,7 @@ public class ProcurarCorridaPassageiroActivity extends AppCompatActivity impleme
         animator.start();
 
         alertButton.animate().translationY(-endHeight / 2).setDuration(300).start();
+        centralizar.animate().translationY((float) (-endHeight / 2.17)).setDuration(300).start();
         backButton.setVisibility(View.VISIBLE);
 
         Button botaoPesquisaDestino = findViewById(R.id.botaoPesquisaDestino);
@@ -393,6 +412,7 @@ public class ProcurarCorridaPassageiroActivity extends AppCompatActivity impleme
         animator.start();
 
         alertButton.animate().translationY(0).setDuration(300).start();
+        centralizar.animate().translationY(0).setDuration(300).start();
         backButton.setVisibility(View.GONE);
 
         Button botaoPesquisaDestino = findViewById(R.id.botaoPesquisaDestino);
@@ -400,6 +420,7 @@ public class ProcurarCorridaPassageiroActivity extends AppCompatActivity impleme
 
         corridaText.setVisibility(View.VISIBLE);
         alertButton.setVisibility(View.VISIBLE);
+        centralizar.setVisibility(View.VISIBLE);
 
         inputDestino.setVisibility(View.GONE);
         inputLocalAtual.setVisibility(View.GONE);
@@ -438,6 +459,29 @@ public class ProcurarCorridaPassageiroActivity extends AppCompatActivity impleme
     public void onMapReady(@NonNull GoogleMap googleMap) {
         gMap = googleMap;
         conferePermissaoLocalizacaoUsuario();
+
+        AlertasManager alertasManager = new AlertasManager(gMap, this, marker -> {
+            Alerta alerta = (Alerta) marker.getTag();
+            if (alerta != null) {
+                exibirDetalhesAlerta(alerta);
+            }
+        });
+
+        gMap.setOnCameraIdleListener(() -> {
+            LatLng cameraPosition = gMap.getCameraPosition().target;
+            alertasManager.fetchAndDisplayAlertas(cameraPosition.latitude, cameraPosition.longitude, 3000);
+        });
+    }
+
+    private void exibirDetalhesAlerta(Alerta alerta) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle(alerta.getNomeAlerta())
+                .setMessage("Tipo do alerta: " + alerta.getTipoAlerta() + "\n" +
+                        "Data e hora: " + alerta.getDataHoraAlerta() + "\n" +
+                        "Latitude: " + alerta.getLatitude() + "\n" +
+                        "Longitude: " + alerta.getLongitude())
+                .setPositiveButton("OK", (dialog, id) -> dialog.dismiss());
+        builder.create().show();
     }
 
     private void atualizarMapaComLocalizacaoUsuario() {
@@ -511,10 +555,18 @@ public class ProcurarCorridaPassageiroActivity extends AppCompatActivity impleme
 
                 runOnUiThread(() -> {
                     if (result.routes != null && result.routes.length > 0) {
+                        // Removendo a rota anterior, caso existir no maps!
+                        if (rotaAtual != null) {
+                            rotaAtual.remove();
+                        }
+
+                        // Desenhando a rota nova. No momento, na cor "vermelho_fraco".
                         PolylineOptions polylineOptions = new PolylineOptions();
                         polylineOptions.addAll(PolyUtil.decode(result.routes[0].overviewPolyline.getEncodedPath()));
                         polylineOptions.color(ContextCompat.getColor(this, R.color.vermelho_fraco));
-                        gMap.addPolyline(polylineOptions);
+                        rotaAtual = gMap.addPolyline(polylineOptions);
+
+                        // Movendo a câmera para a origem.
                         gMap.moveCamera(CameraUpdateFactory.newLatLngZoom(origem, 15));
                     } else {
                         Toast.makeText(this, "Rota não encontrada. Por favor, tente novamente!", Toast.LENGTH_SHORT).show();
@@ -526,5 +578,14 @@ public class ProcurarCorridaPassageiroActivity extends AppCompatActivity impleme
         }).start();
     }
 
-
+    private void configurarBotaoCentralizar() {
+        centralizar.setOnClickListener(v -> {
+            if (userLatitude != 0 && userLongitude != 0) {
+                LatLng userLocation = new LatLng(userLatitude, userLongitude);
+                gMap.animateCamera(CameraUpdateFactory.newLatLngZoom(userLocation, 15));
+            } else {
+                Toast.makeText(this, "Localização atual não disponível.", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
 }
