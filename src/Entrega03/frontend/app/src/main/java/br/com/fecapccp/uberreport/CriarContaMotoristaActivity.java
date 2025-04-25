@@ -6,6 +6,7 @@ import android.text.TextWatcher;
 import android.util.Patterns;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
@@ -31,6 +32,7 @@ public class CriarContaMotoristaActivity extends AppCompatActivity {
     private EditText editTextSenha;
     private EditText editTextSenhaNovamente;
     private Button botaoCadastrar;
+    private ImageView btnVoltar;
 
 
     @Override
@@ -50,6 +52,7 @@ public class CriarContaMotoristaActivity extends AppCompatActivity {
         editTextSenha = findViewById(R.id.editTextDigitaSenha);
         editTextSenhaNovamente = findViewById(R.id.editTextNovamente);
         botaoCadastrar = findViewById(R.id.btncContinuar);
+        btnVoltar = findViewById(R.id.btnVoltar);
 
         // CPF: Verifica se tem 11 números
         editTextCpf.addTextChangedListener(new TextWatcher() {
@@ -78,11 +81,10 @@ public class CriarContaMotoristaActivity extends AppCompatActivity {
             @Override
             public void afterTextChanged(Editable s) {
                 if (s.length() > 11) {
-                    editTextCnh.setError("O CNH deve ter 11 números");
+                    editTextCnh.setError("A CNH deve ter 11 números");
                 }
             }
         });
-
 
         // E-mail: Validação
         editTextEmail.addTextChangedListener(new TextWatcher() {

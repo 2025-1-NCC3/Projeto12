@@ -1,24 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:padding="16dp">
 
     <!-- Título -->
+
+    <!-- Layout do formulário -->
+
     <TextView
         android:id="@+id/textView4"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
         android:fontFamily="monospace"
         android:text="@string/crie_uma_conta_rapidamente"
         android:textAlignment="center"
         android:textColor="#670000"
         android:textSize="30sp"
-        android:textStyle="bold"
-        android:layout_marginBottom="16dp" />
+        android:textStyle="bold" />
 
-    <!-- Layout do formulário -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -169,14 +172,15 @@
     <!-- Botão Continuar -->
     <Button
         android:id="@+id/btncContinuar"
-        android:layout_width="match_parent"
+        android:layout_width="239dp"
         android:layout_height="49dp"
+        android:layout_marginTop="50dp"
         android:backgroundTint="@color/black"
         android:fontFamily="monospace"
         android:text="@string/continuar"
         android:textAlignment="center"
         android:textColor="@color/white"
-        android:layout_marginTop="50dp"
-        android:textSize="23sp" />
+        android:textSize="23sp"
+        android:layout_gravity="center"/>
 
 </LinearLayout>

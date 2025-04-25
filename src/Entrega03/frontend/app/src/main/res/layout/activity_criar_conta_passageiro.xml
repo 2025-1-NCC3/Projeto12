@@ -5,6 +5,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+
     tools:context=".CriarContaPassageiroActivity">
 
 
@@ -144,7 +145,7 @@
 
     <Button
         android:id="@+id/btncContinuar"
-        android:layout_width="381dp"
+        android:layout_width="239dp"
         android:layout_height="49dp"
         android:backgroundTint="@color/black"
         android:fontFamily="monospace"
@@ -160,8 +161,8 @@
 
     <TextView
         android:id="@+id/textView4"
-        android:layout_width="263dp"
-        android:layout_height="75dp"
+        android:layout_width="wrap_content"
+        android:layout_height="73dp"
         android:fontFamily="monospace"
         android:text="@string/crie_uma_conta_rapidamente_passageiro"
         android:textAlignment="center"
