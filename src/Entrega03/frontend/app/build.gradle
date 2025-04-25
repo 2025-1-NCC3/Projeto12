@@ -1,0 +1,63 @@
+plugins {
+    alias(libs.plugins.android.application)
+    alias(libs.plugins.google.android.libraries.mapsplatform.secrets.gradle.plugin)
+}
+
+def localProperties = new Properties()
+def localPropertiesFile = rootProject.file("local.properties")
+if (localPropertiesFile.exists()) {
+    localPropertiesFile.withInputStream {
+        localProperties.load(it)
+    }
+}
+
+android {
+    namespace 'br.com.fecapccp.uberreport'
+    compileSdk 35
+
+    defaultConfig {
+        applicationId "br.com.fecapccp.uberreport"
+        minSdk 24
+        targetSdk 35
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        buildConfigField("String", "AES_KEY", "\"${localProperties.getProperty('AES_KEY')}\"")
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_11
+        targetCompatibility JavaVersion.VERSION_11
+    }
+    buildFeatures {
+        viewBinding true
+        buildConfig true // Alteração ao rodar o projeto!
+    }
+}
+
+dependencies {
+
+    implementation libs.play.services.maps.v1820 // API Google Maps
+    implementation libs.play.services.location // Localização do usuário
+    implementation libs.google.maps.services // API Google Maps para Java
+    implementation 'com.google.maps.android:android-maps-utils:2.2.3' // API Google Maps Utils
+    implementation libs.places // Sugestões de endereços
+    implementation 'org.slf4j:slf4j-nop:1.7.30' // Para evitar erro de log
+
+    implementation libs.retrofit // Solicitação HTTP
+    implementation libs.converter.gson // Para converter JSON automaticamente
+    implementation libs.appcompat
+    implementation libs.material
+    implementation libs.activity
+    implementation libs.constraintlayout
+    implementation libs.recyclerview
+    testImplementation libs.junit
+    androidTestImplementation libs.ext.junit
+    androidTestImplementation libs.espresso.core
+}
