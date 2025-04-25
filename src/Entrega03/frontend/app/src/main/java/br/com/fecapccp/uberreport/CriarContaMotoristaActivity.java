@@ -84,7 +84,7 @@ public class CriarContaMotoristaActivity extends AppCompatActivity {
         });
 
 
-        // Email: Validação
+        // E-mail: Validação
         editTextEmail.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
@@ -181,7 +181,7 @@ public class CriarContaMotoristaActivity extends AppCompatActivity {
             );
 
             try {
-            // Chamar o metodo de cadastro
+            // Chamar o método de cadastro
                 CadastroUsuarioImpl cadastroUsuario = new CadastroUsuarioImpl(getApplicationContext());
                 cadastroUsuario.cadastrarUsuario(motorista);
                 Toast.makeText(this, "Cadastro realizado com sucesso!", Toast.LENGTH_SHORT).show();
