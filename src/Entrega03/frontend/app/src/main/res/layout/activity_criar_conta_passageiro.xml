@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".CriarContaPassageiroActivity">
+
+
+    <EditText
+        android:id="@+id/editTextNome"
+        android:layout_width="165dp"
+        android:layout_height="40dp"
+        android:backgroundTint="@color/red"
+        android:ems="10"
+        android:fontFamily="monospace"
+        android:inputType="text"
+        android:paddingLeft="16dp"
+        android:hint="@string/seu_nome_passageiro"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.052"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.198" />
+
+    <EditText
+        android:id="@+id/editTextSobrenome"
+        android:layout_width="165dp"
+        android:layout_height="40dp"
+        android:backgroundTint="@color/red"
+        android:ems="10"
+        android:fontFamily="monospace"
+        android:inputType="text"
+        android:paddingLeft="16dp"
+        android:hint="@string/sobrenome_passageiro"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.934"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.198" />
+
+    <EditText
+        android:id="@+id/editTextEmail"
+        android:layout_width="384dp"
+        android:layout_height="40dp"
+        android:backgroundTint="@color/red"
+        android:ems="10"
+        android:fontFamily="monospace"
+        android:hint="@string/email_passageiro"
+        android:inputType="text|textEmailAddress"
+        android:paddingLeft="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.481"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.286" />
+
+    <EditText
+        android:id="@+id/editTextDigitaSenha"
+        android:layout_width="385dp"
+        android:layout_height="49dp"
+        android:backgroundTint="@color/red"
+        android:ems="10"
+        android:fontFamily="monospace"
+        android:hint="@string/digite_sua_senha_passageiro"
+        android:inputType="text|textPassword"
+        android:paddingLeft="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.605" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="207dp"
+        android:layout_height="38dp"
+        android:fontFamily="monospace"
+        android:text="@string/criar_sua_senha_passageiro"
+        android:textAlignment="center"
+        android:textColor="#670000"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.531" />
+
+    <EditText
+        android:id="@+id/editTextCPF"
+        android:layout_width="384dp"
+        android:layout_height="40dp"
+        android:backgroundTint="@color/red"
+        android:ems="10"
+        android:fontFamily="monospace"
+        android:hint="@string/cpf_passageiro"
+        android:inputType="number"
+        android:paddingLeft="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.481"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.369" />
+
+    <EditText
+        android:id="@+id/editTextNovamente"
+        android:layout_width="385dp"
+        android:layout_height="40dp"
+        android:backgroundTint="@color/red"
+        android:ems="10"
+        android:fontFamily="monospace"
+        android:hint="@string/confirme_sua_senha_passageiro"
+        android:inputType="text|textPassword"
+        android:paddingLeft="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.696" />
+
+    <EditText
+        android:id="@+id/editTextTel"
+        android:layout_width="384dp"
+        android:layout_height="40dp"
+        android:backgroundTint="@color/red"
+        android:ems="10"
+        android:fontFamily="monospace"
+        android:hint="@string/telefone_passageiro"
+        android:inputType="number"
+        android:paddingLeft="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.481"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.45" />
+
+    <Button
+        android:id="@+id/btncContinuar"
+        android:layout_width="381dp"
+        android:layout_height="49dp"
+        android:backgroundTint="@color/black"
+        android:fontFamily="monospace"
+        android:text="@string/continuar_passageiro"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textSize="23sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.869" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="263dp"
+        android:layout_height="75dp"
+        android:fontFamily="monospace"
+        android:text="@string/crie_uma_conta_rapidamente_passageiro"
+        android:textAlignment="center"
+        android:textColor="#670000"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.042" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

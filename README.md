@@ -18,6 +18,10 @@
 
 ## 📄Descrição
 
+<p align="center">
+  <img src="./img/icon.png" alt="Logo Uber Report" width="300">
+</p>
+
 Visando uma implementação no aplicativo da Uber, o projeto tem como objetivo garantir maior segurança aos usuários e motoristas do app. Dessa forma, será possível reportar alertas em tempo real, indicando áreas de riscos e, assim, evitando potenciais incidentes ao pedir uma corrida na Uber.
 
 ---
@@ -35,17 +39,24 @@ Visando uma implementação no aplicativo da Uber, o projeto tem como objetivo g
 ## 🛠 Estrutura de pastas
 
 ```
-├── documentos/
-│   ├── Entrega01
-│   │  └── Análise Descritiva de Dados/
-│   │  └── Programação Orientada a Objetos e Estrutura de Dados/
-│   ├── Banco de Dados/
-├── img/
-├── src/
-│   ├── Entrega01
-│   │  └── frontend/
-│   │  └── backend/
-└── readme.md
+├── 🗂️ documentos/
+│   ├── 📁 Entrega01
+│   │  └── 📂 Análise Descritiva de Dados/
+│   │  └── 📂 Programação Orientada a Objetos e Estrutura de Dados/
+│   ├── 📁 Entrega02
+│   │  └── 📂 Análise Descritiva de Dados/
+│   │  └── 📂 Programação Orientada a Objetos e Estrutura de Dados/
+│   │  └── 📂 Projeto Interdisciplinar: Aplicativo Móvel/
+│   ├── 📁 Banco de Dados/
+├── 🗂️ img/
+├── 🗂️ src/
+│   ├── 📁 Entrega01
+│   │  └── 📂 frontend/
+│   │  └── 📂 backend/
+│   ├── 📁 Entrega02
+│   │  └── 📂 frontend/
+│   │  └── 📂 backend/
+└── 📄 readme.md
 ```
 
 README.MD: Arquivo que serve como guia e explicação geral sobre o projeto.
