@@ -12,7 +12,7 @@
     <EditText
         android:id="@+id/editTextNome"
         android:layout_width="165dp"
-        android:layout_height="40dp"
+        android:layout_height="50dp"
         android:backgroundTint="@color/red"
         android:ems="10"
         android:fontFamily="monospace"
@@ -29,7 +29,7 @@
     <EditText
         android:id="@+id/editTextSobrenome"
         android:layout_width="165dp"
-        android:layout_height="40dp"
+        android:layout_height="50dp"
         android:backgroundTint="@color/red"
         android:ems="10"
         android:fontFamily="monospace"
@@ -46,7 +46,7 @@
     <EditText
         android:id="@+id/editTextEmail"
         android:layout_width="384dp"
-        android:layout_height="40dp"
+        android:layout_height="50dp"
         android:backgroundTint="@color/red"
         android:ems="10"
         android:fontFamily="monospace"
@@ -63,7 +63,7 @@
     <EditText
         android:id="@+id/editTextDigitaSenha"
         android:layout_width="385dp"
-        android:layout_height="49dp"
+        android:layout_height="50dp"
         android:backgroundTint="@color/red"
         android:ems="10"
         android:fontFamily="monospace"
@@ -96,7 +96,7 @@
     <EditText
         android:id="@+id/editTextCPF"
         android:layout_width="384dp"
-        android:layout_height="40dp"
+        android:layout_height="50dp"
         android:backgroundTint="@color/red"
         android:ems="10"
         android:fontFamily="monospace"
@@ -113,7 +113,7 @@
     <EditText
         android:id="@+id/editTextNovamente"
         android:layout_width="385dp"
-        android:layout_height="40dp"
+        android:layout_height="50dp"
         android:backgroundTint="@color/red"
         android:ems="10"
         android:fontFamily="monospace"
@@ -129,7 +129,7 @@
     <EditText
         android:id="@+id/editTextTel"
         android:layout_width="384dp"
-        android:layout_height="40dp"
+        android:layout_height="50dp"
         android:backgroundTint="@color/red"
         android:ems="10"
         android:fontFamily="monospace"
