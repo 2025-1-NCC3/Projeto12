@@ -2,10 +2,17 @@ package br.com.fecapccp.uberreport;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.SpannableString;
+import android.text.Spanned;
+import android.text.method.LinkMovementMethod;
+import android.text.style.ClickableSpan;
+import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
@@ -25,6 +32,7 @@ public class FormaEntradaActivity extends AppCompatActivity {
 
         inicializaUi();
         configuraBotoes();
+        configuraHiperlinks(); // Adiciona os hiperlinks no TextView
         applyWindowInsets();
     }
 
@@ -66,5 +74,29 @@ public class FormaEntradaActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+    }
+
+    private void configuraHiperlinks() {
+        TextView txtTermosPoliticas = findViewById(R.id.txtIrPoliticasPrivacidade);
+
+        String texto = "Ao prosseguir, você aceita nossos Termos de Serviço e Políticas de Privacidade";
+        SpannableString spannableString = new SpannableString(texto);
+
+
+
+        // Link para Políticas de Privacidade
+        ClickableSpan politicasClick = new ClickableSpan() {
+            @Override
+            public void onClick(@NonNull View widget) {
+                Intent intent = new Intent(FormaEntradaActivity.this, PoliticasPrivacidade.class);
+                startActivity(intent);
+            }
+        };
+
+        // Aplicando os spans
+        spannableString.setSpan(politicasClick, 54, 76, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+
+        txtTermosPoliticas.setText(spannableString);
+        txtTermosPoliticas.setMovementMethod(LinkMovementMethod.getInstance());
     }
 }

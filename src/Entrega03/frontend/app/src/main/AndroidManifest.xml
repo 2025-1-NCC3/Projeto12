@@ -19,6 +19,18 @@
         android:theme="@style/Theme.UberReport"
         tools:targetApi="31">
         <activity
+            android:name=".ResetarSenha"
+            android:exported="false" />
+        <activity
+            android:name=".CodigoEsqueceuSenha"
+            android:exported="false" />
+        <activity
+            android:name=".EsqueceuSenha"
+            android:exported="false" />
+        <activity
+            android:name=".PoliticasPrivacidade"
+            android:exported="false" />
+        <activity
             android:name=".InformacoesMotorista"
             android:exported="false" />
         <activity

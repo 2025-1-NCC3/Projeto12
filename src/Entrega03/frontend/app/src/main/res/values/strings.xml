@@ -96,4 +96,37 @@
     <string name="cnhinformacoes">*********** (CNH)</string>
     <string name="_12_12_0000_validade_cnh">12/12/0000 (Validade CNH)</string>
     <string name="centralizar">Botão para centralizar o mapa</string>
+    <string name="aceito">Aceito</string>
+    <string name="politicas_privacidade">Política de Privacidade
+Sua privacidade é uma prioridade para nós. Este documento descreve como tratamos as informações fornecidas pelos usuários e reforça nosso compromisso com a segurança e a transparência no uso de dados.
+1. Coleta de Informações
+Coletamos apenas os dados que o próprio usuário fornece voluntariamente, como nome, e-mail, telefone ou outras informações inseridas em formulários. Não coletamos automaticamente dados como endereço IP, localização, ID do dispositivo ou histórico de navegação.
+
+2. Uso das Informações
+As informações fornecidas são utilizadas exclusivamente para finalidades relacionadas ao funcionamento do serviço, como cadastro, comunicação com o usuário e melhoria da experiência. Não utilizamos os dados para fins publicitários ou comerciais externos.
+
+3. Cookies e Tecnologias de Rastreamento
+Nosso site/aplicativo não utiliza cookies, rastreadores, nem coleta qualquer dado sobre as abas abertas, cliques, tempo de navegação ou comportamento online dos usuários.
+
+4. Compartilhamento de Dados
+As informações fornecidas não são compartilhadas com terceiros, exceto quando exigido por lei ou mediante autorização expressa do usuário.
+
+5. Armazenamento e Segurança
+Os dados são armazenados com segurança e acessíveis apenas por nossa equipe autorizada. Adotamos medidas técnicas e administrativas para garantir sua confidencialidade e integridade.
+
+6. Direitos do Usuário
+Você pode, a qualquer momento, solicitar acesso, correção ou exclusão dos seus dados pessoais. Para isso, basta entrar em contato conosco.
+
+7. Alterações nesta Política
+Esta política pode ser atualizada periodicamente. Recomendamos a leitura sempre que usar nossos serviços.</string>
+    <string name="esqueceu_a_senha">Esqueceu a senha</string>
+    <string name="insira_o_email_para_redefinir_a_senha">insira o email para redefinir a senha</string>
+    <string name="digite_seu_email">Digite seu email:</string>
+    <string name="pr_ximo">Próximo</string>
+    <string name="insira_o_c_digo">Insira o Código</string>
+    <string name="foi_enviado_um_c_digo_para_o_seu_e_mail_insira_o">Foi enviado um código para o seu e-mail</string>
+    <string name="verificar">Verificar</string>
+    <string name="a_nova_senha_deve_ser_diferente_da_antiga">A nova senha deve ser diferente da antiga</string>
+    <string name="digite_sua_nova_senha">Digite sua nova senha</string>
+    <string name="confirme_sua_nova_senha">Confirme sua nova senha</string>
 </resources>
