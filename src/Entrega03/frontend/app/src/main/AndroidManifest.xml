@@ -19,37 +19,37 @@
         android:theme="@style/Theme.UberReport"
         tools:targetApi="31">
         <activity
-            android:name=".ResetarSenha"
+            android:name=".activities.recuperarsenha.ResetarSenhaActivity"
             android:exported="false" />
         <activity
-            android:name=".CodigoEsqueceuSenha"
+            android:name=".activities.recuperarsenha.CodigoEsqueceuSenhaActivity"
             android:exported="false" />
         <activity
-            android:name=".EsqueceuSenha"
+            android:name=".activities.recuperarsenha.EsqueceuSenhaActivity"
             android:exported="false" />
         <activity
-            android:name=".PoliticasPrivacidade"
+            android:name=".activities.outros.PoliticasPrivacidadeActivity"
             android:exported="false" />
         <activity
-            android:name=".InformacoesMotorista"
+            android:name=".activities.perfil.InformacoesMotoristaActivity"
             android:exported="false" />
         <activity
-            android:name=".InformacoesPessoais"
+            android:name=".activities.perfil.InformacoesPessoaisActivity"
             android:exported="false" />
         <activity
-            android:name=".CriarContaMotoristaActivity"
+            android:name=".activities.criarconta.CriarContaMotoristaActivity"
             android:exported="false" />
         <activity
-            android:name=".LoginActivity"
+            android:name=".activities.login.LoginActivity"
             android:exported="false" />
         <activity
-            android:name=".CriarContaPassageiroActivity"
+            android:name=".activities.criarconta.CriarContaPassageiroActivity"
             android:exported="false" />
         <activity
-            android:name=".FormaEntradaActivity"
+            android:name=".activities.login.FormaEntradaActivity"
             android:exported="false" />
         <activity
-            android:name=".EscolherUsuarioActivity"
+            android:name=".activities.login.EscolherUsuarioActivity"
             android:exported="false" />
 
         <meta-data
@@ -57,7 +57,7 @@
             android:value="${MAPS_API_KEY}" />
 
         <activity
-            android:name=".MainActivity"
+            android:name=".activities.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -66,7 +66,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ProcurarCorridaPassageiroActivity"
+            android:name=".activities.ProcurarCorridaPassageiroActivity"
             android:exported="true" />
 
         <uses-library
