@@ -32,7 +32,7 @@
         <EditText
             android:id="@+id/editTextNome"
             android:layout_width="0dp"
-            android:layout_height="40dp"
+            android:layout_height="50dp"
             android:layout_weight="1"
             android:backgroundTint="@color/red"
             android:ems="10"
@@ -45,22 +45,22 @@
         <EditText
             android:id="@+id/editTextSobrenome"
             android:layout_width="0dp"
-            android:layout_height="40dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="8dp"
             android:layout_weight="1"
             android:backgroundTint="@color/red"
             android:ems="10"
             android:fontFamily="monospace"
             android:hint="@string/sobrenome"
             android:inputType="text"
-            android:paddingLeft="16dp"
-            android:layout_marginStart="8dp" />
+            android:paddingLeft="16dp" />
     </LinearLayout>
 
     <!-- Email -->
     <EditText
         android:id="@+id/editTextEmail"
         android:layout_width="match_parent"
-        android:layout_height="40dp"
+        android:layout_height="50dp"
         android:backgroundTint="@color/red"
         android:ems="10"
         android:fontFamily="monospace"
@@ -73,7 +73,7 @@
     <EditText
         android:id="@+id/editTextCPF"
         android:layout_width="match_parent"
-        android:layout_height="40dp"
+        android:layout_height="50dp"
         android:backgroundTint="@color/red"
         android:ems="10"
         android:fontFamily="monospace"
@@ -86,7 +86,7 @@
     <EditText
         android:id="@+id/editTextTel"
         android:layout_width="match_parent"
-        android:layout_height="40dp"
+        android:layout_height="50dp"
         android:backgroundTint="@color/red"
         android:ems="10"
         android:fontFamily="monospace"
@@ -106,7 +106,7 @@
         <EditText
             android:id="@+id/editTextCNH"
             android:layout_width="0dp"
-            android:layout_height="40dp"
+            android:layout_height="50dp"
             android:layout_weight="1"
             android:backgroundTint="@color/red"
             android:ems="10"
@@ -119,7 +119,7 @@
         <EditText
             android:id="@+id/editTextValidade"
             android:layout_width="0dp"
-            android:layout_height="40dp"
+            android:layout_height="50dp"
             android:layout_weight="1"
             android:backgroundTint="@color/red"
             android:ems="10"
@@ -147,7 +147,7 @@
     <EditText
         android:id="@+id/editTextDigitaSenha"
         android:layout_width="match_parent"
-        android:layout_height="40dp"
+        android:layout_height="50dp"
         android:backgroundTint="@color/red"
         android:ems="10"
         android:fontFamily="monospace"
@@ -160,7 +160,7 @@
     <EditText
         android:id="@+id/editTextNovamente"
         android:layout_width="match_parent"
-        android:layout_height="40dp"
+        android:layout_height="50dp"
         android:backgroundTint="@color/red"
         android:ems="10"
         android:fontFamily="monospace"
