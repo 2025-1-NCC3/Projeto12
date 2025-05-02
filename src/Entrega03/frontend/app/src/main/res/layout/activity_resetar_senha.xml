@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activities.recuperarsenha.ResetarSenhaActivity">
+
+    <TextView
+        android:id="@+id/txtConfirmeNovaSenha"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="monospace"
+        android:text="@string/confirme_sua_nova_senha"
+        android:textSize="15sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.061"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.367" />
+
+    <TextView
+        android:id="@+id/txtDigiteNovaSenha"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="monospace"
+        android:text="@string/digite_sua_nova_senha"
+        android:textSize="15sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.061"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.218" />
+
+    <Button
+        android:id="@+id/btnVoltarAoLogin"
+        android:layout_width="319dp"
+        android:layout_height="64dp"
+        android:backgroundTint="@color/black"
+        android:fontFamily="monospace"
+        android:text="Voltar ao Login"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textSize="23sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.61" />
+
+    <EditText
+        android:id="@+id/btnConfirmeNovaSenha"
+        android:layout_width="362dp"
+        android:layout_height="51dp"
+        android:background="@drawable/borda_arredondada"
+        android:fontFamily="monospace"
+        android:hint="@string/informar_senha"
+        android:inputType="text|textPassword"
+        android:maxLength="40"
+        android:paddingLeft="50dp"
+        android:textSize="15sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.326"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.413" />
+
+    <EditText
+        android:id="@+id/btnDigiteNovaSenha"
+        android:layout_width="362dp"
+        android:layout_height="51dp"
+        android:background="@drawable/borda_arredondada"
+        android:fontFamily="monospace"
+        android:hint="@string/informar_senha"
+        android:inputType="text|textPassword"
+        android:maxLength="40"
+        android:paddingLeft="50dp"
+        android:textSize="15sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.326"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.257" />
+
+    <TextView
+        android:id="@+id/txtNovaSenhaDiferenteAnterior"
+        android:layout_width="299dp"
+        android:layout_height="20dp"
+        android:fontFamily="monospace"
+        android:text="@string/a_nova_senha_deve_ser_diferente_da_antiga"
+        android:textSize="12sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.129" />
+
+    <TextView
+        android:id="@+id/txtResetarSenha"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="monospace"
+        android:text="Resetar Senha"
+        android:textColor="@color/vermelho_titulo"
+        android:textSize="40sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.481"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.048" />
+
+    <ImageView
+        android:id="@+id/imageView8"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="@+id/btnDigiteNovaSenha"
+        app:layout_constraintEnd_toEndOf="@+id/btnDigiteNovaSenha"
+        app:layout_constraintHorizontal_bias="0.041"
+        app:layout_constraintStart_toStartOf="@+id/btnDigiteNovaSenha"
+        app:layout_constraintTop_toTopOf="@+id/btnDigiteNovaSenha"
+        app:layout_constraintVertical_bias="0.407"
+        app:srcCompat="@drawable/icon_key" />
+
+    <ImageView
+        android:id="@+id/imageView12"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="@+id/btnConfirmeNovaSenha"
+        app:layout_constraintEnd_toEndOf="@+id/btnConfirmeNovaSenha"
+        app:layout_constraintHorizontal_bias="0.038"
+        app:layout_constraintStart_toStartOf="@+id/btnConfirmeNovaSenha"
+        app:layout_constraintTop_toTopOf="@+id/btnConfirmeNovaSenha"
+        app:layout_constraintVertical_bias="0.481"
+        app:srcCompat="@drawable/icon_key" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
