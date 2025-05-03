@@ -39,7 +39,10 @@ import com.google.maps.android.PolyUtil;
 import com.google.maps.model.DirectionsResult;
 import com.google.maps.model.TravelMode;
 
+import br.com.fecapccp.uberreport.BuildConfig;
 import br.com.fecapccp.uberreport.R;
+import br.com.fecapccp.uberreport.activities.perfil.InformacoesPassageiroActivity;
+import br.com.fecapccp.uberreport.models.Usuario;
 import br.com.fecapccp.uberreport.services.alertas.controller.AcidentesAlertaController;
 import br.com.fecapccp.uberreport.services.alertas.controller.CrimesAlertaController;
 import br.com.fecapccp.uberreport.services.alertas.marcador.AlertasManager;
@@ -48,6 +51,7 @@ import br.com.fecapccp.uberreport.services.alertas.ControladorAlerta;
 import br.com.fecapccp.uberreport.services.alertas.controller.ClimaAlertaController;
 import br.com.fecapccp.uberreport.services.alertas.EnvioAlertaImpl;
 import br.com.fecapccp.uberreport.services.alertas.model.Alerta;
+import br.com.fecapccp.uberreport.services.usuario.ObterUsuarioImpl;
 import br.com.fecapccp.uberreport.utils.SharedPreferencesManager;
 
 import android.animation.ValueAnimator;
@@ -98,6 +102,7 @@ public class ProcurarCorridaPassageiroActivity extends AppCompatActivity impleme
     private double userLatitude;
     private double userLongitude;
     private Polyline rotaAtual;
+    private ImageButton btnPerfilUsuario;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -114,6 +119,7 @@ public class ProcurarCorridaPassageiroActivity extends AppCompatActivity impleme
         inicializaPlacesApiMaps();
         configurarBotaoConfirmar();
         configurarBotaoCentralizar();
+        getPerfilUsuario();
     }
 
     private void conferePermissaoLocalizacaoUsuario() {
@@ -145,6 +151,7 @@ public class ProcurarCorridaPassageiroActivity extends AppCompatActivity impleme
         layoutAlertasClima = findViewById(R.id.layout_alertas_clima);
         layoutAlertasAcidentes = findViewById(R.id.layout_alertas_acidentes);
         layoutAlertasCrimes = findViewById(R.id.layout_alertas_crimes);
+        btnPerfilUsuario = findViewById(R.id.btnPerfilUsuario);
     }
 
     private void configuraBotoesAlertas() {
@@ -580,6 +587,26 @@ public class ProcurarCorridaPassageiroActivity extends AppCompatActivity impleme
                 gMap.animateCamera(CameraUpdateFactory.newLatLngZoom(userLocation, 15));
             } else {
                 Toast.makeText(this, "Localização atual não disponível.", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    private void getPerfilUsuario() {
+        btnPerfilUsuario.setOnClickListener(v -> {
+            SharedPreferencesManager sharedPreferencesManager = new SharedPreferencesManager(this);
+            int userId = sharedPreferencesManager.obterIdUsuario();
+
+            if (userId != -1) {
+                ObterUsuarioImpl obterUsuarioImpl = new ObterUsuarioImpl(this);
+                obterUsuarioImpl.obterUsuario(userId, usuario -> {
+                    Intent intent = new Intent(this, InformacoesPassageiroActivity.class);
+                    intent.putExtra("usuario", usuario);
+                    startActivity(intent);
+                }, errorMessage -> {
+                    Toast.makeText(this, errorMessage, Toast.LENGTH_SHORT).show();
+                });
+            } else {
+                Toast.makeText(this, "Usuário não encontrado.", Toast.LENGTH_SHORT).show();
             }
         });
     }

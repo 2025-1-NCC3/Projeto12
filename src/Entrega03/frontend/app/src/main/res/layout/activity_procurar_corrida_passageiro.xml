@@ -549,4 +549,17 @@
         android:scaleType="centerInside"
         android:src="@drawable/centralizar" />
 
+    <ImageButton
+        android:id="@+id/btnPerfilUsuario"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="25dp"
+        android:layout_marginTop="50dp"
+        android:scaleType="centerCrop"
+        android:clipToOutline="true"
+        android:background="@drawable/circular_image_border"
+        tools:srcCompat="@tools:sample/avatars" />
+
 </RelativeLayout>

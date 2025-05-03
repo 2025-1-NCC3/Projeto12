@@ -18,6 +18,16 @@ public class Motorista extends Usuario {
         setTipo("Motorista");
     }
 
+    public Motorista(String nome, String sobrenome, String email, String telefone, String cnh, String validadeCnh) {
+        setNome(nome);
+        setSobrenome(sobrenome);
+        setEmail(email);
+        setTelefone(telefone);
+        this.cnh = cnh;
+        this.validadeCnh = validadeCnh;
+        setTipo("Motorista");
+    }
+
     public String getCnh() {
         return cnh;
     }
