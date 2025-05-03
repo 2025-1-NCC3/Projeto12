@@ -477,13 +477,36 @@ public class ProcurarCorridaPassageiroActivity extends AppCompatActivity impleme
 
     private void exibirDetalhesAlerta(Alerta alerta) {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle(alerta.getNomeAlerta())
-                .setMessage("Tipo do alerta: " + alerta.getTipoAlerta() + "\n" +
-                        "Data e hora: " + alerta.getDataHoraAlerta() + "\n" +
-                        "Latitude: " + alerta.getLatitude() + "\n" +
-                        "Longitude: " + alerta.getLongitude())
+        builder.setTitle(getTituloPersonalizado(alerta.getNomeAlerta()))
+                .setMessage("🚨 Tipo do alerta: " + alerta.getTipoAlerta() + "\n" +
+                        "🗓️ Data e hora: " + alerta.getDataHoraAlerta() + "\n" +
+                        "↔️ Latitude: " + alerta.getLatitude() + "\n" +
+                        "↕️ Longitude: " + alerta.getLongitude())
                 .setPositiveButton("OK", (dialog, id) -> dialog.dismiss());
         builder.create().show();
+    }
+
+    private String getTituloPersonalizado(String nomeAlerta) {
+        switch (nomeAlerta) {
+            case "botao_alagamento":
+                return "🌊 Alagamento";
+            case "botao_deslizamento":
+                return "🪵 Deslizamento";
+            case "botao_temporal":
+                return "⛈️ Temporal";
+            case "botao_acidente_carro":
+                return "🚘 Acidente de Carro";
+            case "botao_acidente_pedestre":
+                return "🚴‍♂️ Acidente com Pedestre";
+            case "botao_assaltos":
+                return "💰 Assalto";
+            case "botao_tiroteio":
+                return "🔫 Tiroteio";
+            case "botao_arrastao":
+                return "🏃‍♂️ Arrastão";
+            default:
+                return "Alerta";
+        }
     }
 
     private void atualizarMapaComLocalizacaoUsuario() {
