@@ -3,6 +3,7 @@ package br.com.fecapccp.uberreport.activities;
 import android.Manifest;
 import android.app.AlertDialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.location.Address;
 import android.location.Geocoder;
@@ -39,7 +40,10 @@ import com.google.maps.android.PolyUtil;
 import com.google.maps.model.DirectionsResult;
 import com.google.maps.model.TravelMode;
 
+import br.com.fecapccp.uberreport.BuildConfig;
 import br.com.fecapccp.uberreport.R;
+import br.com.fecapccp.uberreport.activities.perfil.InformacoesPassageiroActivity;
+import br.com.fecapccp.uberreport.models.Usuario;
 import br.com.fecapccp.uberreport.services.alertas.controller.AcidentesAlertaController;
 import br.com.fecapccp.uberreport.services.alertas.controller.CrimesAlertaController;
 import br.com.fecapccp.uberreport.services.alertas.marcador.AlertasManager;
@@ -48,9 +52,11 @@ import br.com.fecapccp.uberreport.services.alertas.ControladorAlerta;
 import br.com.fecapccp.uberreport.services.alertas.controller.ClimaAlertaController;
 import br.com.fecapccp.uberreport.services.alertas.EnvioAlertaImpl;
 import br.com.fecapccp.uberreport.services.alertas.model.Alerta;
+import br.com.fecapccp.uberreport.services.usuario.ObterUsuarioImpl;
 import br.com.fecapccp.uberreport.utils.SharedPreferencesManager;
 
 import android.animation.ValueAnimator;
+import android.os.CountDownTimer;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
@@ -98,6 +104,7 @@ public class ProcurarCorridaPassageiroActivity extends AppCompatActivity impleme
     private double userLatitude;
     private double userLongitude;
     private Polyline rotaAtual;
+    private ImageButton btnPerfilUsuario;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -114,6 +121,7 @@ public class ProcurarCorridaPassageiroActivity extends AppCompatActivity impleme
         inicializaPlacesApiMaps();
         configurarBotaoConfirmar();
         configurarBotaoCentralizar();
+        getPerfilUsuario();
     }
 
     private void conferePermissaoLocalizacaoUsuario() {
@@ -145,6 +153,7 @@ public class ProcurarCorridaPassageiroActivity extends AppCompatActivity impleme
         layoutAlertasClima = findViewById(R.id.layout_alertas_clima);
         layoutAlertasAcidentes = findViewById(R.id.layout_alertas_acidentes);
         layoutAlertasCrimes = findViewById(R.id.layout_alertas_crimes);
+        btnPerfilUsuario = findViewById(R.id.btnPerfilUsuario);
     }
 
     private void configuraBotoesAlertas() {
@@ -470,13 +479,89 @@ public class ProcurarCorridaPassageiroActivity extends AppCompatActivity impleme
 
     private void exibirDetalhesAlerta(Alerta alerta) {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle(alerta.getNomeAlerta())
-                .setMessage("Tipo do alerta: " + alerta.getTipoAlerta() + "\n" +
-                        "Data e hora: " + alerta.getDataHoraAlerta() + "\n" +
-                        "Latitude: " + alerta.getLatitude() + "\n" +
-                        "Longitude: " + alerta.getLongitude())
-                .setPositiveButton("OK", (dialog, id) -> dialog.dismiss());
-        builder.create().show();
+        builder.setTitle(getTituloPersonalizado(alerta.getNomeAlerta()));
+
+        // Layout para exibir os detalhes e o contador
+        LinearLayout layout = new LinearLayout(this);
+        layout.setOrientation(LinearLayout.VERTICAL);
+        layout.setPadding(20, 20, 20, 20);
+
+        // TextView para os detalhes do alerta
+        TextView detalhesTexto = new TextView(this);
+        detalhesTexto.setText("🚨 Tipo do alerta: " + alerta.getTipoAlerta() + "\n" +
+                "🗓️ Data e hora: " + alerta.getDataHoraAlerta() + "\n" +
+                "↔️ Latitude: " + alerta.getLatitude() + "\n" +
+                "↕️ Longitude: " + alerta.getLongitude());
+        detalhesTexto.setTextSize(16);
+        layout.addView(detalhesTexto);
+
+        // TextView para o contador
+        final TextView contadorTexto = new TextView(this);
+        contadorTexto.setTextSize(16);
+        layout.addView(contadorTexto);
+
+        builder.setView(layout);
+        builder.setPositiveButton("OK", (dialog, id) -> dialog.dismiss());
+
+        AlertDialog dialog = builder.create();
+        dialog.show();
+
+        // Recupera o tempo de término do SharedPreferences
+        SharedPreferences prefs = getSharedPreferences("ContadorPrefs", MODE_PRIVATE);
+        long tempoFinal = prefs.getLong("tempoFinal", 0);
+
+        // Se o tempo final não estiver definido, define o tempo atual + 30 minutos
+        if (tempoFinal == 0) {
+            tempoFinal = System.currentTimeMillis() + (30 * 60 * 1000);
+            prefs.edit().putLong("tempoFinal", tempoFinal).apply();
+        }
+
+        // Calcula o tempo restante
+        long tempoRestante = tempoFinal - System.currentTimeMillis();
+
+        // Inicia o contador regressivo
+        new CountDownTimer(tempoRestante, 1000) {
+            @Override
+            public void onTick(long millisUntilFinished) {
+                contadorTexto.setText("🕦 Alerta expirando em: " + formatarTempo(millisUntilFinished));
+            }
+
+            @Override
+            public void onFinish() {
+                dialog.dismiss();
+                prefs.edit().remove("tempoFinal").apply(); // Remove o tempo final após o término
+            }
+        }.start();
+    }
+
+
+    private String formatarTempo(long millis) {
+        long minutos = (millis / 1000) / 60;
+        long segundos = (millis / 1000) % 60;
+        return String.format("%02d:%02d", minutos, segundos);
+    }
+
+    private String getTituloPersonalizado(String nomeAlerta) {
+        switch (nomeAlerta) {
+            case "botao_alagamento":
+                return "🌊 Alagamento";
+            case "botao_deslizamento":
+                return "🪵 Deslizamento";
+            case "botao_temporal":
+                return "⛈️ Temporal";
+            case "botao_acidente_carro":
+                return "🚘 Acidente de Carro";
+            case "botao_acidente_pedestre":
+                return "🚴‍♂️ Acidente com Pedestre";
+            case "botao_assaltos":
+                return "💰 Assalto";
+            case "botao_tiroteio":
+                return "🔫 Tiroteio";
+            case "botao_arrastao":
+                return "🏃‍♂️ Arrastão";
+            default:
+                return "Alerta";
+        }
     }
 
     private void atualizarMapaComLocalizacaoUsuario() {
@@ -580,6 +665,26 @@ public class ProcurarCorridaPassageiroActivity extends AppCompatActivity impleme
                 gMap.animateCamera(CameraUpdateFactory.newLatLngZoom(userLocation, 15));
             } else {
                 Toast.makeText(this, "Localização atual não disponível.", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    private void getPerfilUsuario() {
+        btnPerfilUsuario.setOnClickListener(v -> {
+            SharedPreferencesManager sharedPreferencesManager = new SharedPreferencesManager(this);
+            int userId = sharedPreferencesManager.obterIdUsuario();
+
+            if (userId != -1) {
+                ObterUsuarioImpl obterUsuarioImpl = new ObterUsuarioImpl(this);
+                obterUsuarioImpl.obterUsuario(userId, usuario -> {
+                    Intent intent = new Intent(this, InformacoesPassageiroActivity.class);
+                    intent.putExtra("usuario", usuario);
+                    startActivity(intent);
+                }, errorMessage -> {
+                    Toast.makeText(this, errorMessage, Toast.LENGTH_SHORT).show();
+                });
+            } else {
+                Toast.makeText(this, "Usuário não encontrado.", Toast.LENGTH_SHORT).show();
             }
         });
     }

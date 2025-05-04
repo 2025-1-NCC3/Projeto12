@@ -11,6 +11,7 @@ import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
+import retrofit2.http.PUT;
 import retrofit2.http.Path;
 import retrofit2.http.Query;
 
@@ -22,18 +23,21 @@ public interface ChamadasServidorApi {
             @Query("raio") double raio
     );
 
+    @POST("/alertas")
+    Call<String> postAlerta(@Body Alerta alerta);
+
+    @POST("/users")
+    Call<CadastroUsuarioResponse> postUsuario(@Body Usuario usuario);
+
     @GET("users/{id}")
     Call<Usuario> getUsuario(@Path("id") int userId);
 
-    @POST("/alertas")
-    Call<String> postAlerta(@Body Alerta alerta);
+    @PUT("users/{id}")
+    Call<String> putUsuario(@Path("id") int userId, @Body Usuario usuario);
 
     @POST("/login")
     Call<LoginUsuarioResponse> postLogin(@Body LoginRequest loginRequest);
 
     @POST("/token")
     Call<String> postToken(@Body String refreshToken);
-
-    @POST("/users")
-    Call<CadastroUsuarioResponse> postUsuario(@Body Usuario usuario);
 }

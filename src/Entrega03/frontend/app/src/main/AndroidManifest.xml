@@ -34,7 +34,7 @@
             android:name=".activities.perfil.InformacoesMotoristaActivity"
             android:exported="false" />
         <activity
-            android:name=".activities.perfil.InformacoesPessoaisActivity"
+            android:name=".activities.perfil.InformacoesPassageiroActivity"
             android:exported="false" />
         <activity
             android:name=".activities.criarconta.CriarContaMotoristaActivity"

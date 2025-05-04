@@ -129,4 +129,7 @@ Esta política pode ser atualizada periodicamente. Recomendamos a leitura sempre
     <string name="a_nova_senha_deve_ser_diferente_da_antiga">A nova senha deve ser diferente da antiga</string>
     <string name="digite_sua_nova_senha">Digite sua nova senha</string>
     <string name="confirme_sua_nova_senha">Confirme sua nova senha</string>
+    <string name="adicionar_contato_de_emerg_ncia">Adicionar contato de emergência:</string>
+    <string name="contato_de_emergencia">Contato de emergencia</string>
+    <string name="editar_informa_es">Editar informações</string>
 </resources>

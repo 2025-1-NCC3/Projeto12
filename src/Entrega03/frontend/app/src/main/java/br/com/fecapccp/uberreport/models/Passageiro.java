@@ -10,4 +10,12 @@ public class Passageiro extends Usuario {
         setTelefone(telefone);
         setTipo("Passageiro");
     }
+
+    public Passageiro(String nome, String sobrenome, String email, String telefone){
+        setNome(nome);
+        setSobrenome(sobrenome);
+        setEmail(email);
+        setTelefone(telefone);
+        setTipo("Passageiro");
+    }
 }

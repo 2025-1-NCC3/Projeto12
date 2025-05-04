@@ -1,8 +1,10 @@
 package br.com.fecapccp.uberreport.models;
 
+import java.io.Serializable;
+
 import br.com.fecapccp.uberreport.services.criptografia.CriptografiaAES;
 
-public class Usuario {
+public class Usuario implements Serializable {
 
     private int idUser;
     private String nome;
@@ -76,7 +78,7 @@ public class Usuario {
     }
 
 
-    protected void setTipo(String tipo) {
+    public void setTipo(String tipo) {
         this.tipo = tipo;
     }
 
