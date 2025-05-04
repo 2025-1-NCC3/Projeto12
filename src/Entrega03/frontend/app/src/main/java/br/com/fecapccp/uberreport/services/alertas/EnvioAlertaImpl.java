@@ -72,7 +72,8 @@ public class EnvioAlertaImpl implements EnvioAlerta {
     }
 
     public String getDataHoraAtual() {
-        SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss", Locale.getDefault());
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss", Locale.getDefault());
         return sdf.format(new Date());
     }
+
 }
