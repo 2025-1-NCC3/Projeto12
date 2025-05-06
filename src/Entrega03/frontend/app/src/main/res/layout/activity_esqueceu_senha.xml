@@ -47,7 +47,7 @@
         android:fontFamily="monospace"
         android:text="@string/esqueceu_a_senha"
         android:textColor="@color/vermelho_titulo"
-        android:textSize="40sp"
+        android:textSize="30sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

@@ -71,19 +71,21 @@
 
     <TextView
         android:id="@+id/txtIrPoliticasPrivacidade"
-        android:layout_width="298dp"
-        android:layout_height="47dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="43dp"
+        android:layout_marginBottom="63dp"
         android:fontFamily="@font/inter"
-        android:text="@string/ao_prosseguir_voc_aceita_nossos_termos_de_servi_o_e_pol_ticas_de_privacidade"
-        android:textColor="@color/cinza_claro"
+        android:text=""
         android:textAlignment="center"
-        android:textSize="10sp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:textColor="@color/cinza_claro"
+        android:textSize="15sp"
+        android:padding="10dp"
+        app:layout_constraintBottom_toTopOf="@+id/imageView4"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.865" />
+        app:layout_constraintTop_toBottomOf="@+id/btnCriarConta"
+        app:layout_constraintVertical_bias="0.483" />
 
     <ImageView
         android:id="@+id/imageView4"

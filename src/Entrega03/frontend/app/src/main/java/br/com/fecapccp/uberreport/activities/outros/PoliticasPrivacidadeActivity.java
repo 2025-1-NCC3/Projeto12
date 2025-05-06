@@ -1,9 +1,14 @@
 package br.com.fecapccp.uberreport.activities.outros;
 
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.os.Bundle;
-import android.view.View;
+import android.text.Html;
+import android.text.SpannableStringBuilder;
+import android.text.Spanned;
+import android.text.style.StyleSpan;
 import android.widget.Button;
+import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -24,14 +29,9 @@ public class PoliticasPrivacidadeActivity extends AppCompatActivity {
 
         // Configura o botão "Aceito"
         Button btnAceito = findViewById(R.id.btnCriarConta2);
-        btnAceito.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // Volta para a página de FormaEntradaActivity
-                Intent intent = new Intent(PoliticasPrivacidadeActivity.this, FormaEntradaActivity.class);
-                startActivity(intent);
-                finish(); // Finaliza a atividade atual
-            }
+        btnAceito.setOnClickListener(v -> {
+            // Volta para a página de FormaEntradaActivity
+            finish(); // Finaliza a atividade atual
         });
 
         // Configura os insets da janela
@@ -40,5 +40,8 @@ public class PoliticasPrivacidadeActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+
+
+
     }
 }

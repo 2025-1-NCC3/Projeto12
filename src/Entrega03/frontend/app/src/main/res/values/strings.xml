@@ -42,7 +42,6 @@
     <string name="entrar_na_sua_conta">Entrar na sua conta</string>
     <string name="criar_conta">Criar conta</string>
     <string name="logoformaentrada">logoFormaEntrada</string>
-    <string name="ao_prosseguir_voc_aceita_nossos_termos_de_servi_o_e_pol_ticas_de_privacidade">Ao prosseguir, você aceita nossos Termos de Serviço e Políticas de Privacidade.</string>
     <string name="imagempassageiro">imagemPassageiro</string>
     <string name="imgusuariosilva">imgUsuarioSilva</string>
     <string name="usu_rio_da_silva">Usuário da Silva</string>
@@ -97,28 +96,6 @@
     <string name="_12_12_0000_validade_cnh">12/12/0000 (Validade CNH)</string>
     <string name="centralizar">Botão para centralizar o mapa</string>
     <string name="aceito">Aceito</string>
-    <string name="politicas_privacidade">Política de Privacidade
-Sua privacidade é uma prioridade para nós. Este documento descreve como tratamos as informações fornecidas pelos usuários e reforça nosso compromisso com a segurança e a transparência no uso de dados.
-1. Coleta de Informações
-Coletamos apenas os dados que o próprio usuário fornece voluntariamente, como nome, e-mail, telefone ou outras informações inseridas em formulários. Não coletamos automaticamente dados como endereço IP, localização, ID do dispositivo ou histórico de navegação.
-
-2. Uso das Informações
-As informações fornecidas são utilizadas exclusivamente para finalidades relacionadas ao funcionamento do serviço, como cadastro, comunicação com o usuário e melhoria da experiência. Não utilizamos os dados para fins publicitários ou comerciais externos.
-
-3. Cookies e Tecnologias de Rastreamento
-Nosso site/aplicativo não utiliza cookies, rastreadores, nem coleta qualquer dado sobre as abas abertas, cliques, tempo de navegação ou comportamento online dos usuários.
-
-4. Compartilhamento de Dados
-As informações fornecidas não são compartilhadas com terceiros, exceto quando exigido por lei ou mediante autorização expressa do usuário.
-
-5. Armazenamento e Segurança
-Os dados são armazenados com segurança e acessíveis apenas por nossa equipe autorizada. Adotamos medidas técnicas e administrativas para garantir sua confidencialidade e integridade.
-
-6. Direitos do Usuário
-Você pode, a qualquer momento, solicitar acesso, correção ou exclusão dos seus dados pessoais. Para isso, basta entrar em contato conosco.
-
-7. Alterações nesta Política
-Esta política pode ser atualizada periodicamente. Recomendamos a leitura sempre que usar nossos serviços.</string>
     <string name="esqueceu_a_senha">Esqueceu a senha</string>
     <string name="insira_o_email_para_redefinir_a_senha">insira o email para redefinir a senha</string>
     <string name="digite_seu_email">Digite seu email:</string>
@@ -132,4 +109,65 @@ Esta política pode ser atualizada periodicamente. Recomendamos a leitura sempre
     <string name="adicionar_contato_de_emerg_ncia">Adicionar contato de emergência:</string>
     <string name="contato_de_emergencia">Contato de emergencia</string>
     <string name="editar_informa_es">Editar informações</string>
+    <string name="politicas_privacidade">
+        1. Sobre o Uber Report\n\n
+O Uber Report é um aplicativo gratuito voltado para motoristas e passageiros da Uber, com foco em monitoramento de segurança em tempo real durante viagens. Por meio do app, os usuários podem visualizar e reportar alertas de risco, como enchentes, assaltos, quedas de árvores e outros perigos em regiões próximas ao trajeto.
+
+        \n
+        \n
+O aplicativo também permite compartilhamento de localização e envio de mensagens rápidas via WhatsApp para contatos de confiança.
+     \n
+     \n
+
+2. Coleta, uso e permissões de dados\n\n
+O Uber Report não armazena dados pessoais dos usuários em servidores próprios. No entanto, para funcionamento adequado, o app solicita algumas permissões temporárias:
+     \n
+     \n
+
+📍 Localização: usada para exibir sua posição no mapa e mostrar alertas próximos.\n
+🌐 Internet: necessária para carregar mapas, alertas e rotas.\n
+📤 WhatsApp: usado apenas para enviar mensagens para contatos de confiança. Nenhum dado é coletado.\n
+     \n
+3. Compartilhamento de informações
+    \n
+    \n
+O Uber Report não compartilha informações com terceiros. Nenhuma informação pessoal ou de localização é vendida ou utilizada para publicidade.
+    \n
+    \n
+4. Idade mínima
+    \n
+    \n
+O uso do Uber Report é indicado para usuários com 18 anos ou mais, dado o conteúdo e responsabilidades envolvidas no uso dos alertas.
+    \n
+    \n
+5. Segurança
+    \n
+    \n
+O Uber Report é uma ferramenta de apoio e não substitui medidas de segurança pessoal. Não garantimos a prevenção total de incidentes.
+    \n
+    \n
+6. Responsabilidade do usuário
+    \n
+    \n
+Ao utilizar o app, o usuário concorda em:
+    \n
+    \n
+*Utilizar os recursos com responsabilidade.
+        \n
+*Não enviar alertas falsos ou conteúdo ofensivo.
+        \n
+*Respeitar os termos de uso de apps integrados, como o WhatsApp.
+        \n
+        \n
+7. Alterações nesta política
+        \n
+        \n
+Esta política pode ser atualizada a qualquer momento. Recomendamos que os usuários revisem esta página periodicamente para se manterem informados.
+\n
+        \n
+8. Contato
+        \n
+        \n
+Em caso de dúvidas, sugestões ou solicitações, entre em contato pelo e-mail:
+uber.report.fecap@gmail.com</string>
 </resources>
