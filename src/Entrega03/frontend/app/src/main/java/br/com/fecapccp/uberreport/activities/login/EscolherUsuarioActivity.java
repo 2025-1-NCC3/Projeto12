@@ -2,6 +2,7 @@ package br.com.fecapccp.uberreport.activities.login;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.LinearLayout;
 
 import androidx.activity.EdgeToEdge;
@@ -46,4 +47,9 @@ public class EscolherUsuarioActivity extends AppCompatActivity {
         });
     }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        Log.i("destroy", "tela destrida ");
+    }
 }

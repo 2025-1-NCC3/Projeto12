@@ -110,21 +110,6 @@
         app:layout_constraintVertical_bias="0.129" />
 
     <TextView
-        android:id="@+id/txtNaoRecebeuCodigo"
-        android:layout_width="260dp"
-        android:layout_height="14dp"
-        android:fontFamily="monospace"
-        android:text="Não recebeu o código? Clique aqui"
-        android:textSize="12sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.496"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.563" />
-
-    <TextView
         android:id="@+id/TituloInsiraCodigo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
