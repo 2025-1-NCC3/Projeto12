@@ -481,12 +481,10 @@ public class ProcurarCorridaPassageiroActivity extends AppCompatActivity impleme
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle(getTituloPersonalizado(alerta.getNomeAlerta()));
 
-        // Layout para exibir os detalhes e o contador
         LinearLayout layout = new LinearLayout(this);
         layout.setOrientation(LinearLayout.VERTICAL);
         layout.setPadding(20, 20, 20, 20);
 
-        // TextView para os detalhes do alerta
         TextView detalhesTexto = new TextView(this);
         detalhesTexto.setText("🚨 Tipo do alerta: " + alerta.getTipoAlerta() + "\n" +
                 "🗓️ Data e hora: " + alerta.getDataHoraAlerta() + "\n" +
@@ -495,7 +493,6 @@ public class ProcurarCorridaPassageiroActivity extends AppCompatActivity impleme
         detalhesTexto.setTextSize(16);
         layout.addView(detalhesTexto);
 
-        // TextView para o contador
         final TextView contadorTexto = new TextView(this);
         contadorTexto.setTextSize(16);
         layout.addView(contadorTexto);
@@ -506,39 +503,40 @@ public class ProcurarCorridaPassageiroActivity extends AppCompatActivity impleme
         AlertDialog dialog = builder.create();
         dialog.show();
 
-        // Recupera o tempo de término do SharedPreferences
+        // Recupera o tempo final com base na chave única
+        String alertaKey = gerarChaveUnica(alerta.getLatitude(), alerta.getLongitude());
         SharedPreferences prefs = getSharedPreferences("ContadorPrefs", MODE_PRIVATE);
-        long tempoFinal = prefs.getLong("tempoFinal", 0);
+        long tempoFinal = prefs.getLong(alertaKey, 0);
 
-        // Se o tempo final não estiver definido, define o tempo atual + 30 minutos
         if (tempoFinal == 0) {
-            tempoFinal = System.currentTimeMillis() + (30 * 60 * 1000);
-            prefs.edit().putLong("tempoFinal", tempoFinal).apply();
+            contadorTexto.setText("⏳ Tempo do alerta não disponível.");
+            return;
         }
 
-        // Calcula o tempo restante
         long tempoRestante = tempoFinal - System.currentTimeMillis();
 
-        // Inicia o contador regressivo
         new CountDownTimer(tempoRestante, 1000) {
             @Override
             public void onTick(long millisUntilFinished) {
-                contadorTexto.setText("🕦 Alerta expirando em: " + formatarTempo(millisUntilFinished));
+                contadorTexto.setText("⏳ Alerta expirando em: " + formatarTempo(millisUntilFinished));
             }
 
             @Override
             public void onFinish() {
                 dialog.dismiss();
-                prefs.edit().remove("tempoFinal").apply(); // Remove o tempo final após o término
+                prefs.edit().remove(alertaKey).apply();
             }
         }.start();
     }
-
 
     private String formatarTempo(long millis) {
         long minutos = (millis / 1000) / 60;
         long segundos = (millis / 1000) % 60;
         return String.format("%02d:%02d", minutos, segundos);
+    }
+
+    private String gerarChaveUnica(Double latitude, Double longitude) {
+        return latitude + "_" + longitude;
     }
 
     private String getTituloPersonalizado(String nomeAlerta) {
