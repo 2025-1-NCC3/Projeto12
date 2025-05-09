@@ -605,6 +605,13 @@ public class ProcurarCorridaPassageiroActivity extends AppCompatActivity impleme
                 LatLng latLngOrigem = new LatLng(addressesOrigem.get(0).getLatitude(), addressesOrigem.get(0).getLongitude());
                 LatLng latLngDestino = new LatLng(addressesDestino.get(0).getLatitude(), addressesDestino.get(0).getLongitude());
 
+                // Adiciona marcador no destino
+                MarkerOptions destinoMarker = new MarkerOptions()
+                        .position(latLngDestino)
+                        .title("Destino")
+                        .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED));
+                gMap.addMarker(destinoMarker);
+
                 exibirRota(latLngOrigem, latLngDestino);
             } else {
                 Toast.makeText(this, "Endereços inválidos. Por favor, tente novamente! ", Toast.LENGTH_SHORT).show();
