@@ -7,17 +7,17 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class ChamadasServidorApiImpl {
     private static Retrofit retrofit;
 
-    public static ChamadasServidorApi getServicoApi() {
+    public static RotasApi getServicoApi() {
         if (retrofit == null) {
             OkHttpClient client = new OkHttpClient.Builder().build();
 
             retrofit = new Retrofit.Builder()
-                    .baseUrl("https://wlmvqg-3002.csb.app")
+                    .baseUrl("https://cqtc62-3000.csb.app")
                     .client(client)
                     .addConverterFactory(GsonConverterFactory.create())
                     .build();
         }
 
-        return retrofit.create(ChamadasServidorApi.class);
+        return retrofit.create(RotasApi.class);
     }
 }
