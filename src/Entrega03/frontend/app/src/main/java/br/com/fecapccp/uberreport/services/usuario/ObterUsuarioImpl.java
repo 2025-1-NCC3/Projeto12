@@ -8,7 +8,7 @@ import java.util.function.Consumer;
 import br.com.fecapccp.uberreport.BuildConfig;
 import br.com.fecapccp.uberreport.models.Usuario;
 import br.com.fecapccp.uberreport.services.criptografia.CriptografiaAES;
-import br.com.fecapccp.uberreport.services.requisicoes.ChamadasServidorApi;
+import br.com.fecapccp.uberreport.services.requisicoes.RotasApi;
 import br.com.fecapccp.uberreport.services.requisicoes.ChamadasServidorApiHeaderImpl;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -22,9 +22,9 @@ public class ObterUsuarioImpl implements ObterUsuario {
     }
 
     public void obterUsuario(int userId, Consumer<Usuario> onSuccess, Consumer<String> onError) {
-        ChamadasServidorApi chamadasServidorApi = ChamadasServidorApiHeaderImpl.getServicoApi(context);
+        RotasApi rotasApi = ChamadasServidorApiHeaderImpl.getServicoApi(context);
 
-        chamadasServidorApi.getUsuario(userId).enqueue(new Callback<Usuario>() {
+        rotasApi.getUsuario(userId).enqueue(new Callback<Usuario>() {
             @Override
             public void onResponse(Call<Usuario> call, Response<Usuario> response) {
                 if (response.isSuccessful() && response.body() != null) {
@@ -37,19 +37,24 @@ public class ObterUsuarioImpl implements ObterUsuario {
                         usuario.setSobrenome(CriptografiaAES.descriptografar(usuario.getSobrenome(), chaveAES));
                         usuario.setEmail(CriptografiaAES.descriptografar(usuario.getEmail(), chaveAES));
                         usuario.setTelefone(CriptografiaAES.descriptografar(usuario.getTelefone(), chaveAES));
-
+                        if (usuario.getContatoEmergencia() != null) {
+                            usuario.setContatoEmergencia(CriptografiaAES.descriptografar(usuario.getContatoEmergencia(), chaveAES));
+                        }
                         onSuccess.accept(usuario);
                     } catch (Exception e) {
                         onError.accept("Erro ao descriptografar: " + e.getMessage());
+                        Log.e("GET", "Erro ao obter usuário 1: " + e.getMessage());
                     }
                 } else {
                     onError.accept("Error ao obter usuário: " + response.message());
+                    Log.e("GET", "Erro ao obter usuário 2: " + response.message());
                 }
             }
 
             @Override
             public void onFailure(Call<Usuario> call, Throwable t) {
                 onError.accept("Error ao obter usuário: " + t.getMessage());
+                Log.e("GET", "Erro ao obter usuário 3: " + t.getMessage());
             }
         });
     }
