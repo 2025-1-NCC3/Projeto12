@@ -170,4 +170,7 @@ Esta política pode ser atualizada a qualquer momento. Recomendamos que os usuá
         \n
 Em caso de dúvidas, sugestões ou solicitações, entre em contato pelo e-mail:
 uber.report.fecap@gmail.com</string>
+    <string name="botao_de_voltar">Botao de voltar</string>
+    <string name="botao_de_configuracoes">Botao de configuracoes</string>
+    <string name="deletar_conta">Deletar conta</string>
 </resources>

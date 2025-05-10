@@ -1,14 +1,17 @@
 package br.com.fecapccp.uberreport.activities.login;
 
 import android.content.Intent;
+import android.media.Image;
 import android.os.Bundle;
 import android.text.SpannableString;
 import android.text.Spanned;
 import android.text.method.LinkMovementMethod;
 import android.text.style.ClickableSpan;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -17,7 +20,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import br.com.fecapccp.uberreport.R;
 import br.com.fecapccp.uberreport.activities.recuperarsenha.EsqueceuSenhaActivity;
-import br.com.fecapccp.uberreport.services.tokenjwt.LoginRequest;
+import br.com.fecapccp.uberreport.services.usuario.request.LoginRequest;
 import br.com.fecapccp.uberreport.services.usuario.LoginUsuario;
 import br.com.fecapccp.uberreport.services.usuario.LoginUsuarioImpl;
 
@@ -31,6 +34,7 @@ public class LoginActivity extends AppCompatActivity {
         EditText emailInput = findViewById(R.id.btnemaillogin);
         EditText senhaInput = findViewById(R.id.btnsenhalogin);
         Button botaoLogin = findViewById(R.id.btncContinuar);
+        ImageButton btnVoltarTela = findViewById(R.id.btnVoltarTela);
 
         LoginUsuario loginUsuario = new LoginUsuarioImpl(this);
 
@@ -46,6 +50,22 @@ public class LoginActivity extends AppCompatActivity {
             LoginRequest loginRequest = new LoginRequest(email, senha);
 
             loginUsuario.login(loginRequest);
+        });
+
+        btnVoltarTela.setOnClickListener(v -> {
+            Intent intent = new Intent(this, FormaEntradaActivity.class);
+            String usuario = getUsuario();
+            try {
+                if ("passageiro".equals(usuario)) {
+                    intent.putExtra("tipoUsuario", "passageiro");
+                } else if ("motorista".equals(usuario)) {
+                    intent.putExtra("tipoUsuario", "motorista");
+                }
+            } catch (Exception e) {
+                Log.e("tipoUsuario", "Erro ao identificar tipo usuário", e);
+            }
+            startActivity(intent);
+            finish();
         });
 
         configuraHiperlinkEsqueceuSenha(); // Adiciona o hiperlink
@@ -71,5 +91,11 @@ public class LoginActivity extends AppCompatActivity {
 
         txtIrParaEsqueceuSenha.setText(spannableString);
         txtIrParaEsqueceuSenha.setMovementMethod(LinkMovementMethod.getInstance());
+    }
+
+    private String getUsuario() {
+        Bundle bundle = getIntent().getExtras();
+        if (bundle == null) return null;
+        return bundle.getString("tipoUsuario");
     }
 }

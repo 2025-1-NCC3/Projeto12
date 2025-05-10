@@ -60,8 +60,10 @@ public class FormaEntradaActivity extends AppCompatActivity {
         Intent intent;
         if (tipoUsuario.equals("passageiro")) {
             intent = new Intent(this, contaNova ? CriarContaPassageiroActivity.class : LoginActivity.class);
+            intent.putExtra("tipoUsuario", "passageiro");
         } else {
             intent = new Intent(this, contaNova ? CriarContaMotoristaActivity.class : LoginActivity.class);
+            intent.putExtra("tipoUsuario", "motorista");
         }
         startActivity(intent);
         finish();

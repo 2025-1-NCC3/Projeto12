@@ -554,6 +554,7 @@
         android:scaleType="centerCrop"
         android:clipToOutline="true"
         android:background="@drawable/circular_image_border"
-        tools:srcCompat="@tools:sample/avatars" />
+        android:src="@drawable/useravatar"
+        />
 
 </RelativeLayout>

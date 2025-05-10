@@ -1,4 +1,4 @@
-package br.com.fecapccp.uberreport.services.tokenjwt;
+package br.com.fecapccp.uberreport.services.usuario.request;
 
 import br.com.fecapccp.uberreport.services.criptografia.CriptografiaAES;
 

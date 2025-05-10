@@ -22,5 +22,12 @@ public class InformacoesMotoristaActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+
+    }
+
+    private String getUsuario() {
+        Bundle bundle = getIntent().getExtras();
+        if (bundle == null) return null;
+        return bundle.getString("tipoUsuario");
     }
 }

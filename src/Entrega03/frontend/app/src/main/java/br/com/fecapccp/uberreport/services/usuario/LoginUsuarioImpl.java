@@ -9,7 +9,7 @@ import androidx.annotation.NonNull;
 import br.com.fecapccp.uberreport.BuildConfig;
 import br.com.fecapccp.uberreport.activities.ProcurarCorridaPassageiroActivity;
 import br.com.fecapccp.uberreport.services.requisicoes.ChamadasServidorApiImpl;
-import br.com.fecapccp.uberreport.services.tokenjwt.LoginRequest;
+import br.com.fecapccp.uberreport.services.usuario.request.LoginRequest;
 import br.com.fecapccp.uberreport.services.tokenjwt.SessaoManager;
 import br.com.fecapccp.uberreport.services.usuario.response.LoginUsuarioResponse;
 import retrofit2.Call;

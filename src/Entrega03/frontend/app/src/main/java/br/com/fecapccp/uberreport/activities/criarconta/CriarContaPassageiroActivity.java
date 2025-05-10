@@ -1,11 +1,14 @@
 package br.com.fecapccp.uberreport.activities.criarconta;
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.InputFilter;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.util.Patterns;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
@@ -15,6 +18,7 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import br.com.fecapccp.uberreport.R;
+import br.com.fecapccp.uberreport.activities.login.FormaEntradaActivity;
 import br.com.fecapccp.uberreport.models.Passageiro;
 import br.com.fecapccp.uberreport.services.usuario.CadastroUsuarioImpl;
 
@@ -35,6 +39,7 @@ public class CriarContaPassageiroActivity extends AppCompatActivity {
         EditText senhaInput = findViewById(R.id.editTextDigitaSenha);
         EditText confirmaSenhaInput = findViewById(R.id.editTextNovamente);
         Button botaoCadastrar = findViewById(R.id.btncContinuar);
+        ImageButton btnVoltarTela = findViewById(R.id.btnVoltarTela);
 
         // Limitar caracteres nos campos de nome e sobrenome
         nomeInput.setFilters(new InputFilter[]{new InputFilter.LengthFilter(50)});
@@ -157,8 +162,26 @@ public class CriarContaPassageiroActivity extends AppCompatActivity {
 //                finish();
             } catch (Exception e) {
                 Toast.makeText(this, "Erro ao processar os dados!", Toast.LENGTH_SHORT).show();
+                Log.e("POST", "Erro ao cadastrar os dados: " + e.getMessage());
             }
         });
+
+        btnVoltarTela.setOnClickListener(v -> {
+            Intent intent = new Intent(this, FormaEntradaActivity.class);
+            String usuario = getUsuario();
+            try {
+                if ("passageiro".equals(usuario)) {
+                    intent.putExtra("tipoUsuario", "passageiro");
+                } else if ("motorista".equals(usuario)) {
+                    intent.putExtra("tipoUsuario", "motorista");
+                }
+            } catch (Exception e) {
+                Log.e("tipoUsuario", "Erro ao identificar tipo usuário", e);
+            }
+            startActivity(intent);
+            finish();
+        });
+
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
@@ -166,4 +189,11 @@ public class CriarContaPassageiroActivity extends AppCompatActivity {
             return insets;
         });
     }
+
+    private String getUsuario() {
+        Bundle bundle = getIntent().getExtras();
+        if (bundle == null) return null;
+        return bundle.getString("tipoUsuario");
+    }
+
 }

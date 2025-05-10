@@ -7,7 +7,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class ChamadasServidorApiImpl {
     private static Retrofit retrofit;
 
-    public static ChamadasServidorApi getServicoApi() {
+    public static RotasApi getServicoApi() {
         if (retrofit == null) {
             OkHttpClient client = new OkHttpClient.Builder().build();
 
@@ -18,6 +18,6 @@ public class ChamadasServidorApiImpl {
                     .build();
         }
 
-        return retrofit.create(ChamadasServidorApi.class);
+        return retrofit.create(RotasApi.class);
     }
 }

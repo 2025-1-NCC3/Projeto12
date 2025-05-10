@@ -11,7 +11,7 @@ public class ChamadasServidorApiHeaderImpl {
 
     private static Retrofit retrofit;
 
-    public static ChamadasServidorApi getServicoApi(Context context) {
+    public static RotasApi getServicoApi(Context context) {
         if (retrofit == null) {
             OkHttpClient client = new OkHttpClient.Builder()
                     .addInterceptor(new AutenticadorInterceptor(context)) // Adiciona o token no header
@@ -24,6 +24,6 @@ public class ChamadasServidorApiHeaderImpl {
                     .build();
         }
 
-        return retrofit.create(ChamadasServidorApi.class);
+        return retrofit.create(RotasApi.class);
     }
 }
