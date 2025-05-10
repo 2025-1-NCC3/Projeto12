@@ -101,7 +101,7 @@ public class FormaEntradaActivity extends AppCompatActivity {
         };
 
         // Aplicando os spans
-        spannableString.setSpan(politicasClick, 54, 76, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+        spannableString.setSpan(politicasClick, 54, 78, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
 
         txtTermosPoliticas.setText(spannableString);
         txtTermosPoliticas.setMovementMethod(LinkMovementMethod.getInstance());
