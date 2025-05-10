@@ -107,7 +107,7 @@
                     android:layout_marginStart="8dp"
                     android:layout_marginBottom="16dp"
                     android:layout_toEndOf="@id/back_button"
-                    android:fontFamily="@font/roboto_medium"
+                    android:fontFamily="monospace"
                     android:text="@string/reportar_um_evento"
                     android:textAlignment="center"
                     android:textColor="@color/white"

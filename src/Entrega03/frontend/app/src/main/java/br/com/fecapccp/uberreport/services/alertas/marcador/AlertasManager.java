@@ -1,6 +1,7 @@
 package br.com.fecapccp.uberreport.services.alertas.marcador;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.os.Looper;
@@ -46,9 +47,12 @@ public class AlertasManager {
     }
 
     public void fetchAndDisplayAlertas(double latitude, double longitude, double raio) {
+
         new ObterAlertaImpl(context).obterAlertasProximos(latitude, longitude, raio, new Callback<List<Alerta>>() {
             @Override
             public void onResponse(Call<List<Alerta>> call, Response<List<Alerta>> response) {
+
+
                 if (response.isSuccessful() && response.body() != null) {
                     List<Alerta> alertas = response.body();
 
@@ -66,8 +70,17 @@ public class AlertasManager {
                                 marker.setTag(alerta);
                                 marcadorMap.put(alertaKey, marker);
 
+                                // Salva tempo de expiração no SharedPreferences
+                                long tempoFinal = System.currentTimeMillis() + (1 * 60 * 1000);
+                                SharedPreferences prefs = context.getSharedPreferences("ContadorPrefs", Context.MODE_PRIVATE);
+                                prefs.edit().putLong(alertaKey, tempoFinal).apply();
+
+
                                 // Remover o alerta após o tempo determinado abaixo!
-                                handler.postDelayed(() -> removerMarcador(alertaKey), 1 * 60 * 1000);
+                                handler.postDelayed(() -> {
+                                    removerMarcador(alertaKey);
+                                    prefs.edit().remove(alertaKey).apply();
+                                }, 1 * 60 * 1000);
                             }
                         }
                     }

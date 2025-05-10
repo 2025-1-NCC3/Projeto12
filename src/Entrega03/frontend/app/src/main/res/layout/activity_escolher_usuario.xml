@@ -18,10 +18,11 @@
         android:orientation="vertical">
 
         <TextView
-            android:layout_width="match_parent"
-            android:layout_height="116dp"
+            android:layout_width="319dp"
+            android:layout_height="142dp"
             android:layout_gravity="center_horizontal"
             android:layout_marginBottom="24dp"
+            android:fontFamily="monospace"
             android:text="@string/fa_a_login_para_acessar_sua_conta"
             android:textColor="@android:color/black"
             android:textSize="35sp"
@@ -72,6 +73,7 @@
                         android:text="@string/motorista"
                         android:textColor="@android:color/black"
                         android:textSize="24sp"
+                        android:fontFamily="monospace"
                         android:textStyle="bold" />
 
                     <ImageView
@@ -110,6 +112,7 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
+                        android:fontFamily="monospace"
                         android:text="@string/passageiro"
                         android:textColor="@android:color/black"
                         android:textSize="24sp"
