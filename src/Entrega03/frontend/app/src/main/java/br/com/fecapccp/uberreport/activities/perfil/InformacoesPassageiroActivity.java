@@ -50,7 +50,7 @@ public class InformacoesPassageiroActivity extends AppCompatActivity {
 
         if (passageiro != null) {
             // Preenche os campos com as informações do usuário
-            tituloNome.setText("Olá, " + passageiro.getNome() + " !");
+            tituloNome.setText("Olá, " + passageiro.getNome() + "!");
             nome.setText(passageiro.getNome());
             sobrenome.setText(passageiro.getSobrenome());
             email.setText(passageiro.getEmail());
