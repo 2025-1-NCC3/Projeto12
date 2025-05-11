@@ -8,12 +8,12 @@
     tools:context=".activities.recuperarsenha.EsqueceuSenhaActivity">
 
     <Button
-        android:id="@+id/btnProximoEsqueceuSenha"
+        android:id="@+id/btnEnviarCodigo"
         android:layout_width="319dp"
         android:layout_height="64dp"
         android:backgroundTint="@color/black"
         android:fontFamily="monospace"
-        android:text="@string/pr_ximo"
+        android:text="@string/enviar_c_digo"
         android:textAlignment="center"
         android:textColor="@color/white"
         android:textSize="23sp"

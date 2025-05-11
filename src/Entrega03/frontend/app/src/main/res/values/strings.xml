@@ -132,4 +132,5 @@ Esta política pode ser atualizada periodicamente. Recomendamos a leitura sempre
     <string name="adicionar_contato_de_emerg_ncia">Adicionar contato de emergência:</string>
     <string name="contato_de_emergencia">Contato de emergencia</string>
     <string name="editar_informa_es">Editar informações</string>
+    <string name="enviar_c_digo">Enviar código</string>
 </resources>

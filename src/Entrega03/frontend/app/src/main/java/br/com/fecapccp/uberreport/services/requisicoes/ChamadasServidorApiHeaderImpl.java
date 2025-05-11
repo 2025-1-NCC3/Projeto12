@@ -18,7 +18,7 @@ public class ChamadasServidorApiHeaderImpl {
                     .build();
 
             retrofit = new Retrofit.Builder()
-                    .baseUrl("https://wlmvqg-3002.csb.app")
+                    .baseUrl("https://fnnpyl-3002.csb.app")
                     .client(client)
                     .addConverterFactory(GsonConverterFactory.create())
                     .build();
