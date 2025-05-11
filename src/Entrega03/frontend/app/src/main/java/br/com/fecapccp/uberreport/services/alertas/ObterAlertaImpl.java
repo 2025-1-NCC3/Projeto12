@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.fecapccp.uberreport.services.alertas.model.Alerta;
-import br.com.fecapccp.uberreport.services.requisicoes.ChamadasServidorApi;
+import br.com.fecapccp.uberreport.services.requisicoes.RotasApi;
 import br.com.fecapccp.uberreport.services.requisicoes.ChamadasServidorApiHeaderImpl;
 import br.com.fecapccp.uberreport.utils.GeoUtils;
 import retrofit2.Call;
@@ -52,8 +52,8 @@ public class ObterAlertaImpl implements ObterAlerta {
         }
 
         debounceRunnable = () -> {
-            ChamadasServidorApi chamadasServidorApi = ChamadasServidorApiHeaderImpl.getServicoApi(context);
-            chamadasServidorApi.getAlerta(latitude, longitude, raio).enqueue(new Callback<List<Alerta>>() {
+            RotasApi rotasApi = ChamadasServidorApiHeaderImpl.getServicoApi(context);
+            rotasApi.getAlerta(latitude, longitude, raio).enqueue(new Callback<List<Alerta>>() {
                 @Override
                 public void onResponse(@NonNull Call<List<Alerta>> call, @NonNull Response<List<Alerta>> response) {
                     if (response.isSuccessful() && response.body() != null) {

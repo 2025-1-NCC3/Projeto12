@@ -72,7 +72,6 @@ public void setFk_idUser(Integer fk_idUser) {
                 ", tipoAlerta='" + tipoAlerta + '\'' +
                 ", dataHoraAlerta='" + dataHoraAlerta + '\'' +
                 ", latitude=" + latitude +
-                ", latitude=" + latitude +
                 ", longitude=" + longitude +
                 ", fk_idUser=" + fk_idUser;
     }

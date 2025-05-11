@@ -1,8 +1,10 @@
 package br.com.fecapccp.uberreport.services.alertas.marcador;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
+import android.os.Looper;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,6 +20,9 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
+import android.os.Handler;
+import android.os.Looper;
 
 import br.com.fecapccp.uberreport.R;
 import br.com.fecapccp.uberreport.services.alertas.ObterAlertaImpl;
@@ -30,6 +35,9 @@ public class AlertasManager {
     private final GoogleMap gMap;
     private final Context context;
     private final AlertasListener listener;
+    private final Map<String, Marker> marcadorMap = new ConcurrentHashMap<>();
+    private final Handler handler = new Handler(Looper.getMainLooper());
+
 
     public AlertasManager(GoogleMap gMap, Context context, AlertasListener listener) {
         this.gMap = gMap;
@@ -39,39 +47,41 @@ public class AlertasManager {
     }
 
     public void fetchAndDisplayAlertas(double latitude, double longitude, double raio) {
+
         new ObterAlertaImpl(context).obterAlertasProximos(latitude, longitude, raio, new Callback<List<Alerta>>() {
             @Override
             public void onResponse(Call<List<Alerta>> call, Response<List<Alerta>> response) {
+
+
                 if (response.isSuccessful() && response.body() != null) {
                     List<Alerta> alertas = response.body();
 
-                    // Grupo de alertas mapeados por tipoAlerta
-                    Map<String, Integer> alertCountMap = new HashMap<>();
-                    Map<String, LatLng> alertPositionMap = new HashMap<>();
-                    Map<String, Alerta> alertDataMap = new HashMap<>();
-
                     for (Alerta alerta : alertas) {
-                        String tipoAlerta = alerta.getTipoAlerta();
-                        alertCountMap.put(tipoAlerta, alertCountMap.getOrDefault(tipoAlerta, 0) + 1);
-                        alertPositionMap.put(tipoAlerta, new LatLng(alerta.getLatitude(), alerta.getLongitude()));
-                        alertDataMap.put(tipoAlerta, alerta);
-                    }
+                        String alertaKey = gerarChaveUnica(alerta.getLatitude(), alerta.getLongitude());
+                        if (!marcadorMap.containsKey(alertaKey)) {
+                            LatLng position = new LatLng(alerta.getLatitude(), alerta.getLongitude());
+                            Bitmap markerBitmap = criarMarcadorCustomizadoAlerta(alerta.getTipoAlerta(), 1);
 
-                    // Adiciona marcadores para cada tipoAlerta
-                    for (Map.Entry<String, Integer> entry : alertCountMap.entrySet()) {
-                        String tipoAlerta = entry.getKey();
-                        int count = entry.getValue();
-                        LatLng position = alertPositionMap.get(tipoAlerta);
+                            Marker marker = gMap.addMarker(new MarkerOptions()
+                                    .position(position)
+                                    .icon(BitmapDescriptorFactory.fromBitmap(markerBitmap)));
 
-                        // Aqui criamos o bitmap do marcador personalizado
-                        Bitmap markerBitmap = criarMarcadorCustomizadoAlerta(tipoAlerta, count);
-                        Marker marker = gMap.addMarker(new MarkerOptions()
-                                .position(position)
-                                .icon(BitmapDescriptorFactory.fromBitmap(markerBitmap)));
+                            if (marker != null) {
+                                marker.setTag(alerta);
+                                marcadorMap.put(alertaKey, marker);
 
-                        // Adiciona o alerta ao marcador
-                        if (marker != null) {
-                            marker.setTag(alertDataMap.get(tipoAlerta));
+                                // Salva tempo de expiração no SharedPreferences
+                                long tempoFinal = System.currentTimeMillis() + (1 * 60 * 1000);
+                                SharedPreferences prefs = context.getSharedPreferences("ContadorPrefs", Context.MODE_PRIVATE);
+                                prefs.edit().putLong(alertaKey, tempoFinal).apply();
+
+
+                                // Remover o alerta após o tempo determinado abaixo!
+                                handler.postDelayed(() -> {
+                                    removerMarcador(alertaKey);
+                                    prefs.edit().remove(alertaKey).apply();
+                                }, 1 * 60 * 1000);
+                            }
                         }
                     }
                 } else {
@@ -84,6 +94,17 @@ public class AlertasManager {
                 Log.e("AlertasManager", "Error fetching alerts: " + t.getMessage());
             }
         });
+    }
+
+    private String gerarChaveUnica(Double latitude, Double longitude) {
+        return latitude + "_" + longitude;
+    }
+
+    private void removerMarcador(String alertaId) {
+        Marker marker = marcadorMap.remove(alertaId);
+        if (marker != null) {
+            marker.remove();
+        }
     }
 
     private void setupMarkerClickListener() {

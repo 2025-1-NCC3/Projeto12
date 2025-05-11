@@ -3,6 +3,7 @@ package br.com.fecapccp.uberreport.activities;
 import android.Manifest;
 import android.app.AlertDialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.location.Address;
 import android.location.Geocoder;
@@ -55,6 +56,7 @@ import br.com.fecapccp.uberreport.services.usuario.ObterUsuarioImpl;
 import br.com.fecapccp.uberreport.utils.SharedPreferencesManager;
 
 import android.animation.ValueAnimator;
+import android.os.CountDownTimer;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
@@ -477,13 +479,64 @@ public class ProcurarCorridaPassageiroActivity extends AppCompatActivity impleme
 
     private void exibirDetalhesAlerta(Alerta alerta) {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle(getTituloPersonalizado(alerta.getNomeAlerta()))
-                .setMessage("🚨 Tipo do alerta: " + alerta.getTipoAlerta() + "\n" +
-                        "🗓️ Data e hora: " + alerta.getDataHoraAlerta() + "\n" +
-                        "↔️ Latitude: " + alerta.getLatitude() + "\n" +
-                        "↕️ Longitude: " + alerta.getLongitude())
-                .setPositiveButton("OK", (dialog, id) -> dialog.dismiss());
-        builder.create().show();
+        builder.setTitle(getTituloPersonalizado(alerta.getNomeAlerta()));
+
+        LinearLayout layout = new LinearLayout(this);
+        layout.setOrientation(LinearLayout.VERTICAL);
+        layout.setPadding(20, 20, 20, 20);
+
+        TextView detalhesTexto = new TextView(this);
+        detalhesTexto.setText("🚨 Tipo do alerta: " + alerta.getTipoAlerta() + "\n" +
+                "🗓️ Data e hora: " + alerta.getDataHoraAlerta() + "\n" +
+                "↔️ Latitude: " + alerta.getLatitude() + "\n" +
+                "↕️ Longitude: " + alerta.getLongitude());
+        detalhesTexto.setTextSize(16);
+        layout.addView(detalhesTexto);
+
+        final TextView contadorTexto = new TextView(this);
+        contadorTexto.setTextSize(16);
+        layout.addView(contadorTexto);
+
+        builder.setView(layout);
+        builder.setPositiveButton("OK", (dialog, id) -> dialog.dismiss());
+
+        AlertDialog dialog = builder.create();
+        dialog.show();
+
+        // Recupera o tempo final com base na chave única
+        String alertaKey = gerarChaveUnica(alerta.getLatitude(), alerta.getLongitude());
+        SharedPreferences prefs = getSharedPreferences("ContadorPrefs", MODE_PRIVATE);
+        long tempoFinal = prefs.getLong(alertaKey, 0);
+
+        if (tempoFinal == 0) {
+            contadorTexto.setText("⏳ Tempo do alerta não disponível.");
+            return;
+        }
+
+        long tempoRestante = tempoFinal - System.currentTimeMillis();
+
+        new CountDownTimer(tempoRestante, 1000) {
+            @Override
+            public void onTick(long millisUntilFinished) {
+                contadorTexto.setText("⏳ Alerta expirando em: " + formatarTempo(millisUntilFinished));
+            }
+
+            @Override
+            public void onFinish() {
+                dialog.dismiss();
+                prefs.edit().remove(alertaKey).apply();
+            }
+        }.start();
+    }
+
+    private String formatarTempo(long millis) {
+        long minutos = (millis / 1000) / 60;
+        long segundos = (millis / 1000) % 60;
+        return String.format("%02d:%02d", minutos, segundos);
+    }
+
+    private String gerarChaveUnica(Double latitude, Double longitude) {
+        return latitude + "_" + longitude;
     }
 
     private String getTituloPersonalizado(String nomeAlerta) {
@@ -551,6 +604,13 @@ public class ProcurarCorridaPassageiroActivity extends AppCompatActivity impleme
             if (addressesOrigem != null && !addressesOrigem.isEmpty() && addressesDestino != null && !addressesDestino.isEmpty()) {
                 LatLng latLngOrigem = new LatLng(addressesOrigem.get(0).getLatitude(), addressesOrigem.get(0).getLongitude());
                 LatLng latLngDestino = new LatLng(addressesDestino.get(0).getLatitude(), addressesDestino.get(0).getLongitude());
+
+                // Adiciona marcador no destino
+                MarkerOptions destinoMarker = new MarkerOptions()
+                        .position(latLngDestino)
+                        .title("Destino")
+                        .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED));
+                gMap.addMarker(destinoMarker);
 
                 exibirRota(latLngOrigem, latLngDestino);
             } else {

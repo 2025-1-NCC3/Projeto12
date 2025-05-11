@@ -60,8 +60,10 @@ public class FormaEntradaActivity extends AppCompatActivity {
         Intent intent;
         if (tipoUsuario.equals("passageiro")) {
             intent = new Intent(this, contaNova ? CriarContaPassageiroActivity.class : LoginActivity.class);
+            intent.putExtra("tipoUsuario", "passageiro");
         } else {
             intent = new Intent(this, contaNova ? CriarContaMotoristaActivity.class : LoginActivity.class);
+            intent.putExtra("tipoUsuario", "motorista");
         }
         startActivity(intent);
         finish();
@@ -99,7 +101,7 @@ public class FormaEntradaActivity extends AppCompatActivity {
         };
 
         // Aplicando os spans
-        spannableString.setSpan(politicasClick, 54, 76, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+        spannableString.setSpan(politicasClick, 54, 78, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
 
         txtTermosPoliticas.setText(spannableString);
         txtTermosPoliticas.setMovementMethod(LinkMovementMethod.getInstance());

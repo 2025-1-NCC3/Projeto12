@@ -27,8 +27,8 @@
 
     <Button
         android:id="@+id/btnEntrarConta"
-        android:layout_width="319dp"
-        android:layout_height="63dp"
+        android:layout_width="320dp"
+        android:layout_height="78dp"
         android:backgroundTint="@color/red"
         android:fontFamily="monospace"
         android:text="@string/entrar_na_sua_conta"
@@ -36,9 +36,10 @@
         android:textSize="23sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.494"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.561" />
+        app:layout_constraintVertical_bias="0.577" />
 
     <Button
         android:id="@+id/btnCriarConta"
@@ -54,7 +55,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.67" />
+        app:layout_constraintVertical_bias="0.692" />
 
     <ImageView
         android:id="@+id/imageView3"
@@ -70,19 +71,21 @@
 
     <TextView
         android:id="@+id/txtIrPoliticasPrivacidade"
-        android:layout_width="298dp"
-        android:layout_height="47dp"
-        android:fontFamily="@font/inter"
-        android:text="@string/ao_prosseguir_voc_aceita_nossos_termos_de_servi_o_e_pol_ticas_de_privacidade"
-        android:textColor="@color/cinza_claro"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="43dp"
+        android:layout_marginBottom="63dp"
+        android:fontFamily="monospace"
+        android:text=""
         android:textAlignment="center"
-        android:textSize="10sp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:textColor="@color/cinza_claro"
+        android:textSize="15sp"
+        android:padding="10dp"
+        app:layout_constraintBottom_toTopOf="@+id/imageView4"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.865" />
+        app:layout_constraintTop_toBottomOf="@+id/btnCriarConta"
+        app:layout_constraintVertical_bias="0.483" />
 
     <ImageView
         android:id="@+id/imageView4"

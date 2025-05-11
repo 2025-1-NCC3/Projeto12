@@ -9,7 +9,7 @@ import java.util.Date;
 import java.util.Locale;
 
 import br.com.fecapccp.uberreport.services.alertas.model.Alerta;
-import br.com.fecapccp.uberreport.services.requisicoes.ChamadasServidorApi;
+import br.com.fecapccp.uberreport.services.requisicoes.RotasApi;
 import br.com.fecapccp.uberreport.services.requisicoes.ChamadasServidorApiHeaderImpl;
 import br.com.fecapccp.uberreport.services.tokenjwt.AutenticadorInterceptor;
 import br.com.fecapccp.uberreport.services.tokenjwt.SessaoManager;
@@ -27,9 +27,9 @@ public class EnvioAlertaImpl implements EnvioAlerta {
 
     @Override
     public void enviarAlerta(Alerta alerta) {
-        ChamadasServidorApi chamadasServidorApi = ChamadasServidorApiHeaderImpl.getServicoApi(context);
+        RotasApi rotasApi = ChamadasServidorApiHeaderImpl.getServicoApi(context);
 
-        chamadasServidorApi.postAlerta(alerta).enqueue(new Callback<String>() {
+        rotasApi.postAlerta(alerta).enqueue(new Callback<String>() {
             @Override
             public void onResponse(Call<String> call, Response<String> response) {
                 if (response.code() == 401 || response.code() == 403) {
@@ -72,7 +72,8 @@ public class EnvioAlertaImpl implements EnvioAlerta {
     }
 
     public String getDataHoraAtual() {
-        SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss", Locale.getDefault());
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss", Locale.getDefault());
         return sdf.format(new Date());
     }
+
 }

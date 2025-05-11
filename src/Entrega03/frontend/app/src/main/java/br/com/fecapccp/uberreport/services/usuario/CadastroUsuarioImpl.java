@@ -7,7 +7,7 @@ import android.widget.Toast;
 import br.com.fecapccp.uberreport.BuildConfig;
 import br.com.fecapccp.uberreport.activities.login.LoginActivity;
 import br.com.fecapccp.uberreport.models.Usuario;
-import br.com.fecapccp.uberreport.services.requisicoes.ChamadasServidorApi;
+import br.com.fecapccp.uberreport.services.requisicoes.RotasApi;
 import br.com.fecapccp.uberreport.services.requisicoes.ChamadasServidorApiImpl;
 import br.com.fecapccp.uberreport.services.usuario.response.CadastroUsuarioResponse;
 import br.com.fecapccp.uberreport.utils.SharedPreferencesManager;
@@ -32,8 +32,8 @@ public class CadastroUsuarioImpl {
             usuario.criptografaDadosSensiveis(chaveAES);
 
             // Envia requisicao
-            ChamadasServidorApi chamadasServidorApi = ChamadasServidorApiImpl.getServicoApi();
-            chamadasServidorApi.postUsuario(usuario).enqueue(new Callback<>() {
+            RotasApi rotasApi = ChamadasServidorApiImpl.getServicoApi();
+            rotasApi.postUsuario(usuario).enqueue(new Callback<>() {
                 @Override
                 public void onResponse(Call<CadastroUsuarioResponse> call, Response<CadastroUsuarioResponse> response) {
                     if (response.isSuccessful()) {

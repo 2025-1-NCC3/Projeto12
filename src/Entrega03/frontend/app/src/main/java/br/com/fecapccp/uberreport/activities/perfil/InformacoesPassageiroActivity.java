@@ -1,14 +1,27 @@
 package br.com.fecapccp.uberreport.activities.perfil;
 
+import android.app.AlertDialog;
+import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import androidx.appcompat.app.AppCompatActivity;
+
+
 import br.com.fecapccp.uberreport.R;
+import br.com.fecapccp.uberreport.activities.MainActivity;
 import br.com.fecapccp.uberreport.models.Usuario;
+import br.com.fecapccp.uberreport.services.usuario.AtualizarUsuarioImpl;
+import br.com.fecapccp.uberreport.services.usuario.DeletarUsuarioImpl;
+import br.com.fecapccp.uberreport.services.usuario.request.AtualizarUsuarioRequest;
+import br.com.fecapccp.uberreport.utils.SharedPreferencesManager;
 
 public class InformacoesPassageiroActivity extends AppCompatActivity {
 
@@ -18,6 +31,8 @@ public class InformacoesPassageiroActivity extends AppCompatActivity {
         setContentView(R.layout.activity_informacoes_passageiro);
 
         // Referências aos elementos
+        ImageButton btnVoltarTela = findViewById(R.id.btnVoltarTela);
+        ImageButton btnConfiguracoes = findViewById(R.id.btnConfiguracoes);
         Button btnEditarInfos = findViewById(R.id.btnEditarInfos);
         Button btnSalvarInfos = findViewById(R.id.btnSalvarInfos);
         Button btnCancelarInfos = findViewById(R.id.btnCancelarInfos);
@@ -31,15 +46,16 @@ public class InformacoesPassageiroActivity extends AppCompatActivity {
         EditText contatoEmergencia = findViewById(R.id.PassageiroContatoEmergencia);
 
         // Obtém o objeto Usuario passado pela Intent
-        Usuario usuario = (Usuario) getIntent().getSerializableExtra("usuario");
+        Usuario passageiro = (Usuario) getIntent().getSerializableExtra("usuario");
 
-        if (usuario != null) {
+        if (passageiro != null) {
             // Preenche os campos com as informações do usuário
-            tituloNome.setText("Olá, " + usuario.getNome() + " !");
-            nome.setText(usuario.getNome());
-            sobrenome.setText(usuario.getSobrenome());
-            email.setText(usuario.getEmail());
-            telefone.setText(usuario.getTelefone());
+            tituloNome.setText("Olá, " + passageiro.getNome() + " !");
+            nome.setText(passageiro.getNome());
+            sobrenome.setText(passageiro.getSobrenome());
+            email.setText(passageiro.getEmail());
+            telefone.setText(passageiro.getTelefone());
+            contatoEmergencia.setText(passageiro.getContatoEmergencia());
         } else {
             // Exibe uma mensagem de erro caso o objeto seja nulo
             tituloNome.setText("Erro ao carregar informações");
@@ -75,18 +91,79 @@ public class InformacoesPassageiroActivity extends AppCompatActivity {
 
         // Botão Salvar
         btnSalvarInfos.setOnClickListener(v -> {
-            // Aqui você pode implementar a lógica para salvar as informações atualizadas
+            AtualizarUsuarioRequest request = new AtualizarUsuarioRequest(
+                    nome.getText().toString(),
+                    sobrenome.getText().toString(),
+                    email.getText().toString(),
+                    telefone.getText().toString(),
+                    contatoEmergencia.getText().toString().isEmpty() ? null : contatoEmergencia.getText().toString()
+            );
 
-            // Desabilitar campos após salvar
-            nome.setEnabled(false);
-            sobrenome.setEnabled(false);
-            email.setEnabled(false);
-            telefone.setEnabled(false);
-            contatoEmergencia.setEnabled(false);
+            try {
+                SharedPreferencesManager sharedPreferencesManager = new SharedPreferencesManager(getApplicationContext());
 
-            // Alternar visibilidade dos botões
-            btnContainer.setVisibility(View.GONE);
-            btnEditarInfos.setVisibility(View.VISIBLE);
+                AtualizarUsuarioImpl atualizarUsuario = new AtualizarUsuarioImpl(getApplicationContext());
+                atualizarUsuario.atualizarUsuario(sharedPreferencesManager.obterIdUsuario(), request);
+
+                Toast.makeText(this, "Informações atualizadas com sucesso!", Toast.LENGTH_SHORT).show();
+
+                // Desabilitar campos após salvar
+                nome.setEnabled(false);
+                sobrenome.setEnabled(false);
+                email.setEnabled(false);
+                telefone.setEnabled(false);
+                contatoEmergencia.setEnabled(false);
+
+                btnContainer.setVisibility(View.GONE);
+                btnEditarInfos.setVisibility(View.VISIBLE);
+            } catch (Exception e) {
+                Toast.makeText(this, "Erro ao atualizar os dados!", Toast.LENGTH_SHORT).show();
+                Log.e("PUT", "Erro ao atualizar os dados: " + e.getMessage());
+            }
         });
+
+        btnConfiguracoes.setOnClickListener(v -> {
+            // Inflar o layout do pop-up
+            View dialogView = getLayoutInflater().inflate(R.layout.dialog_deletar_conta, null);
+
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setTitle("Opções");
+            builder.setView(dialogView);
+
+            // Configura o clique na opção de deletar conta
+            builder.setPositiveButton("Deletar", (dialog, which) -> {
+                // Segundo pop-up para confirmação
+                AlertDialog.Builder confirmDialog = new AlertDialog.Builder(this);
+                confirmDialog.setTitle("Confirmação");
+                confirmDialog.setMessage("Tem certeza de que deseja deletar sua conta?");
+
+                confirmDialog.setPositiveButton("Deletar", (confirmDialogInterface, confirmWhich) -> {
+                    SharedPreferencesManager sharedPreferencesManager = new SharedPreferencesManager(getApplicationContext());
+
+                    DeletarUsuarioImpl deletarUsuario = new DeletarUsuarioImpl(getApplicationContext());
+                    deletarUsuario.deletarUsuario(sharedPreferencesManager.obterIdUsuario());
+                    sharedPreferencesManager.limparSessao();
+
+                    Toast.makeText(this, "Conta deletada com sucesso.", Toast.LENGTH_SHORT).show();
+
+                    Intent intent = new Intent(this, MainActivity.class);
+                    startActivity(intent);
+                    finish();
+                });
+
+                confirmDialog.setNegativeButton("Cancelar", (confirmDialogInterface, confirmWhich) -> {
+                    confirmDialogInterface.dismiss();
+                });
+
+                confirmDialog.show();
+            });
+
+            builder.setNegativeButton("Cancelar", (dialog, which) -> dialog.dismiss());
+
+            builder.show();
+        });
+
+        // Botão voltar
+        btnVoltarTela.setOnClickListener(v -> finish());
     }
 }
