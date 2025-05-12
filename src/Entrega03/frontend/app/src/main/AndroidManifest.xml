@@ -19,57 +19,63 @@
         android:theme="@style/Theme.UberReport"
         tools:targetApi="31">
         <activity
-            android:name=".activities.recuperarsenha.ResetarSenhaActivity"
+            android:name=".activities.MainActivity"
             android:exported="false"
             android:screenOrientation="portrait"/>
+        <activity
+            android:name=".activities.recuperarsenha.ResetarSenhaActivity"
+            android:exported="false"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".activities.recuperarsenha.CodigoEsqueceuSenhaActivity"
             android:exported="false"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".activities.recuperarsenha.EsqueceuSenhaActivity"
             android:exported="false"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".activities.outros.PoliticasPrivacidadeActivity"
             android:exported="false"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".activities.perfil.InformacoesMotoristaActivity"
             android:exported="false"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".activities.perfil.InformacoesPassageiroActivity"
             android:exported="false"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".activities.criarconta.CriarContaMotoristaActivity"
             android:exported="false"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".activities.login.LoginActivity"
             android:exported="false"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".activities.criarconta.CriarContaPassageiroActivity"
             android:exported="false"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".activities.login.FormaEntradaActivity"
             android:exported="false"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
         <activity
             android:name=".activities.login.EscolherUsuarioActivity"
             android:exported="false"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".activities.ProcurarCorridaPassageiroActivity"
             android:screenOrientation="portrait" />
+        <activity
+            android:name=".activities.ProcurarCorridaPassageiroActivity"
+            android:screenOrientation="portrait" />
+
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="${MAPS_API_KEY}" />
 
         <activity
-            android:name=".activities.MainActivity"
+            android:name=".services.animacoes.SplashScreen"
             android:exported="true"
             android:screenOrientation="portrait">
             <intent-filter>
