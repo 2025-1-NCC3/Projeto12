@@ -12,7 +12,7 @@ public class ChamadasServidorApiImpl {
             OkHttpClient client = new OkHttpClient.Builder().build();
 
             retrofit = new Retrofit.Builder()
-                    .baseUrl("https://9x3zpr-3002.csb.app")
+                    .baseUrl("https://cqtc62-5000.csb.app/")
                     .client(client)
                     .addConverterFactory(GsonConverterFactory.create())
                     .build();

@@ -38,12 +38,12 @@
         app:layout_constraintVertical_bias="0.218" />
 
     <Button
-        android:id="@+id/btnVoltarAoLogin"
+        android:id="@+id/btnRedefinirSenha"
         android:layout_width="319dp"
         android:layout_height="64dp"
         android:backgroundTint="@color/black"
         android:fontFamily="monospace"
-        android:text="Voltar ao Login"
+        android:text="Redefinir Senha"
         android:textAlignment="center"
         android:textColor="@color/white"
         android:textSize="23sp"
