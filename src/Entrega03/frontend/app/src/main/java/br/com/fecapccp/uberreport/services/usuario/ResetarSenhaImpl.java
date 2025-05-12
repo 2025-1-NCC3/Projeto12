@@ -1,15 +1,16 @@
 package br.com.fecapccp.uberreport.services.usuario;
 
 import android.content.Context;
-import android.content.Intent;
 import android.util.Log;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+
 import br.com.fecapccp.uberreport.BuildConfig;
-import br.com.fecapccp.uberreport.activities.login.LoginActivity;
-import br.com.fecapccp.uberreport.services.requisicoes.ChamadasServidorApi;
 import br.com.fecapccp.uberreport.services.requisicoes.ChamadasServidorApiImpl;
-import br.com.fecapccp.uberreport.services.tokenjwt.LoginRequest;
+import br.com.fecapccp.uberreport.services.requisicoes.RotasApi;
+import br.com.fecapccp.uberreport.services.usuario.request.LoginRequest;
+import br.com.fecapccp.uberreport.services.usuario.response.GenericResponse;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -32,20 +33,17 @@ public class ResetarSenhaImpl implements ResetarSenha {
 
             // Realiza a chamada ao servidor
 
-            ChamadasServidorApi chamadasServidorApi = ChamadasServidorApiImpl.getServicoApi();
-            chamadasServidorApi.postResetarSenha(loginRequest).enqueue(new Callback<String>() {
+            RotasApi chamadasServidorApi = ChamadasServidorApiImpl.getServicoApi();
+            chamadasServidorApi.postResetarSenha(loginRequest).enqueue(new Callback<>() {
                 @Override
-                public void onResponse(Call<String> call, Response<String> response) {
-                    if (response.isSuccessful()){
-                        Log.i("ResetarSenhaImpl", "senha resetada: " + response.body());
-                        Toast.makeText(context, "Senha redefinida com sucesso!", Toast.LENGTH_SHORT).show();
-                    } else {
-                        Toast.makeText(context, "Erro ao redefinir a senha.", Toast.LENGTH_SHORT).show();
-                    }
+                public void onResponse(@NonNull Call<GenericResponse> call, @NonNull Response<GenericResponse> response) {
+                    Log.i("ResetarSenhaImpl", "Senha redefinida com sucesso.");
+                    Toast.makeText(context, "Senha redefinida com sucesso!", Toast.LENGTH_SHORT).show();
+
                 }
 
                 @Override
-                public void onFailure(Call<String> call, Throwable t) {
+                public void onFailure(@NonNull Call<GenericResponse> call, @NonNull Throwable t) {
                     Log.i("ResetarSenhaImpl", "Erro de conexão: " + t.getMessage());
                     Toast.makeText(context, "Erro de conexão", Toast.LENGTH_SHORT).show();
                 }

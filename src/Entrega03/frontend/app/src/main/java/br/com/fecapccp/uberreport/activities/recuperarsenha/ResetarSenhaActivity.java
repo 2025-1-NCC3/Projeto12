@@ -17,16 +17,8 @@ import java.io.IOException;
 
 import br.com.fecapccp.uberreport.R;
 import br.com.fecapccp.uberreport.activities.login.LoginActivity;
-import br.com.fecapccp.uberreport.services.tokenjwt.LoginRequest;
-import br.com.fecapccp.uberreport.services.usuario.ResetarSenha;
 import br.com.fecapccp.uberreport.services.usuario.ResetarSenhaImpl;
-import okhttp3.Call;
-import okhttp3.Callback;
-import okhttp3.FormBody;
-import okhttp3.OkHttpClient;
-import okhttp3.Request;
-import okhttp3.RequestBody;
-import okhttp3.Response;
+import br.com.fecapccp.uberreport.services.usuario.request.LoginRequest;
 
 public class ResetarSenhaActivity extends AppCompatActivity {
 

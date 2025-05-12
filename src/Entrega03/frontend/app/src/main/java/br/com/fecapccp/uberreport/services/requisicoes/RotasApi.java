@@ -8,6 +8,7 @@ import br.com.fecapccp.uberreport.services.usuario.request.LoginRequest;
 import br.com.fecapccp.uberreport.services.usuario.request.AtualizarUsuarioRequest;
 import br.com.fecapccp.uberreport.services.usuario.response.CadastroUsuarioResponse;
 import br.com.fecapccp.uberreport.services.usuario.response.CodigoResponse;
+import br.com.fecapccp.uberreport.services.usuario.response.GenericResponse;
 import br.com.fecapccp.uberreport.services.usuario.response.LoginUsuarioResponse;
 import retrofit2.Call;
 import retrofit2.http.Body;
@@ -48,7 +49,7 @@ public interface RotasApi {
     Call<String> postToken(@Body String refreshToken);
 
     @POST("/reset-password")
-    Call<String> postResetarSenha(@Body LoginRequest loginRequest);
+    Call<GenericResponse> postResetarSenha(@Body LoginRequest loginRequest);
 
     @POST("/verificar-codigo")
     Call<Void> verificarCodigo(@Query("email") String email, @Query("codigo") String codigo);
