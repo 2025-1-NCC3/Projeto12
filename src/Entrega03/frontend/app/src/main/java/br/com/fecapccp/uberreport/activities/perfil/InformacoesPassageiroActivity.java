@@ -142,13 +142,14 @@ public class InformacoesPassageiroActivity extends AppCompatActivity {
 
                     DeletarUsuarioImpl deletarUsuario = new DeletarUsuarioImpl(getApplicationContext());
                     deletarUsuario.deletarUsuario(sharedPreferencesManager.obterIdUsuario());
-                    sharedPreferencesManager.limparSessao();
+
 
                     Toast.makeText(this, "Conta deletada com sucesso.", Toast.LENGTH_SHORT).show();
 
                     Intent intent = new Intent(this, MainActivity.class);
                     startActivity(intent);
                     finish();
+                    sharedPreferencesManager.limparSessao();
                 });
 
                 confirmDialog.setNegativeButton("Cancelar", (confirmDialogInterface, confirmWhich) -> {

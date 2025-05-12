@@ -66,6 +66,12 @@ public class AutenticadorInterceptor implements Interceptor {
         if (method.equals("GET") && path.startsWith("/users")) {
             return true;
         }
+        if (method.equals("PUT") && path.startsWith("/users")) {
+            return true;
+        }
+        if (method.equals("DELETE") && path.startsWith("/users")) {
+            return true;
+        }
         if (method.equals("POST") && path.equals("/users")) {
             return false;
         }
