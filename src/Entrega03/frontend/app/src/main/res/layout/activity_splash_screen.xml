@@ -28,7 +28,7 @@
         android:layout_marginTop="358dp"
         android:layout_marginEnd="50dp"
         android:layout_marginBottom="279dp"
-        android:src="@drawable/uberreportlogo" />
+        android:src="@drawable/uberreportlogo_vii" />
 
     <ImageView
         android:id="@+id/imageView11"
