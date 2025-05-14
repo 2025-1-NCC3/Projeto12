@@ -16,7 +16,7 @@
 
 ---
 
-## 📄Descrição
+## 📄 Descrição
 
 <p align="center">
   <img src="./img/icon.png" alt="Logo Uber Report" width="300">
@@ -63,13 +63,60 @@ README.MD: Arquivo que serve como guia e explicação geral sobre o projeto.
 
 Além disso, há outras pastas com os devidos arquivos em cada período de entrega.
 
-⛲[src](./src): Pasta que contém arquivos do frontend e backend do Uber Report, divididos por entregas conforme [cronograma da FECAP](https://docs.google.com/spreadsheets/d/1XAU0Du1hr3-Ovd_fm97lalqogyW0x3dZgiF1NAt3IaI/edit?gid=1182897581#gid=1182897581).
+⛲ [src](./src): Pasta que contém arquivos do frontend e backend do Uber Report, divididos por entregas conforme [cronograma da FECAP](https://docs.google.com/spreadsheets/d/1XAU0Du1hr3-Ovd_fm97lalqogyW0x3dZgiF1NAt3IaI/edit?gid=1182897581#gid=1182897581).
 
 🎲 [Banco de Dados](./documentos/Banco%20de%20Dados): Banco de dados usado no projeto.
 
-📄[documentos](./documentos): Devidos documentos do projeto e arquivos relacionados ao Banco de Dados, POO e Análise Descritiva de Dados.
+📄 [documentos](./documentos): Devidos documentos do projeto e arquivos relacionados ao Banco de Dados, POO e Análise Descritiva de Dados.
 
-📸[img](./img): Reunião de imagens utilizadas no projeto.
+📸 [img](./img): Reunião de imagens utilizadas no projeto.
+
+---
+
+## 🛠️ Tutoriais de instalação
+
+Há três modos que recomendamos para efetuar a instalação do aplicativo.
+
+🚨 **Pontos de atenção:** Utilizando qualquer um dos métodos seguintes não será possível efetuar login ou criar uma conta, pois o nosso projeto implementa o servidor gratuitamente no **CodeSandbox**. Com isso, não fica disponível 24h por dia, sendo necessário que os administradores do projeto permitam que ele esteja rodando. Além disso, nos tutoriais **02** e **03** o build não será completo, uma vez que são necessárias as **credenciais da API do Google Maps** e **chave de criptografia AES** que, por motivos de segurança, não estão publicamente postados.
+
+📨 **Contato:** Caso se interesse pelo funcionamento completo do app, por favor, entre em contato com algum dos participantes através dos links do LinkedIn acima ou ainda através do nosso e-mail: `uber.report.fecap@gmail.com`
+
+--- 
+
+### 📱 01. Instalando diretamente o APK
+
+1️⃣ Nesse formato você deverá fazer o download do arquivo `.APK` na pasta [ATUALIZAR DEPOIS O CAMINHO](./src). 
+
+2️⃣ Estando em um celular Android, faça a instalação.
+
+3️⃣ Provavelmente aparecerá algum alerta, pois não está sendo feito o download diretamente da Play Store.
+
+4️⃣ Confie na instalação e aproveite o aplicativo.
+
+---
+
+### 🗂️ 02. Download pelo arquivo .ZIP
+
+1️⃣ Esse passo é recomendado nos casos que apresentar erros com o build Gradle do projeto.
+
+2️⃣ Faça o download do arquivo `.ZIP` na pasta [ATUALIZAR DEPOIS O CAMINHO](./src).
+
+3️⃣ Descompecte ela e abra com o Android Studio.
+
+3️⃣ A IDE reconherá automaticamente as dependências necessárias e fará o download delas até o projeto estar totalmente buildado.
+
+---
+
+### ⛓️ 03. Clonando o repositório
+
+1️⃣ Assim como o tutorial anterior, ao clonar o repositório o Android Studio irá reconhecer as dependências nessárias para download.
+
+2️⃣ Efetue o clone através do botão `CODE` com o seguinte comando:
+
+```
+git clone git@github.com:2025-1-NCC3/Projeto12.git
+```
+3️⃣ Certifique-se de ter configurado o emulador e dê o play para rodar o app.
 
 ---
 
