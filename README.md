@@ -128,6 +128,8 @@ git clone git@github.com:2025-1-NCC3/Projeto12.git
 
 ## 🎨 Figma
 
+🖌️ O design do projeto inicialmente foi desenvolvido no Figma. Logo, abaixo há o link para o **protótipo** (simulação do app finalizado) e o link para **todas as telas** que implementamos.
+
 📲 Link para o [protótipo](https://www.figma.com/proto/gzVLnfMOuGmtoptiRN9vwm/Projeto3Semestre-Mobile?node-id=20-676&p=f&t=qdB3RaowYYSDwNsz-1&scaling=scale-down&content-scaling=fixed&page-id=0%3A1&starting-point-node-id=26%3A188&show-proto-sidebar=1).
 
 🌐 Link para o [projeto completo](https://www.figma.com/design/gzVLnfMOuGmtoptiRN9vwm/Projeto3Semestre-Mobile?node-id=0-1&p=f&t=KQBJIWzWs6puk3QV-0).
