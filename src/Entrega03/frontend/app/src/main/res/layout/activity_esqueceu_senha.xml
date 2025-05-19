@@ -13,7 +13,7 @@
         android:layout_height="64dp"
         android:backgroundTint="@color/black"
         android:fontFamily="monospace"
-        android:text="@string/enviar_c_digo"
+        android:text="@string/continuar"
         android:textAlignment="center"
         android:textColor="@color/white"
         android:textSize="23sp"
@@ -42,8 +42,8 @@
 
     <TextView
         android:id="@+id/TituloEsqueceuSenha"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="302dp"
+        android:layout_height="42dp"
         android:fontFamily="monospace"
         android:text="@string/esqueceu_a_senha"
         android:textColor="@color/vermelho_titulo"
@@ -62,8 +62,9 @@
         android:layout_height="wrap_content"
         android:fontFamily="monospace"
         android:text="@string/insira_o_email_para_redefinir_a_senha"
-        android:textSize="15sp"
+        android:textSize="17sp"
         android:textStyle="bold"
+        android:textColor="@color/black"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
@@ -92,12 +93,13 @@
         android:text="@string/digite_seu_email"
         android:textSize="15sp"
         android:textStyle="bold"
+        android:textColor="@color/black"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.095"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.666" />
+        app:layout_constraintVertical_bias="0.656" />
 
     <ImageView
         android:id="@+id/ImageEsqueceuSenha"

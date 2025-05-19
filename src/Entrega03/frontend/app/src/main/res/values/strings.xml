@@ -97,7 +97,7 @@
     <string name="centralizar">Botão para centralizar o mapa</string>
     <string name="aceito">Aceito</string>
     <string name="esqueceu_a_senha">Esqueceu a senha</string>
-    <string name="insira_o_email_para_redefinir_a_senha">insira o email para redefinir a senha</string>
+    <string name="insira_o_email_para_redefinir_a_senha">Insira o email para redefinir a senha</string>
     <string name="digite_seu_email">Digite seu email:</string>
     <string name="pr_ximo">Próximo</string>
     <string name="insira_o_c_digo">Insira o Código</string>
@@ -170,8 +170,7 @@ Esta política pode ser atualizada a qualquer momento. Recomendamos que os usuá
         \n
 Em caso de dúvidas, sugestões ou solicitações, entre em contato pelo e-mail:
 uber.report.fecap@gmail.com</string>
-    <string name="botao_de_voltar">Botao de voltar</string>
-    <string name="botao_de_configuracoes">Botao de configuracoes</string>
+    <string name="botao_de_voltar">Botão de voltar</string>
+    <string name="botao_de_configuracoes">Botão de configurações</string>
     <string name="deletar_conta">Deletar conta</string>
-    <string name="enviar_c_digo">Enviar código</string>
 </resources>

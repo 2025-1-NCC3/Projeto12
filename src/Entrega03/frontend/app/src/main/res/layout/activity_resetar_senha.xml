@@ -13,14 +13,15 @@
         android:layout_height="wrap_content"
         android:fontFamily="monospace"
         android:text="@string/confirme_sua_nova_senha"
-        android:textSize="15sp"
+        android:textColor="@color/black"
+        android:textSize="16sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.061"
+        app:layout_constraintHorizontal_bias="0.083"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.367" />
+        app:layout_constraintVertical_bias="0.365" />
 
     <TextView
         android:id="@+id/txtDigiteNovaSenha"
@@ -28,14 +29,15 @@
         android:layout_height="wrap_content"
         android:fontFamily="monospace"
         android:text="@string/digite_sua_nova_senha"
-        android:textSize="15sp"
+        android:textColor="@color/black"
+        android:textSize="16sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.061"
+        app:layout_constraintHorizontal_bias="0.075"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.218" />
+        app:layout_constraintVertical_bias="0.215" />
 
     <Button
         android:id="@+id/btnRedefinirSenha"
@@ -96,8 +98,9 @@
         android:layout_height="20dp"
         android:fontFamily="monospace"
         android:text="@string/a_nova_senha_deve_ser_diferente_da_antiga"
-        android:textSize="12sp"
+        android:textSize="16sp"
         android:textStyle="bold"
+        android:textColor="@color/black"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

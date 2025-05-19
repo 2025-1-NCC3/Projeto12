@@ -36,7 +36,7 @@ public class EsqueceuSenhaActivity extends AppCompatActivity {
                 return;
             }
 
-            Intent intent = new Intent(EsqueceuSenhaActivity.this, CodigoEsqueceuSenhaActivity.class);
+            Intent intent = new Intent(EsqueceuSenhaActivity.this, ResetarSenhaActivity.class);
             intent.putExtra("email", email);
             startActivity(intent);
 
