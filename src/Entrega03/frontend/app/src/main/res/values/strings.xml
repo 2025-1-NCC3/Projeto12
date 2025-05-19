@@ -173,4 +173,9 @@ uber.report.fecap@gmail.com</string>
     <string name="botao_de_voltar">Botão de voltar</string>
     <string name="botao_de_configuracoes">Botão de configurações</string>
     <string name="deletar_conta">Deletar conta</string>
+    <string name="whatsapp">WhatsApp</string>
+    <string name="bot_o_whatsapp">Botão WhatsApp</string>
+    <string name="bot_o_do_peril_do_usu_rio">Botão do peril do usuário</string>
+    <string name="whatsapplogo">WhatsAppLogo</string>
+    <string name="txt_whatsapp">WhatsApp</string>
 </resources>
