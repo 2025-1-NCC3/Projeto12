@@ -121,84 +121,131 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:baselineAligned="false"
-                android:gravity="center"
-                android:orientation="horizontal"
+                android:orientation="vertical"
                 android:visibility="gone">
 
+                <!-- First row: botao_acidentes centered -->
                 <LinearLayout
-                    android:layout_width="0dp"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
                     android:gravity="center"
-                    android:orientation="vertical">
+                    android:orientation="horizontal"
+                    android:layout_marginBottom="16dp">
 
-                    <ImageButton
-                        android:id="@+id/botao_clima"
-                        android:layout_width="64dp"
-                        android:layout_height="64dp"
-                        android:background="@drawable/circular_button"
-                        android:contentDescription="@string/bot_o_clima"
-                        android:padding="16dp"
-                        android:src="@drawable/weather" />
-
-                    <TextView
+                    <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/clima_adverso"
-                        android:textAlignment="center"
-                        android:textColor="@color/white"
-                        android:textSize="14sp" />
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <ImageButton
+                            android:id="@+id/botao_acidentes"
+                            android:layout_width="64dp"
+                            android:layout_height="64dp"
+                            android:background="@drawable/circular_button"
+                            android:contentDescription="@string/bot_o_acidentes"
+                            android:padding="16dp"
+                            android:src="@drawable/acidente" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/acidentes"
+                            android:textAlignment="center"
+                            android:textColor="@color/white"
+                            android:textSize="14sp" />
+                    </LinearLayout>
                 </LinearLayout>
 
+                <!-- Second row: botao_clima on the left, botao_crimes on the right -->
                 <LinearLayout
-                    android:layout_width="0dp"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:orientation="vertical">
+                    android:orientation="horizontal"
+                    android:layout_marginBottom="16dp">
 
-                    <ImageButton
-                        android:id="@+id/botao_acidentes"
-                        android:layout_width="64dp"
-                        android:layout_height="64dp"
-                        android:background="@drawable/circular_button"
-                        android:contentDescription="@string/bot_o_acidentes"
-                        android:padding="16dp"
-                        android:src="@drawable/acidente" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
+                    <LinearLayout
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:text="@string/acidentes"
-                        android:textAlignment="center"
-                        android:textColor="@color/white"
-                        android:textSize="14sp" />
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <ImageButton
+                            android:id="@+id/botao_clima"
+                            android:layout_width="64dp"
+                            android:layout_height="64dp"
+                            android:background="@drawable/circular_button"
+                            android:contentDescription="@string/bot_o_clima"
+                            android:padding="16dp"
+                            android:src="@drawable/weather" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/clima_adverso"
+                            android:textAlignment="center"
+                            android:textColor="@color/white"
+                            android:textSize="14sp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <ImageButton
+                            android:id="@+id/botao_crimes"
+                            android:layout_width="64dp"
+                            android:layout_height="64dp"
+                            android:background="@drawable/circular_button"
+                            android:contentDescription="@string/bot_o_crimes"
+                            android:padding="16dp"
+                            android:src="@drawable/crimes" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/crimes"
+                            android:textAlignment="center"
+                            android:textColor="@color/white"
+                            android:textSize="14sp" />
+                    </LinearLayout>
                 </LinearLayout>
 
+                <!-- Third row: new button centered -->
                 <LinearLayout
-                    android:layout_width="0dp"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
                     android:gravity="center"
-                    android:orientation="vertical">
+                    android:orientation="horizontal">
 
-                    <ImageButton
-                        android:id="@+id/botao_crimes"
-                        android:layout_width="64dp"
-                        android:layout_height="64dp"
-                        android:background="@drawable/circular_button"
-                        android:contentDescription="@string/bot_o_crimes"
-                        android:padding="16dp"
-                        android:src="@drawable/crimes" />
-
-                    <TextView
+                    <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/crimes"
-                        android:textAlignment="center"
-                        android:textColor="@color/white"
-                        android:textSize="14sp" />
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <ImageButton
+                            android:id="@+id/btnWhatsapp"
+                            android:layout_width="64dp"
+                            android:layout_height="64dp"
+                            android:background="@drawable/circular_button"
+                            android:contentDescription="@string/whatsapplogo"
+                            android:padding="16dp"
+                            android:src="@drawable/whatsapplogonovo"/>
+
+                        <TextView
+                            android:id="@+id/txtWhatsapp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/txt_whatsapp"
+                            android:textAlignment="center"
+                            android:textColor="@color/white"
+                            android:textSize="14sp" />
+                    </LinearLayout>
                 </LinearLayout>
             </LinearLayout>
 

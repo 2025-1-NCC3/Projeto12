@@ -8,6 +8,7 @@ import android.content.pm.PackageManager;
 import android.location.Address;
 import android.location.Geocoder;
 import android.location.Location;
+import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -43,7 +44,6 @@ import com.google.maps.model.TravelMode;
 import br.com.fecapccp.uberreport.BuildConfig;
 import br.com.fecapccp.uberreport.R;
 import br.com.fecapccp.uberreport.activities.perfil.InformacoesPassageiroActivity;
-import br.com.fecapccp.uberreport.models.Usuario;
 import br.com.fecapccp.uberreport.services.alertas.controller.AcidentesAlertaController;
 import br.com.fecapccp.uberreport.services.alertas.controller.CrimesAlertaController;
 import br.com.fecapccp.uberreport.services.alertas.marcador.AlertasManager;
@@ -105,6 +105,7 @@ public class ProcurarCorridaPassageiroActivity extends AppCompatActivity impleme
     private double userLongitude;
     private Polyline rotaAtual;
     private ImageButton btnPerfilUsuario;
+    private ImageButton btnWhatsapp;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -122,6 +123,7 @@ public class ProcurarCorridaPassageiroActivity extends AppCompatActivity impleme
         configurarBotaoConfirmar();
         configurarBotaoCentralizar();
         getPerfilUsuario();
+        setupWhatsappBotao();
     }
 
     private void conferePermissaoLocalizacaoUsuario() {
@@ -154,6 +156,7 @@ public class ProcurarCorridaPassageiroActivity extends AppCompatActivity impleme
         layoutAlertasAcidentes = findViewById(R.id.layout_alertas_acidentes);
         layoutAlertasCrimes = findViewById(R.id.layout_alertas_crimes);
         btnPerfilUsuario = findViewById(R.id.btnPerfilUsuario);
+        btnWhatsapp = findViewById(R.id.btnWhatsapp);
     }
 
     private void configuraBotoesAlertas() {
@@ -692,5 +695,90 @@ public class ProcurarCorridaPassageiroActivity extends AppCompatActivity impleme
                 Toast.makeText(this, "Usuário não encontrado.", Toast.LENGTH_SHORT).show();
             }
         });
+    }
+
+    private void setupWhatsappBotao() {
+        btnWhatsapp.setOnClickListener(v -> {
+            Toast.makeText(this, "Conectando ao contato de emergência...", Toast.LENGTH_SHORT).show();
+
+            // Get user ID
+            SharedPreferencesManager sharedPreferencesManager = new SharedPreferencesManager(this);
+            int userId = sharedPreferencesManager.obterIdUsuario();
+
+            if (userId != -1) {
+                // Obtem o numero de contato de emergencia do usuario
+                ObterUsuarioImpl obterUsuarioImpl = new ObterUsuarioImpl(this);
+                obterUsuarioImpl.obterUsuario(userId,
+                        usuario -> {
+                            // Confere se existe um numero de emergencia configurado
+                            if (usuario.getContatoEmergencia() != null && !usuario.getContatoEmergencia().isEmpty()) {
+                                enviarMensagemWhatsapp(usuario.getContatoEmergencia());
+                            } else {
+                                Toast.makeText(this, "Contato de emergência não configurado", Toast.LENGTH_SHORT).show();
+                            }
+                        },
+                        errorMessage -> Toast.makeText(this, "Erro: " + errorMessage, Toast.LENGTH_SHORT).show()
+                );
+            } else {
+                Toast.makeText(this, "Usuário não encontrado", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    private void enviarMensagemWhatsapp(String phoneNumber) {
+        try {
+            // Loga o numero original para debug
+            Log.d("WhatsApp", "Número original: " + phoneNumber);
+
+            // Obtem numero formatado para conectar ao whatsapp
+            String numeroFormatado = getNumeroFormatado(phoneNumber);
+
+            Log.d("WhatsApp", "Número formatado: " + numeroFormatado);
+
+            // Mensagem padrao para envio
+            String message = "Estou em situação de emergência e preciso de ajuda com a minha corrida no UberReport.";
+
+            // Cria o intent do whatsapp
+            Intent whatsappIntent = new Intent(Intent.ACTION_VIEW);
+            String url = "https://api.whatsapp.com/send?phone=" + numeroFormatado +
+                    "&text=" + java.net.URLEncoder.encode(message, "UTF-8");
+            whatsappIntent.setData(Uri.parse(url));
+            whatsappIntent.setPackage("com.whatsapp");
+
+            // Confere se o whatsapp está instalado
+            if (whatsappIntent.resolveActivity(getPackageManager()) != null) {
+                startActivity(whatsappIntent);
+            } else {
+                Toast.makeText(this, "WhatsApp não está instalado", Toast.LENGTH_SHORT).show();
+
+                // Abre a google play store
+                try {
+                    startActivity(new Intent(Intent.ACTION_VIEW,
+                            Uri.parse("market://details?id=com.whatsapp")));
+                } catch (android.content.ActivityNotFoundException e) {
+                    startActivity(new Intent(Intent.ACTION_VIEW,
+                            Uri.parse("https://play.google.com/store/apps/details?id=com.whatsapp")));
+                }
+            }
+        } catch (java.io.UnsupportedEncodingException e) {
+            Toast.makeText(this, "Erro ao codificar mensagem", Toast.LENGTH_SHORT).show();
+            Log.e("WhatsApp", "Error encoding message", e);
+        }
+    }
+
+    @NonNull
+    private static String getNumeroFormatado(String phoneNumber) {
+        String numeroFormatado = phoneNumber.replaceAll("[^0-9]", "");
+
+        // Adequa ao padrao brasileiro (DDD + 9 + 8 digits)
+        if (numeroFormatado.length() == 10) {
+            numeroFormatado = numeroFormatado.substring(0, 2) + "9" + numeroFormatado.substring(2);
+        }
+
+        // Adiciona o numero do pais se nao houver
+        if (!numeroFormatado.startsWith("55")) {
+            numeroFormatado = "55" + numeroFormatado;
+        }
+        return numeroFormatado;
     }
 }
