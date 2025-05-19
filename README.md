@@ -99,7 +99,7 @@ Há três modos que recomendamos para efetuar a instalação do aplicativo.
 
 ### 📱 01. Instalando diretamente o APK
 
-1️⃣ Nesse formato você deverá fazer o download do arquivo `.APK` na pasta [ATUALIZAR DEPOIS O CAMINHO](./src). 
+1️⃣ Nesse formato você deverá fazer o download do arquivo `.APK` na pasta [Entrega03 do PI](./documentos/Entrega03/Projeto%20Interdisciplinar_Aplicativo%20Móvel). 
 
 2️⃣ Estando em um celular Android, faça a instalação.
 
@@ -113,7 +113,7 @@ Há três modos que recomendamos para efetuar a instalação do aplicativo.
 
 1️⃣ Esse passo é recomendado nos casos que apresentar erros com o build Gradle do projeto.
 
-2️⃣ Faça o download do arquivo `.ZIP` na pasta [ATUALIZAR DEPOIS O CAMINHO](./src).
+2️⃣ Faça o download do arquivo `.ZIP` na pasta [Entrega03 do PI](./documentos/Entrega03/Projeto%20Interdisciplinar_Aplicativo%20Móvel).
 
 3️⃣ Descompecte ela e abra com o Android Studio.
 
