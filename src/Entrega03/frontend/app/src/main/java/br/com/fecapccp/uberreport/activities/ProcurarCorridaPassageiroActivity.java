@@ -69,6 +69,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Locale;
@@ -701,84 +702,57 @@ public class ProcurarCorridaPassageiroActivity extends AppCompatActivity impleme
         btnWhatsapp.setOnClickListener(v -> {
             Toast.makeText(this, "Conectando ao contato de emergência...", Toast.LENGTH_SHORT).show();
 
-            // Get user ID
-            SharedPreferencesManager sharedPreferencesManager = new SharedPreferencesManager(this);
-            int userId = sharedPreferencesManager.obterIdUsuario();
+            // 1) Pega o ID do usuário
+            SharedPreferencesManager prefs = new SharedPreferencesManager(this);
+            int userId = prefs.obterIdUsuario();
 
-            if (userId != -1) {
-                // Obtem o numero de contato de emergencia do usuario
-                ObterUsuarioImpl obterUsuarioImpl = new ObterUsuarioImpl(this);
-                obterUsuarioImpl.obterUsuario(userId,
-                        usuario -> {
-                            // Confere se existe um numero de emergencia configurado
-                            if (usuario.getContatoEmergencia() != null && !usuario.getContatoEmergencia().isEmpty()) {
-                                enviarMensagemWhatsapp(usuario.getContatoEmergencia());
-                            } else {
-                                Toast.makeText(this, "Contato de emergência não configurado", Toast.LENGTH_SHORT).show();
-                            }
-                        },
-                        errorMessage -> Toast.makeText(this, "Erro: " + errorMessage, Toast.LENGTH_SHORT).show()
-                );
-            } else {
+            if (userId == -1) {
                 Toast.makeText(this, "Usuário não encontrado", Toast.LENGTH_SHORT).show();
+                return;
             }
+
+            // 2) Busca o usuário no banco
+            new ObterUsuarioImpl(this).obterUsuario(
+                    userId,
+                    usuario -> {
+                        String rawNumber = usuario.getContatoEmergencia();
+                        if (rawNumber == null || rawNumber.isEmpty()) {
+                            Toast.makeText(this, "Contato de emergência não configurado", Toast.LENGTH_SHORT).show();
+                        } else {
+                            abrirWhatsAppComLink(rawNumber);
+                        }
+                    },
+                    err -> Toast.makeText(this, "Erro: " + err, Toast.LENGTH_SHORT).show()
+            );
         });
     }
 
-    private void enviarMensagemWhatsapp(String phoneNumber) {
+    private void abrirWhatsAppComLink(String phoneNumber) {
         try {
-            // Loga o numero original para debug
-            Log.d("WhatsApp", "Número original: " + phoneNumber);
-
-            // Obtem numero formatado para conectar ao whatsapp
-            String numeroFormatado = getNumeroFormatado(phoneNumber);
-
-            Log.d("WhatsApp", "Número formatado: " + numeroFormatado);
-
-            // Mensagem padrao para envio
-            String message = "Estou em situação de emergência e preciso de ajuda com a minha corrida no UberReport.";
-
-            // Cria o intent do whatsapp
-            Intent whatsappIntent = new Intent(Intent.ACTION_VIEW);
-            String url = "https://api.whatsapp.com/send?phone=" + numeroFormatado +
-                    "&text=" + java.net.URLEncoder.encode(message, "UTF-8");
-            whatsappIntent.setData(Uri.parse(url));
-            whatsappIntent.setPackage("com.whatsapp");
-
-            // Confere se o whatsapp está instalado
-            if (whatsappIntent.resolveActivity(getPackageManager()) != null) {
-                startActivity(whatsappIntent);
-            } else {
-                Toast.makeText(this, "WhatsApp não está instalado", Toast.LENGTH_SHORT).show();
-
-                // Abre a google play store
-                try {
-                    startActivity(new Intent(Intent.ACTION_VIEW,
-                            Uri.parse("market://details?id=com.whatsapp")));
-                } catch (android.content.ActivityNotFoundException e) {
-                    startActivity(new Intent(Intent.ACTION_VIEW,
-                            Uri.parse("https://play.google.com/store/apps/details?id=com.whatsapp")));
-                }
+            // 1) Formata o número (só dígitos, DDI +55 e 9 quando faltar)
+            String num = phoneNumber.replaceAll("\\D", "");
+            if (num.length() == 10) {
+                num = num.substring(0, 2) + "9" + num.substring(2);
             }
-        } catch (java.io.UnsupportedEncodingException e) {
+            if (!num.startsWith("55")) {
+                num = "55" + num;
+            }
+
+            // 2) Mensagem padrão
+            String texto = "Estou em situação de emergência e preciso de ajuda com a minha corrida no UberReport.";
+            String encoded = java.net.URLEncoder.encode(texto, "UTF-8");
+
+            // 3) Monta o link wa.me
+            String waLink = "https://wa.me/" + num + "?text=" + encoded;
+
+            // 4) Dispara o Intent para visualizar (vai oferecer abrir com WhatsApp)
+            Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(waLink));
+            startActivity(intent);
+
+        } catch (UnsupportedEncodingException e) {
             Toast.makeText(this, "Erro ao codificar mensagem", Toast.LENGTH_SHORT).show();
-            Log.e("WhatsApp", "Error encoding message", e);
+            Log.e("WhatsApp", "Encoding error", e);
         }
     }
 
-    @NonNull
-    private static String getNumeroFormatado(String phoneNumber) {
-        String numeroFormatado = phoneNumber.replaceAll("[^0-9]", "");
-
-        // Adequa ao padrao brasileiro (DDD + 9 + 8 digits)
-        if (numeroFormatado.length() == 10) {
-            numeroFormatado = numeroFormatado.substring(0, 2) + "9" + numeroFormatado.substring(2);
-        }
-
-        // Adiciona o numero do pais se nao houver
-        if (!numeroFormatado.startsWith("55")) {
-            numeroFormatado = "55" + numeroFormatado;
-        }
-        return numeroFormatado;
-    }
 }
