@@ -28,11 +28,19 @@ Visando uma implementação no aplicativo da Uber, o projeto tem como objetivo g
 
 ## 📋 Detalhes
 
-🚗 Usuários e motoristas podem alertar riscos nas áreas das corridas e esses avisos serão mostrados no mapa. Logo, podem garantir maior segurança e confiança aos outros parceiros. 
+🚗 Já pensou você estar se preparando para pedir uma corrida ou já está em uma e presencia um **acidente? Um assalto? Uma via impedida?** Como conseguir contribuir para que outras pessoas fiquem cientes dessas situações?
 
-☔ Com o uso de alertas em tempo real será possível relatar enchentes, desabamentos, quedas de árvores, assaltos, confrontos com a polícia e entre outros. Portanto, deixando claro os locais a serem evitados ou que exigem maior cautela.
+🚨 O Uber Report vem para contribuir com essas questões: usuários e motoristas podem **alertar riscos** nas áreas das corridas e esses avisos serão mostrados no mapa. Logo, podem garantir maior segurança e confiança aos outros parceiros. 
 
-📨 Se conectando com o WhatsApp, estará disponível o envio de mensagens rápidas e já prontas para um contato de confiança. Assim, é liberado compartilhar a sua viagem ou mesmo comunicar que está em potencial perigo.
+☔ Com o uso de **alertas em tempo real** será possível relatar enchentes, desabamentos, quedas de árvores, assaltos, confrontos com a polícia e entre outros. Portanto, deixando claro os locais a serem evitados ou que exigem maior cautela.
+
+📨 Se conectando com o **WhatsApp**, estará disponível o envio de mensagens rápidas e já prontas para um contato de confiança. Assim, é liberado compartilhar a sua viagem ou mesmo comunicar que está em potencial perigo.
+
+🔐 Todos os dados enviados ao **servidor (CodeSandbox)** e armazenados no **banco de dados (SQLite)** são criptografados com o **padrão AES-128**, garantindo robustez no processo de segurança da informação.
+
+⏳ Para evitar informações falsas, os alertas têm um **tempo de expiração** definido. Atualmente, para apresentações e praticidade, está definido como um minuto. 
+
+🗾 Com a **API do Google Maps** implementamos o mapa, traçar rotas entre local atual para local de destino, pesquisar endereços no mundo inteiro e mostrar os alertas aos usuários.
 
 ---
 
