@@ -36,7 +36,7 @@ Visando uma implementação no aplicativo da Uber, o projeto tem como objetivo g
 
 ---
 
-## 🛠 Estrutura de pastas
+## 🗂️ Estrutura de pastas
 
 ```
 ├── 🗂️ documentos/
@@ -133,6 +133,19 @@ git clone git@github.com:2025-1-NCC3/Projeto12.git
 📲 Link para o [protótipo](https://www.figma.com/proto/gzVLnfMOuGmtoptiRN9vwm/Projeto3Semestre-Mobile?node-id=20-676&p=f&t=qdB3RaowYYSDwNsz-1&scaling=scale-down&content-scaling=fixed&page-id=0%3A1&starting-point-node-id=26%3A188&show-proto-sidebar=1).
 
 🌐 Link para o [projeto completo](https://www.figma.com/design/gzVLnfMOuGmtoptiRN9vwm/Projeto3Semestre-Mobile?node-id=0-1&p=f&t=KQBJIWzWs6puk3QV-0).
+
+---
+
+## ⚙️ Stacks
+
+![Java](https://img.shields.io/badge/Java-ED8B00?style=for-the-badge&logo=openjdk&logoColor=white)
+![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)
+![SQLite](https://img.shields.io/badge/SQLite-003B57?style=for-the-badge&logo=sqlite&logoColor=white)
+![Android](https://img.shields.io/badge/Android-3DDC84?style=for-the-badge&logo=android&logoColor=white)
+![Node.js](https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=nodedotjs&logoColor=white)
+![CodeSandbox](https://img.shields.io/badge/CodeSandbox-151515?style=for-the-badge&logo=codesandbox&logoColor=white)
+![Figma](https://img.shields.io/badge/Figma-F24E1E?style=for-the-badge&logo=figma&logoColor=white)
+![Google Maps API](https://img.shields.io/badge/Google%20Maps-API-4285F4?style=for-the-badge&logo=googlemaps&logoColor=white)
 
 ---
 
