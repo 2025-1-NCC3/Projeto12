@@ -152,12 +152,13 @@
             android:id="@+id/PassageiroContatoEmergencia"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/contato_de_emergencia"
-            android:enabled="false"
+            android:layout_margin="10dp"
             android:background="@drawable/borda_campos_info_usuario"
-            android:padding="12dp"
+            android:enabled="false"
             android:fontFamily="monospace"
-            android:layout_margin="10dp"/>
+            android:hint="@string/contato_de_emergencia"
+            android:inputType="number"
+            android:padding="12dp" />
 
         <Button
             android:id="@+id/btnEditarInfos"
