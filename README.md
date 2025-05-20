@@ -134,6 +134,11 @@ git clone git@github.com:2025-1-NCC3/Projeto12.git
 
 ---
 
+## 📹 Demonstração
+
+Para além das instalações locais, você pode conhecer o aplicativo melhor através do seguinte vídeo: [Demonstração Uber Report - YouTube](https://www.youtube.com/watch?v=nwUi1H5nG1Q).
+
+
 ## 🎨 Figma
 
 🖌️ O design do projeto inicialmente foi desenvolvido no Figma. Logo, abaixo há o link para o **protótipo** (simulação do app finalizado) e o link para **todas as telas** que implementamos.
